@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp.controllers', [])
-.controller('mediaCtrl', ['$scope', '$filter', 'getData', function($scope, $filter, getData) {
+.controller('itemListCtrl', ['$scope', '$location', '$filter', 'getData', 'sharedProperties', function($scope, $location, $filter, getData, sharedProperties) {
 	$scope.getDataByType = function(type){
 	var promise = getData.getAll();
 	 promise.then(
@@ -13,21 +13,12 @@ angular.module('myApp.controllers', [])
           });
 	}
 
+	$scope.getDataByType('all');
 	$scope.showEditItemView = function(id){
-		alert(id);
+		sharedProperties.setID(id);
+		$location.path('/edit-item');
 	}
 }])
-.controller('homeCtrl', ['$scope', '$controller', function($scope, $controller) {
-	$controller('mediaCtrl', {$scope: $scope});
-	$scope.getDataByType('all');
-}])
-.controller('cdsCtrl', ['$scope', '$controller', function($scope, $controller) {
-	$controller('mediaCtrl', {$scope: $scope});
-	$scope.getDataByType('cd');
-
-}])
-.controller('dvdsCtrl', ['$scope', '$controller', function($scope, $controller) {
-	$controller('mediaCtrl', {$scope: $scope});
-	$scope.getDataByType('dvd');
-
+.controller('editItemCtrl', ['$scope', 'sharedProperties', function($scope, sharedProperties){
+	$scope.id=sharedProperties.getID();
 }]);

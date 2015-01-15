@@ -1,0 +1,14 @@
+
+
+  <input type="checkbox" ng-model="all">
+  <input type="checkbox" ng-model="cd">
+  <input type="checkbox" ng-model="dvd">
+  <input type="checkbox" ng-model="ebook">
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+
+<div class="item" ng-repeat="item in items" ng-click="showEditItemView(item.id)">
+<span style="margin-right: 20px;"> {{item.title}} </span>
+<span style="float:right; margin-right: 100px;"> {{item.type}}</div>

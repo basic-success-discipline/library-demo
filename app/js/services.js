@@ -7,4 +7,15 @@ angular.module('myApp.services', [])
                 return $http.get("/app/json/testData.json");
             }
         }
+    })
+.service('sharedProperties', function ($http) {
+		var id = "1";
+        return {
+            getID: function () {
+                return id;
+            },
+            setID: function(newID){
+            	id = newID;
+            }
+        }
     });

@@ -10,9 +10,8 @@ angular.module('myApp', [
   'myApp.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home', {templateUrl: 'views/home.html', controller: 'homeCtrl'});
-  $routeProvider.when('/cds', {templateUrl: 'views/cds.html', controller: 'cdsCtrl'});
-  $routeProvider.when('/dvds', {templateUrl: 'views/dvds.html', controller: 'dvdsCtrl'});
-  $routeProvider.otherwise({redirectTo: '/home'});
+  $routeProvider.when('/item-list', {templateUrl: 'views/item-list.html', controller: 'itemListCtrl'});
+  $routeProvider.when('/edit-item', {templateUrl: 'views/edit-item.html', controller: 'editItemCtrl'});
+  $routeProvider.otherwise({redirectTo: '/item-list'});
   
 }]);
