@@ -3,7 +3,7 @@
 angular.module('myApp.services', [])
 .service('getData', function ($http) {
         return {
-            getData: function () {
+            getAll: function () {
                 return $http.get("/app/json/testData.json");
             }
         }
