@@ -12,6 +12,10 @@ angular.module('myApp.controllers', [])
               $log.error('failure loading test data', errorPayload);
           });
 	}
+
+	$scope.showEditItemView = function(id){
+		alert(id);
+	}
 }])
 .controller('homeCtrl', ['$scope', '$controller', function($scope, $controller) {
 	$controller('mediaCtrl', {$scope: $scope});
@@ -20,7 +24,6 @@ angular.module('myApp.controllers', [])
 .controller('cdsCtrl', ['$scope', '$controller', function($scope, $controller) {
 	$controller('mediaCtrl', {$scope: $scope});
 	$scope.getDataByType('cd');
-
 
 }])
 .controller('dvdsCtrl', ['$scope', '$controller', function($scope, $controller) {
