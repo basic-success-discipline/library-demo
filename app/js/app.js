@@ -11,5 +11,8 @@ angular.module('myApp', [
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {templateUrl: 'views/home.html', controller: 'homeCtrl'});
+  $routeProvider.when('/cds', {templateUrl: 'views/cds.html', controller: 'cdsCtrl'});
+  $routeProvider.when('/dvds', {templateUrl: 'views/dvds.html', controller: 'dvdsCtrl'});
   $routeProvider.otherwise({redirectTo: '/home'});
+  
 }]);
