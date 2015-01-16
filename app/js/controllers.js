@@ -41,12 +41,22 @@ angular.module('myApp.controllers', [])
 }])
 .controller('editItemCtrl', ['$scope', '$filter', 'sharedProperties', function($scope, $filter, sharedProperties){
 	$scope.item=sharedProperties.getEditItem();
+	$scope.itemCopy = angular.copy($scope.item);
 	$scope.editMode = false;
+	$scope.edits ={};
 	$scope.toggleEditMode = function(bool){
 		$scope.editMode = bool;
+		if(!bool){
+			$scope.itemCopy = angular.copy($scope.item);
+		}
 	}
-	$scope.tracksAtEnd = function(item){
-		alert(item.key);
-		return 0;
+
+	$scope.addEdit = function(key, value){
+		$scope.edits[key] = value;
+	}
+	$scope.saveEdit = function(){
+		for(var key in $scope.edits){
+			console.log(key + " : " + $scope.edits[key]);
+		}
 	}
 }]);

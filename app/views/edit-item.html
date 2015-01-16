@@ -4,7 +4,7 @@
 <button ng-click="saveEdit()" ng-show="editMode">Save</button>
 <button ng-click="toggleEditMode(!editMode)" ng-bind="editMode ? 'Cancel' : 'Edit'"></button>
 
-<div ng-repeat="(key, value) in item">
+<div ng-repeat="(key, value) in itemCopy">
 	<span>{{key}}</span>
-	<textarea ng-readonly="!editMode">{{value}}</textarea>
+	<textarea ng-readonly="!editMode" ng-bind="itemCopy[key]" ng-model="value" ng-change="addEdit(key, value)"></textarea>
 </div>
