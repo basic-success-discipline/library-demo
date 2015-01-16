@@ -1,3 +1,6 @@
 <a href="#/item-list">back</a>
 
-<p> this is the edit item view for item {{id}}</p>
+<div ng-repeat="(key, value) in item">
+	<span>{{key}}</span>
+	<span>{{value}}</span>
+</div>

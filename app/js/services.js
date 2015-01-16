@@ -8,14 +8,14 @@ angular.module('myApp.services', [])
             }
         }
     })
-.service('sharedProperties', function ($http) {
-		var id = "1";
+.service('sharedProperties', function () {
+		var item = {"No item selected.":""};
         return {
-            getID: function () {
-                return id;
+            getEditItem: function () {
+                return item;
             },
-            setID: function(newID){
-            	id = newID;
+            setEditItem: function(newEditItem){
+            	item = newEditItem;
             }
         }
     });

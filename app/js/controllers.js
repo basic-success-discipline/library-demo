@@ -17,8 +17,8 @@ angular.module('myApp.controllers', [])
 	}
 
 	$scope.getDataByType(['cd','dvd','ebook']);
-	$scope.showEditItemView = function(id){
-		sharedProperties.setID(id);
+	$scope.showEditItemView = function(item){
+		sharedProperties.setEditItem(item);
 		$location.path('/edit-item');
 	}
 
@@ -39,6 +39,8 @@ angular.module('myApp.controllers', [])
 
 	
 }])
-.controller('editItemCtrl', ['$scope', 'sharedProperties', function($scope, sharedProperties){
-	$scope.id=sharedProperties.getID();
+.controller('editItemCtrl', ['$scope', '$filter', 'sharedProperties', function($scope, $filter, sharedProperties){
+	$scope.item=sharedProperties.getEditItem();
+
+
 }]);
