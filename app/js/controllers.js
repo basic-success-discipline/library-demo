@@ -39,7 +39,7 @@ angular.module('myApp.controllers', [])
 
 	
 }])
-.controller('editItemCtrl', ['$scope', '$filter', 'sharedProperties', function($scope, $filter, sharedProperties){
+.controller('editItemCtrl', ['$scope', '$filter', '$location', 'sharedProperties', function($scope, $filter, $location, sharedProperties){
 	$scope.item=sharedProperties.getEditItem();
 	$scope.itemCopy = angular.copy($scope.item);
 	$scope.editMode = false;
@@ -58,5 +58,10 @@ angular.module('myApp.controllers', [])
 		for(var key in $scope.edits){
 			console.log(key + " : " + $scope.edits[key]);
 		}
+	}
+
+	$scope.deleteItem = function(){
+		alert("shit got deleted yo!");
+		$location.path("/item-list")
 	}
 }]);
