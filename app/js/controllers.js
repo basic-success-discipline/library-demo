@@ -41,6 +41,12 @@ angular.module('myApp.controllers', [])
 }])
 .controller('editItemCtrl', ['$scope', '$filter', 'sharedProperties', function($scope, $filter, sharedProperties){
 	$scope.item=sharedProperties.getEditItem();
-
-
+	$scope.editMode = false;
+	$scope.toggleEditMode = function(bool){
+		$scope.editMode = bool;
+	}
+	$scope.tracksAtEnd = function(item){
+		alert(item.key);
+		return 0;
+	}
 }]);

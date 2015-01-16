@@ -23,12 +23,12 @@ angular.module('myApp.filters', [])
 .filter('byID', function () {
 	return function (items, id) {
 
-				for (var i = 0; i < items.length; i++) {
-					var item = items[i];
-					if (item.id==id) {
-						return item;
-					}
-				}
-				return null;
+		for (var i = 0; i < items.length; i++) {
+			var item = items[i];
+			if (item.id==id) {
+				return item;
+			}
+		}
+		return null;
 	};
 });
