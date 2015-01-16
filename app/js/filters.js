@@ -3,19 +3,20 @@
 /* Filters */
 
 angular.module('myApp.filters', [])
-.filter('byType', function () {
-	return function (items, type) {
-		var types = ['cd','dvd','ebook'];
-		if(types.indexOf(type)!=-1 ){
-			var filtered = [];
-			for (var i = 0; i < items.length; i++) {
-				var item = items[i];
-				if (item.type==type) {
-					filtered.push(item);
+.filter('byTypes', function () {
+	return function (items, types) {
+		var acceptableTypes = ['cd','dvd','ebook'];
+		var filtered = [];
+		for(var j=0; j<types.length; j++){
+			if(acceptableTypes.indexOf(types[j])!=-1 ){
+				for (var i = 0; i < items.length; i++) {
+					var item = items[i];
+					if (item.type==types[j]) {
+						filtered.push(item);
+					}
 				}
 			}
-			return filtered;
 		}
-		return items;
+		return filtered;
 	};
 });
