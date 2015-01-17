@@ -1,10 +1,14 @@
 
-	<span ng-repeat="chk in chkbxs">{{chk.label}} <input type="checkbox" ng-model="chk.val"></span>
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+	<input ng-model="searchText">
+	<span>CDs<input type="checkbox" ng-model="filterOptions.types.cd"></span>
+	<span>DVDs<input type="checkbox" ng-model="filterOptions.types.dvd"></span>
+	<span>EBooks<input type="checkbox" ng-model="filterOptions.types.ebook"></span>
+	
+	<span>Active<input type="checkbox" ng-model="filterOptions.activeOnly"></span>
+	<button ng-click="showEditItemView(null)">Add New</button>
+	<span>Sort by: <select ng-model="selectedSortOption"><option ng-repeat="option in sortOptions" value="{{option}}">{{option}}</option></select></span>
 
 
-<div class="item" ng-repeat="item in items" ng-click="showEditItemView(item)">
+<div class="item" ng-repeat="item in items | filter:searchText | itemListFilter:filterOptions | orderBy:selectedSortOption" ng-click="showEditItemView(item)">
 <span style="margin-right: 20px;"> {{item.title}} </span>
 <span style="float:right; margin-right: 100px;"> {{item.type}}</div>
