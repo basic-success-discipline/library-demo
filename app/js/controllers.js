@@ -22,6 +22,7 @@ angular.module('myApp.controllers', [])
 		}else{
 			item.active=0;
 		}
+		//when i've got endpoints its just a matter of updating the active field.
 	}
 
 
