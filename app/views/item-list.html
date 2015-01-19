@@ -10,6 +10,8 @@
 	<span>Sort by: <select ng-model="selectedSortOption"><option ng-repeat="option in sortOptions" value="{{option}}">{{option}}</option></select></span>
 
 
-<div class="item" ng-repeat="item in items | filter:searchText | itemListFilter:filterOptions | orderBy:selectedSortOption" ng-click="showEditItemView(item)">
-<span style="margin-right: 20px;"> {{item.title}} </span>
+<div class="item" ng-repeat="item in items | filter:searchText | itemListFilter:filterOptions | orderBy:selectedSortOption">
+<span style="margin-right: 20px;"  ng-click="showEditItemView(item)"> {{item.title}} </span>
+<!-- <span style="float:right; margin-right: 100px;"> <input type="checkbox" ng-value="item.active == '1' || item.active ? true : false" ></span> -->
 <span style="float:right; margin-right: 100px;"> {{item.type}}</div>
+

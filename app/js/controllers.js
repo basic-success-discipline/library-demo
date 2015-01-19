@@ -17,6 +17,7 @@ angular.module('myApp.controllers', [])
 	}
 
 
+
 	var promise = getData.getAll();
 	promise.then(
 		function(payload) { 
@@ -73,12 +74,9 @@ angular.module('myApp.controllers', [])
 		$location.path('/edit-item');
 	}
 
-}]);
+}]).controller('tracksCtrl', ['$scope', 'sharedProperties', function($scope,  sharedProperties){}]);
 
 
 
 
 
-
-
-;

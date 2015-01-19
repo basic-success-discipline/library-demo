@@ -11,8 +11,10 @@
 
 
 <div ng-repeat="(key, value) in templates[itemType]['mainEntry']">
-	<span>{{key}}</span>
-	<textarea ng-bind="newItem[key]" ng-model="templates[itemType]['newEntry'][key]"></textarea>
+	<span ng-show="key!='tracks'">{{key}}</span>
+	<textarea ng-show="key!='tracks'" ng-bind="newItem[key]" ng-model="templates[itemType]['newEntry'][key]"></textarea>
 </div>
+
+<div tracks-view item-type="itemType"></div>
 
 

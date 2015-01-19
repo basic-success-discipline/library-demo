@@ -6,6 +6,8 @@
 <button ng-click="deleteItem()">Delete</button>
 
 <div ng-repeat="(key, value) in itemCopy">
-	<span>{{key}}</span>
-	<textarea ng-readonly="!editMode" ng-bind="itemCopy[key]" ng-model="value" ng-change="addEdit(key, value)"></textarea>
+	<span ng-show="key!='tracks'">{{key}}</span>
+	<textarea ng-show="key!='tracks'" ng-readonly="!editMode" ng-bind="itemCopy[key]" ng-model="value" ng-change="addEdit(key, value)"></textarea>
 </div>
+
+<div tracks-view item-type="itemCopy['type']" tracks="itemCopy['tracks']"></div>
