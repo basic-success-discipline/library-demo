@@ -64,6 +64,14 @@ angular.module('myApp.controllers', [])
 .controller('createItemCtrl', ['$scope', '$location', 'sharedProperties', function($scope, $location, sharedProperties){
 	$scope.itemType = "cd";
 	$scope.templates = sharedProperties.getTemplate();
+	$scope.newItem = $scope.templates[$scope.itemType].newEntry;
+
+	$scope.saveNew = function(){
+		//send new Item to API
+		alert("you've created a new item!");
+		sharedProperties.setEditItem($scope.newItem);
+		$location.path('/edit-item');
+	}
 
 }]);
 

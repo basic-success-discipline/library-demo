@@ -1,8 +1,7 @@
-<a href="#/item-list">back</a>
+<a href="#/item-list">Cancel</a>
 
 
 <button ng-click="saveNew()">Save</button>
-<button ng-click="goBack()">Cancel</button>
 
 <form>
 	<input type="radio" ng-model="itemType" value="cd">CD<br>
@@ -13,8 +12,7 @@
 
 <div ng-repeat="(key, value) in templates[itemType]['mainEntry']">
 	<span>{{key}}</span>
-	<!-- <textarea ng-readonly="!editMode" ng-bind="itemCopy[key]" ng-model="value" ng-change="addEdit(key, value)"></textarea> -->
-	<textarea></textarea>
+	<textarea ng-bind="newItem[key]" ng-model="templates[itemType]['newEntry'][key]"></textarea>
 </div>
 
 
