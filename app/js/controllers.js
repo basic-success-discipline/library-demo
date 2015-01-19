@@ -34,13 +34,18 @@ angular.module('myApp.controllers', [])
 .controller('editItemCtrl', ['$scope', '$location', 'sharedProperties', function($scope, $location, sharedProperties){
 	$scope.item=sharedProperties.getEditItem();
 	$scope.itemCopy = angular.copy($scope.item);
+	$scope.tracksCopy = angular.copy($scope.item['tracks']);
 	$scope.editMode = false;
 	$scope.edits ={};
+	$scope.tracksEdited = false;
+
 
 	$scope.toggleEditMode = function(bool){
 		$scope.editMode = bool;
 		if(!bool){
 			$scope.itemCopy = angular.copy($scope.item);
+			$scope.tracksCopy = angular.copy($scope.item['tracks']);
+			$scope.updateTracksEdited(false);
 		}
 	}
 
@@ -50,7 +55,13 @@ angular.module('myApp.controllers', [])
 	$scope.saveEdit = function(){
 		for(var key in $scope.edits){
 			console.log(key + " : " + $scope.edits[key]);
+		} 
+		if($scope.tracksEdited){
+			console.log("tracks array updated");
 		}
+	}
+	$scope.updateTracksEdited = function(bool){
+		$scope.tracksEdited = bool;
 	}
 
 	$scope.deleteItem = function(){
@@ -74,7 +85,7 @@ angular.module('myApp.controllers', [])
 		$location.path('/edit-item');
 	}
 
-}]).controller('tracksCtrl', ['$scope', 'sharedProperties', function($scope,  sharedProperties){}]);
+}]);
 
 
 

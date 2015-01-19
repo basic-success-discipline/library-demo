@@ -3,16 +3,15 @@
 /* Directives */
 
 
-angular.module('myApp.directives', [])
-.directive('tracksView', function() {
-  return {
-    restrict: 'A',
-    require: 'itemType', 
-    scope: {
-      tracks: '=',
-      itemType: '=',
-    },
-    controller: 'tracksCtrl',
-    templateUrl: 'views/tracks-view.html'
-  }
-});
+angular.module('myApp.directives', []);
+// .directive('editTrack', function() {
+//   return {
+//     restrict: 'A', 
+//     scope: {
+//       track: '=',
+//       editMode: '='
+//     },
+//     controller: 'editTrackCtrl',
+//     templateUrl: 'views/edit-track.html'
+//   }
+// });
