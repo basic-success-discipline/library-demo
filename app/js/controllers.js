@@ -53,9 +53,12 @@ angular.module('myApp.controllers', [])
 		$scope.edits[key] = value;
 	}
 	$scope.saveEdit = function(){
+		//only send updates
 		for(var key in $scope.edits){
 			console.log(key + " : " + $scope.edits[key]);
 		} 
+
+		//for tracks array, send whole array with update
 		if($scope.tracksEdited){
 			console.log("tracks array updated");
 		}
@@ -67,6 +70,12 @@ angular.module('myApp.controllers', [])
 	$scope.deleteItem = function(){
 		alert("shit got deleted yo!");
 		$location.path("/item-list")
+	}
+
+	$scope.addNewTrack = function(){
+		var template = sharedProperties.getTemplate();
+		$scope.tracksCopy.push(template[$scope.itemCopy['type']].newTrack);
+		$scope.updateTracksEdited(true);
 	}
 
 	if($scope.item==null){

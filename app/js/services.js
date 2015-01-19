@@ -48,6 +48,14 @@ angular.module('myApp.services', [])
             "s3URL": "No s3url provided",
             "tracks": [],
             "active": false
+        },
+        "newTrack":
+        {
+            "trackID": 1000,
+            "trackNumber": 100,
+            "trackName": "No track name provided",
+            "trackTime": "00:00:00",
+            "filename": "No file name provided"  
         }
     },
     "cd":
@@ -87,6 +95,14 @@ angular.module('myApp.services', [])
             "s3URL": "No s3url provided",
             "tracks": [],
             "active": false
+        },
+        "newTrack":
+        {
+            "trackID": 1000,
+            "trackNumber": 100,
+            "trackName": "No track name provided",
+            "trackTime": "00:00:00",
+            "filename": "No file name provided"  
         }
     },
     "ebook":
@@ -126,6 +142,14 @@ angular.module('myApp.services', [])
             "s3URL": "No s3url provided",
             "tracks": [],
             "active": false
+        },
+        "newTrack":
+        {
+            "trackID": 1000,
+            "trackNumber": 100,
+            "trackName": "No track name provided",
+            "trackTime": "00:00:00",
+            "filename": "No file name provided"  
         }
     }
 
