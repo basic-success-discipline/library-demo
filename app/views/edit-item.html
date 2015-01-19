@@ -5,13 +5,14 @@
 <button ng-click="toggleEditMode(!editMode)" ng-bind="editMode ? 'Cancel' : 'Edit'"></button>
 <button ng-click="deleteItem()">Delete</button>
 
-<div ng-repeat="(key, value) in itemCopy">
+<!-- <div ng-repeat="(key, value) in itemCopy" >
 	<span ng-show="key!='tracks'">{{key}}</span>
 	<textarea ng-show="key!='tracks'" ng-readonly="!editMode" ng-bind="itemCopy[key]" ng-model="value" ng-change="addEdit(key, value)"></textarea>
-</div>
+</div> -->
 
-<div class="my-dir" value="itemCopy.active" key="active"></div>
-<h1>Tracks</h1>
+<div ng-repeat="(key, value) in itemCopy" ng-include="key"></div>
+
+<!-- <h1>Tracks</h1>
 <button ng-click="addNewTrack()" ng-show="editMode">Add new track</button>
 <div ng-repeat="track in tracksCopy">
 	<div ng-repeat="(key,value) in track">
@@ -19,4 +20,16 @@
 		<textarea  ng-readonly="!editMode" ng-bind="track[key]" ng-model="value" ng-change="updateTracksEdited(true)"></textarea>
 	</div>
 	<hr>
-</div>
+</div> -->
+
+
+<script type="text/ng-template" id="active"><span active></span></script>
+<script type="text/ng-template" id="author"><span author></span></script>
+<script type="text/ng-template" id="discourseDate"><span discourse-date></span></script>
+<script type="text/ng-template" id="id"><span item-id></span></script>
+<script type="text/ng-template" id="runtime"><span runtime></span></script>
+<script type="text/ng-template" id="s3URL"><span s3URL></span></script>
+<script type="text/ng-template" id="subtitle"><span subtitle></span></script>
+<script type="text/ng-template" id="summary"><span summary></span></script>
+<script type="text/ng-template" id="title"><span title></span></script>
+<script type="text/ng-template" id="type"><span type></span></script>

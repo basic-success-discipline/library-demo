@@ -47,6 +47,7 @@ angular.module('myApp.controllers', [])
 	$scope.editMode = false;
 	$scope.edits ={};
 	$scope.tracksEdited = false;
+	$scope.fakeItem = {"active": $scope.itemCopy.active};
 
 
 	$scope.toggleEditMode = function(bool){
@@ -87,6 +88,14 @@ angular.module('myApp.controllers', [])
 		newTrack['id'] = Math.floor((Math.random()*10000)+1);
 		$scope.tracksCopy.push(newTrack);
 		$scope.updateTracksEdited(true);
+	}
+
+	$scope.filteroutTracks = function(obj){
+		 var result = angular.copy($scope.itemCopy);
+		 delete result["tracks"];
+    	
+    console.log(result);
+    return result;
 	}
 
 	if($scope.item==null){
