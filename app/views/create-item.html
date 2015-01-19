@@ -15,5 +15,14 @@
 	<textarea ng-show="key!='tracks'" ng-bind="newItem[key]" ng-model="templates[itemType]['newEntry'][key]"></textarea>
 </div>
 
+<h1>Tracks</h1>
+<div ng-repeat="track in newItem['tracks']">
+	<div ng-repeat="(key,value) in track">
+		<span >{{key}}</span>
+		<textarea  ng-bind="track[key]" ng-model="value"></textarea>
+	</div>
+	<hr>
+</div>
+<button ng-click="addNewTrack()">Add new track</button>
 
 

@@ -73,8 +73,10 @@ angular.module('myApp.controllers', [])
 	}
 
 	$scope.addNewTrack = function(){
-		var template = sharedProperties.getTemplate();
-		$scope.tracksCopy.push(template[$scope.itemCopy['type']].newTrack);
+		var template = angular.copy(sharedProperties.getTemplate());
+		var newTrack = template[$scope.itemCopy['type']].newTrack;
+		newTrack['id'] = Math.floor((Math.random()*10000)+1);
+		$scope.tracksCopy.push(newTrack);
 		$scope.updateTracksEdited(true);
 	}
 
@@ -84,7 +86,7 @@ angular.module('myApp.controllers', [])
 }])
 .controller('createItemCtrl', ['$scope', '$location', 'sharedProperties', function($scope, $location, sharedProperties){
 	$scope.itemType = "cd";
-	$scope.templates = sharedProperties.getTemplate();
+	$scope.templates = angular.copy(sharedProperties.getTemplate());
 	$scope.newItem = $scope.templates[$scope.itemType].newEntry;
 
 	$scope.saveNew = function(){
@@ -92,6 +94,12 @@ angular.module('myApp.controllers', [])
 		alert("you've created a new item!");
 		sharedProperties.setEditItem($scope.newItem);
 		$location.path('/edit-item');
+	}
+	$scope.addNewTrack = function(){
+		var template = angular.copy(sharedProperties.getTemplate());
+		var newTrack = template[$scope.itemType].newTrack;
+		newTrack['id'] = Math.floor((Math.random()*10000)+1);
+		$scope.newItem['tracks'].push(newTrack);
 	}
 
 }]);

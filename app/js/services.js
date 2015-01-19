@@ -155,7 +155,7 @@ angular.module('myApp.services', [])
 
 
 };
-		var item = {
+		var defaultItem = {
         "id": 1,
         "type": "dvd",
         "title": "Transcend the Self-Knot of Fear",
@@ -211,6 +211,7 @@ angular.module('myApp.services', [])
         ],
         "active": "1"
     };
+    var item = defaultItem;
 
         return {
             getTemplate: function(){
