@@ -16,13 +16,14 @@
 </div>
 
 <h1>Tracks</h1>
-<div ng-repeat="track in newItem['tracks']">
+
+<button ng-click="addNewTrack()">Add new track</button>
+<div ng-repeat="track in newItem['tracks'] | orderBy:track.trackNumber">
 	<div ng-repeat="(key,value) in track">
 		<span >{{key}}</span>
 		<textarea  ng-bind="track[key]" ng-model="value"></textarea>
 	</div>
 	<hr>
 </div>
-<button ng-click="addNewTrack()">Add new track</button>
 
 

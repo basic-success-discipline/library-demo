@@ -5,13 +5,13 @@
 	<span>DVDs<input type="checkbox" ng-model="filterOptions.types.dvd"></span>
 	<span>EBooks<input type="checkbox" ng-model="filterOptions.types.ebook"></span>
 	
-	<span>Active<input type="checkbox" ng-model="filterOptions.activeOnly"></span>
+	<span>Active Only<input type="checkbox" ng-model="filterOptions.activeOnly"></span>
 	<button ng-click="showCreateItemView()">Add New</button>
 	<span>Sort by: <select ng-model="selectedSortOption"><option ng-repeat="option in sortOptions" value="{{option}}">{{option}}</option></select></span>
 
 
 <div class="item" ng-repeat="item in items | filter:searchText | itemListFilter:filterOptions | orderBy:selectedSortOption">
 <span style="margin-right: 20px;"  ng-click="showEditItemView(item)"> {{item.title}} </span>
-<!-- <span style="float:right; margin-right: 100px;"> <input type="checkbox" ng-value="item.active == '1' || item.active ? true : false" ></span> -->
+<span style="float:right; margin-right: 100px;"> <input type="checkbox" ng-checked="item.active == 1" ng-model="isChecked" ng-change="updateActive(item, isChecked)" ></span>
 <span style="float:right; margin-right: 100px;"> {{item.type}}</div>
 

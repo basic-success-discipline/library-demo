@@ -16,6 +16,14 @@ angular.module('myApp.controllers', [])
 		$location.path('create-item');
 	}
 
+	$scope.updateActive = function(item, isChecked){
+		if(isChecked){
+			item.active=1;
+		}else{
+			item.active=0;
+		}
+	}
+
 
 
 	var promise = getData.getAll();

@@ -11,6 +11,7 @@
 </div>
 
 <h1>Tracks</h1>
+<button ng-click="addNewTrack()" ng-show="editMode">Add new track</button>
 <div ng-repeat="track in tracksCopy">
 	<div ng-repeat="(key,value) in track">
 		<span >{{key}}</span>
@@ -18,4 +19,3 @@
 	</div>
 	<hr>
 </div>
-<button ng-click="addNewTrack()" ng-show="editMode">Add new track</button>
