@@ -7,34 +7,35 @@ angular.module('myApp.controllers', [])
 	$scope.sortOptions = ['title', 'id', 'discourseDate', 'type'];
 	$scope.selectedSortOption = $scope.sortOptions[0];
 
-	$scope.getDataByType = function(selectedTypes){
-		var promise = getData.getAll();
-		promise.then(
-			function(payload) { 
-				$scope.items=payload.data;
-			},
-			function(errorPayload) {
-				$log.error('failure loading test data', errorPayload);
-			});
-	}
-	
 	$scope.showEditItemView = function(item){
 		sharedProperties.setEditItem(item);
 		$location.path('/edit-item');
 	}
 
+	$scope.showCreateItemView = function(){
+		$location.path('create-item');
+	}
 
 
-
-	$scope.getDataByType(['cd','dvd','ebook']);
+	var promise = getData.getAll();
+	promise.then(
+		function(payload) { 
+			$scope.items=payload.data;
+		},
+		function(errorPayload) {
+			$log.error('failure loading test data', errorPayload);
+		});
+	
+	
 
 	
 }])
-.controller('editItemCtrl', ['$scope', '$filter', '$location', 'sharedProperties', function($scope, $filter, $location, sharedProperties){
+.controller('editItemCtrl', ['$scope', '$location', 'sharedProperties', function($scope, $location, sharedProperties){
 	$scope.item=sharedProperties.getEditItem();
 	$scope.itemCopy = angular.copy($scope.item);
 	$scope.editMode = false;
 	$scope.edits ={};
+
 	$scope.toggleEditMode = function(bool){
 		$scope.editMode = bool;
 		if(!bool){
@@ -59,4 +60,17 @@ angular.module('myApp.controllers', [])
 	if($scope.item==null){
 		//protocol for new item creation.
 	}
+}])
+.controller('createItemCtrl', ['$scope', '$location', 'sharedProperties', function($scope, $location, sharedProperties){
+	$scope.itemType = "cd";
+	$scope.templates = sharedProperties.getTemplate();
+
 }]);
+
+
+
+
+
+
+
+;

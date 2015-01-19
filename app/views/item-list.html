@@ -1,11 +1,12 @@
 
 	<input ng-model="searchText">
+
 	<span>CDs<input type="checkbox" ng-model="filterOptions.types.cd"></span>
 	<span>DVDs<input type="checkbox" ng-model="filterOptions.types.dvd"></span>
 	<span>EBooks<input type="checkbox" ng-model="filterOptions.types.ebook"></span>
 	
 	<span>Active<input type="checkbox" ng-model="filterOptions.activeOnly"></span>
-	<button ng-click="showEditItemView(null)">Add New</button>
+	<button ng-click="showCreateItemView()">Add New</button>
 	<span>Sort by: <select ng-model="selectedSortOption"><option ng-repeat="option in sortOptions" value="{{option}}">{{option}}</option></select></span>
 
 

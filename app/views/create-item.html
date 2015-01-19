@@ -1,0 +1,20 @@
+<a href="#/item-list">back</a>
+
+
+<button ng-click="saveNew()">Save</button>
+<button ng-click="goBack()">Cancel</button>
+
+<form>
+	<input type="radio" ng-model="itemType" value="cd">CD<br>
+	<input type="radio" ng-model="itemType" value="dvd">DVD<br>
+	<input type="radio" ng-model="itemType" value="ebook">eBook<br>
+</form>
+
+
+<div ng-repeat="(key, value) in templates[itemType]['mainEntry']">
+	<span>{{key}}</span>
+	<!-- <textarea ng-readonly="!editMode" ng-bind="itemCopy[key]" ng-model="value" ng-change="addEdit(key, value)"></textarea> -->
+	<textarea></textarea>
+</div>
+
+

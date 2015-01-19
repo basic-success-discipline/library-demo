@@ -10,6 +10,85 @@ angular.module('myApp.services', [])
         }
     })
 .service('sharedProperties', function () {
+    var template = {
+    "dvd":
+    { 
+        "mainEntry":
+        {
+            "id": "number",
+            "type": "string",
+            "title": "string",
+            "subtitle": "string",
+            "author": "string",
+            "summary": "string",
+            "runtime": "string",
+            "discourseDate": "string",
+            "s3URL": "string",
+            "tracks": "array",
+            "active": "bool"
+        },
+        "trackEntry":
+        {
+            "trackID": "number",
+            "trackNumber": "number",
+            "trackName": "string",
+            "trackTime": "string",
+            "filename": "string"  
+        }
+    },
+    "cd":
+    { 
+        "mainEntry":
+        {
+            "id": "number",
+            "type": "string",
+            "title": "string",
+            "subtitle": "string",
+            "author": "string",
+            "summary": "string",
+            "runtime": "string",
+            "discourseDate": "string",
+            "s3URL": "string",
+            "tracks": "array",
+            "active": "bool"
+        },
+        "trackEntry":
+        {
+            "trackID": "number",
+            "trackNumber": "number",
+            "trackName": "string",
+            "trackTime": "string",
+            "filename": "string"  
+        }
+    },
+    "ebook":
+    { 
+        "mainEntry":
+        {
+            "id": "number",
+            "type": "string",
+            "title": "string",
+            "subtitle": "string",
+            "author": "string",
+            "summary": "string",
+            "runtime": "string",
+            "discourseDate": "string",
+            "s3URL": "string",
+            "tracks": "array",
+            "active": "bool"
+        },
+        "trackEntry":
+        {
+            "trackID": "number",
+            "trackNumber": "number",
+            "trackName": "string",
+            "trackTime": "string",
+            "filename": "string"  
+        }
+    }
+
+
+};
 		var item = {
         "id": 1,
         "type": "dvd",
@@ -66,13 +145,18 @@ angular.module('myApp.services', [])
         ],
         "active": "1"
     };
+
         return {
+            getTemplate: function(){
+                return template;
+            },
             getEditItem: function () {
                 return item;
             },
             setEditItem: function(newEditItem){
             	item = newEditItem;
             }
+
         }
     });
 
