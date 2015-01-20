@@ -55,17 +55,7 @@ angular.module('myApp.controllers', [])
 	$scope.itemCopy = angular.copy($scope.item);
 	$scope.tracksCopy = angular.copy($scope.item['tracks']);
 	$scope.edits ={};
-	$scope.tracksEdited = false;
 
-
-	$scope.deleteTrack = function(track){
-		updateTracksEdited(true);
-		for (var i =0; i<$scope.tracksCopy.length; i++){
-			if($scope.tracksCopy[i].trackID = track.trackID){
-				delete $scope.tracksCopy[i];
-			}
-		}
-	}
 	$scope.updateFields = function(type){
 		if($scope.createMode){
 			$scope.itemType=type;
@@ -85,7 +75,6 @@ angular.module('myApp.controllers', [])
 		$scope.itemsCopy =  angular.copy($scope.item);
 		$scope.tracksCopy = angular.copy($scope.item['tracks']);
 		$scope.edits ={};
-		$scope.tracksEdited = false;
 	}
 
 	$scope.toggleEditMode = function(bool){
@@ -93,13 +82,15 @@ angular.module('myApp.controllers', [])
 		if(!bool){
 			$scope.itemCopy = angular.copy($scope.item);
 			$scope.tracksCopy = angular.copy($scope.item['tracks']);
-			$scope.updateTracksEdited(false);
+			$scope.edits={};
 		}
 	}
 
-	$scope.addEdit = function(key, value){
-		$scope.edits[key] = value;
+
+	$scope.addEdit = function(key){
+		$scope.edits[key] = $scope.itemCopy[key];
 	}
+
 	$scope.saveEdit = function(){
 		//only send updates
 		for(var key in $scope.edits){
@@ -110,9 +101,6 @@ angular.module('myApp.controllers', [])
 		if($scope.edits["tracks"]){
 			console.log($scope.tracksCopy);
 		}
-	}
-	$scope.updateTracksEdited = function(bool){
-		$scope.tracksEdited = bool;
 	}
 
 	$scope.deleteItem = function(){
@@ -125,25 +113,22 @@ angular.module('myApp.controllers', [])
 		var newTrack = template[$scope.itemType].newTrack;
 		newTrack['id'] = Math.floor((Math.random()*100000)+1);
 		$scope.tracksCopy.push(newTrack);
-		$scope.updateTracksEdited(true);
+		$scope.addEdit('tracks',$scope.tracksCopy);
 	}
 
 	$scope.deleteTrack = function(track){
-		var toDelete = -1;
 		for(var i=0; i<$scope.tracksCopy.length; i++){
 			if($scope.tracksCopy[i].trackID == track.trackID){
-				toDelete = i;
+				delete $scope.tracksCopy[i];
+				$scope.addEdit('tracks',$scope.tracksCopy)
 			}
 		}
-		if(toDelete>=0){
-			$scope.tracksCopy.splice(toDelete,1);
-			$scope.updateTracksEdited(true);
-		}
+
 	}
 	$scope.filteroutTracks = function(obj){
-		 var result = angular.copy($scope.itemCopy);
-		 delete result["tracks"];
-    	return result;
+		var result = angular.copy($scope.itemCopy);
+		delete result["tracks"];
+		return result;
 	}
 
 

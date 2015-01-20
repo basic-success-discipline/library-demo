@@ -1,10 +1,10 @@
 <a href="#/item-list" ng-bind="createMode ? 'cancel' : 'back' "></a>
 
 <form name="myForm" novalidate>
-<button ng-click="createMode ? saveNew() : saveEdit()" ng-show="editMode">Save</button>
+<button ng-click="createMode ? saveNew() : saveEdit()" ng-show="editMode" ng-disabled="myForm.$invalid">Save</button>
 <button ng-click="toggleEditMode(!editMode)" ng-show="!createMode" ng-bind="editMode ? 'Cancel' : 'Edit'"></button>
 <button ng-click="deleteItem()" ng-show="!createMode">Delete</button>
-
+<div ng-show="myForm.$invalid">You must complete form with valid data to save.</div>
 <div ng-repeat="(key, value) in itemCopy" ng-include="key"></div>
 
 <h1>Tracks</h1>
@@ -12,7 +12,7 @@
 
 <div ng-repeat="track in tracksCopy">
 	<ng-form name="myTrackForm" novalidate>
-	<button ng-click="deleteTrack(track)"> Delete track</button>
+	<button ng-click="deleteTrack(track)" ng-disabled="!editMode"> Delete track</button>
 	<div ng-repeat="(key, value) in track" ng-include="key"></div><hr>
 	</ng-form>
 </div>
