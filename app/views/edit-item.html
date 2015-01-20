@@ -4,7 +4,7 @@
 <button ng-click="createMode ? saveNew() : saveEdit()" ng-show="editMode" ng-disabled="myForm.$invalid">Save</button>
 <button ng-click="toggleEditMode(!editMode)" ng-show="!createMode" ng-bind="editMode ? 'Cancel' : 'Edit'"></button>
 <button ng-click="deleteItem()" ng-show="!createMode">Delete</button>
-<div ng-show="myForm.$invalid">You must complete form with valid data to save.</div>
+<span ng-show="myForm.$invalid">You must complete form with valid data to save.</span>
 <div ng-repeat="(key, value) in itemCopy" ng-include="key"></div>
 
 <h1>Tracks</h1>
