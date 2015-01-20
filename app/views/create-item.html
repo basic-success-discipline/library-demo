@@ -3,11 +3,11 @@
 
 <button ng-click="saveNew()">Save</button>
 
-<form>
+
 	<input type="radio" ng-model="itemType" value="cd">CD<br>
 	<input type="radio" ng-model="itemType" value="dvd">DVD<br>
 	<input type="radio" ng-model="itemType" value="ebook">eBook<br>
-</form>
+
 
 
 <div ng-repeat="(key, value) in templates[itemType]['mainEntry']">
