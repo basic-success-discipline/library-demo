@@ -42,13 +42,43 @@ angular.module('myApp.controllers', [])
 }])
 .controller('editItemCtrl', ['$scope', '$location', 'sharedProperties', function($scope, $location, sharedProperties){
 	$scope.item=sharedProperties.getEditItem();
+	$scope.createMode = false;
+	$scope.editMode = false;
+	$scope.itemType = "cd";
+
+	if ($scope.item == null){
+		$scope.createMode = true;
+		$scope.editMode = true;
+		var template = angular.copy(sharedProperties.getTemplate());
+		$scope.item = template[$scope.itemType].newEntry;
+	}
 	$scope.itemCopy = angular.copy($scope.item);
 	$scope.tracksCopy = angular.copy($scope.item['tracks']);
-	$scope.editMode = false;
 	$scope.edits ={};
 	$scope.tracksEdited = false;
-	$scope.fakeItem = {"active": $scope.itemCopy.active};
 
+
+	$scope.updateFields = function(type){
+		if($scope.createMode){
+			$scope.itemType=type;
+			var template = angular.copy(sharedProperties.getTemplate());
+			$scope.item = template[$scope.itemType].newEntry;
+			$scope.itemCopy = angular.copy($scope.item);
+		}
+	};
+	$scope.saveNew = function(){
+		//send new Item to API
+		alert("you've created a new item!");
+		$scope.createMode =false;
+		$scope.editMode = false;
+		//get edit item from server
+		//set as edit item
+		//begin again as if just entered edit item view
+		$scope.itemsCopy =  angular.copy($scope.item);
+		$scope.tracksCopy = angular.copy($scope.item['tracks']);
+		$scope.edits ={};
+		$scope.tracksEdited = false;
+	}
 
 	$scope.toggleEditMode = function(bool){
 		$scope.editMode = bool;
@@ -85,7 +115,7 @@ angular.module('myApp.controllers', [])
 	$scope.addNewTrack = function(){
 		var template = angular.copy(sharedProperties.getTemplate());
 		var newTrack = template[$scope.itemCopy['type']].newTrack;
-		newTrack['id'] = Math.floor((Math.random()*10000)+1);
+		newTrack['id'] = Math.floor((Math.random()*100000)+1);
 		$scope.tracksCopy.push(newTrack);
 		$scope.updateTracksEdited(true);
 	}
@@ -101,25 +131,6 @@ angular.module('myApp.controllers', [])
 	if($scope.item==null){
 		//protocol for new item creation.
 	}
-}])
-.controller('createItemCtrl', ['$scope', '$location', 'sharedProperties', function($scope, $location, sharedProperties){
-	$scope.itemType = "cd";
-	$scope.templates = angular.copy(sharedProperties.getTemplate());
-	$scope.newItem = $scope.templates[$scope.itemType].newEntry;
-
-	$scope.saveNew = function(){
-		//send new Item to API
-		alert("you've created a new item!");
-		sharedProperties.setEditItem($scope.newItem);
-		$location.path('/edit-item');
-	}
-	$scope.addNewTrack = function(){
-		var template = angular.copy(sharedProperties.getTemplate());
-		var newTrack = template[$scope.itemType].newTrack;
-		newTrack['id'] = Math.floor((Math.random()*10000)+1);
-		$scope.newItem['tracks'].push(newTrack);
-	}
-
 }]);
 
 

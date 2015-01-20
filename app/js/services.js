@@ -133,11 +133,10 @@ angular.module('myApp.services', [])
         {
             "id": 1000,
             "type": "ebook",
-            "title": "No title provided",
+            "title": "No book title provided",
             "subtitle": "No subtitle provided",
             "author": "No author provided",
             "summary": "No summary provided",
-            "runtime": "00:00:00",
             "discourseDate": "0000-00-00",
             "s3URL": "No s3url provided",
             "tracks": [],

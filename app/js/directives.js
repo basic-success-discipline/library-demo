@@ -4,6 +4,10 @@
 
 
 angular.module('myApp.directives', [])
+
+
+
+// Item-level directives
 .directive('active', function() {
   return {
     restrict: 'A',
@@ -61,7 +65,44 @@ angular.module('myApp.directives', [])
 .directive('itemType', function() {
   return {
     restrict: 'A',
-    template: '<input type="radio" ng-model="value" value="cd" ng-disabled="!editMode">CD<br><input type="radio" ng-model="value" value="dvd" ng-disabled="!editMode">DVD<br><input type="radio" ng-model="value" value="ebook" ng-disabled="!editMode">eBook<br>'
+    template: '<input type="radio" ng-model="value" ng-bind="key" ng-change="updateFields(value)" value="cd" ng-disabled="!createMode">CD<br><input type="radio" ng-bind="key" ng-model="value" ng-change="updateFields(value)" value="dvd" ng-disabled="!createMode">DVD<br><input type="radio" ng-model="value"  ng-bind="key" value="ebook" ng-change="updateFields(value)" ng-disabled="!createMode">eBook<br>'
+  }
+})
+
+
+
+
+
+// Track-level directives
+
+.directive('filename', function() {
+  return {
+    restrict: 'A',
+    template: '<span>{{key}}<textarea ng-readonly="!editMode" ng-bind="key" ng-model="value" ng-change="addEdit(key, value)"></textarea></span>'
+  }
+})
+.directive('trackId', function() {
+  return {
+    restrict: 'A',
+    template: '<span>{{key}}<textarea ng-readonly="!editMode" ng-bind="key" ng-model="value" ng-change="addEdit(key, value)"></textarea></span>'
+  }
+})
+.directive('trackName', function() {
+  return {
+    restrict: 'A',
+    template: '<span>{{key}}<textarea ng-readonly="!editMode" ng-bind="key" ng-model="value" ng-change="addEdit(key, value)"></textarea></span>'
+  }
+})
+.directive('trackNumber', function() {
+  return {
+    restrict: 'A',
+    template: '<span>{{key}}<textarea ng-readonly="!editMode" ng-bind="key" ng-model="value" ng-change="addEdit(key, value)"></textarea></span>'
+  }
+})
+.directive('trackTime', function() {
+  return {
+    restrict: 'A',
+    template: '<span>{{key}}<textarea ng-readonly="!editMode" ng-bind="key" ng-model="value" ng-change="addEdit(key, value)"></textarea></span>'
   }
 })
 ;
