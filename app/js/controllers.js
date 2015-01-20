@@ -58,6 +58,14 @@ angular.module('myApp.controllers', [])
 	$scope.tracksEdited = false;
 
 
+	$scope.deleteTrack = function(track){
+		updateTracksEdited(true);
+		for (var i =0; i<$scope.tracksCopy.length; i++){
+			if($scope.tracksCopy[i].trackID = track.trackID){
+				delete $scope.tracksCopy[i];
+			}
+		}
+	}
 	$scope.updateFields = function(type){
 		if($scope.createMode){
 			$scope.itemType=type;
@@ -114,7 +122,7 @@ angular.module('myApp.controllers', [])
 
 	$scope.addNewTrack = function(){
 		var template = angular.copy(sharedProperties.getTemplate());
-		var newTrack = template[$scope.itemCopy['type']].newTrack;
+		var newTrack = template[$scope.itemType].newTrack;
 		newTrack['id'] = Math.floor((Math.random()*100000)+1);
 		$scope.tracksCopy.push(newTrack);
 		$scope.updateTracksEdited(true);

@@ -65,7 +65,7 @@ angular.module('myApp.directives', [])
 .directive('itemType', function() {
   return {
     restrict: 'A',
-    template: '<input type="radio" ng-model="value" ng-bind="key" ng-change="updateFields(value)" value="cd" ng-disabled="!createMode">CD<br><input type="radio" ng-bind="key" ng-model="value" ng-change="updateFields(value)" value="dvd" ng-disabled="!createMode">DVD<br><input type="radio" ng-model="value"  ng-bind="key" value="ebook" ng-change="updateFields(value)" ng-disabled="!createMode">eBook<br>'
+    template: '<input type="radio" ng-model="value" ng-bind="itemType" ng-change="updateFields(value)" value="cd" ng-disabled="!createMode">CD<br><input type="radio" ng-bind="itemType" ng-model="value" ng-change="updateFields(value)" value="dvd" ng-disabled="!createMode">DVD<br><input type="radio" ng-model="value"  ng-bind="itemType" value="ebook" ng-change="updateFields(value)" ng-disabled="!createMode">eBook<br>'
   }
 })
 

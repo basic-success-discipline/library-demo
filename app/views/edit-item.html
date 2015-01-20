@@ -11,6 +11,7 @@
 <button ng-click="addNewTrack()" ng-show="editMode">Add new track</button>
 
 <div ng-repeat="track in tracksCopy">
+	<button ng-click="deleteTrack(track)"> Delete track</button>
 	<div ng-repeat="(key, value) in track" ng-include="key"></div><hr>
 </div>
 
