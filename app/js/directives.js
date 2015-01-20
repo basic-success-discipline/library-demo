@@ -11,7 +11,7 @@ angular.module('myApp.directives', [])
 .directive('active', function() {
   return {
     restrict: 'A',
-    template: '<span>{{key}} <input type="checkbox" ng-checked="value == 1" ng-model="value" ng-disabled="!editMode" ng-change="addEdit(key,value)"></span>'
+    templateUrl: 'views/directives/active.html'
   }
 })
 .directive('author', function() {
@@ -38,34 +38,34 @@ angular.module('myApp.directives', [])
     templateUrl: 'views/directives/runtime.html'
   }
 })
-.directive('s3URL', function() {
+.directive('awsFolderName', function() {
   return {
     restrict: 'A',
-    template: '<span>{{key}}<textarea ng-readonly="!editMode" ng-bind="key" ng-model="value" ng-change="addEdit(key, value)"></textarea></span>'
+    templateUrl: 'views/directives/s3URL.html'
   }
 })
 .directive('subtitle', function() {
   return {
     restrict: 'A',
-    template: '<span>{{key}}<textarea ng-readonly="!editMode" ng-bind="key" ng-model="value" ng-change="addEdit(key, value)"></textarea></span>'
+    templateUrl: 'views/directives/subtitle.html'
   }
 })
 .directive('summary', function() {
   return {
     restrict: 'A',
-    template: '<span>{{key}}<textarea ng-readonly="!editMode" ng-bind="key" ng-model="value" ng-change="addEdit(key, value)"></textarea></span>'
+    templateUrl: 'views/directives/summary.html'
   }
 })
 .directive('title', function() {
   return {
     restrict: 'A',
-    template: '<span>{{key}}<textarea ng-readonly="!editMode" ng-bind="key" ng-model="value" ng-change="addEdit(key, value)"></textarea></span>'
+    templateUrl: 'views/directives/title.html'
   }
 })
 .directive('itemType', function() {
   return {
     restrict: 'A',
-    template: '<input type="radio" ng-model="value" ng-bind="itemType" ng-change="updateFields(value)" value="cd" ng-disabled="!createMode">CD<br><input type="radio" ng-bind="itemType" ng-model="value" ng-change="updateFields(value)" value="dvd" ng-disabled="!createMode">DVD<br><input type="radio" ng-model="value"  ng-bind="itemType" value="ebook" ng-change="updateFields(value)" ng-disabled="!createMode">eBook<br>'
+    templateUrl: 'views/directives/itemType.html'
   }
 })
 

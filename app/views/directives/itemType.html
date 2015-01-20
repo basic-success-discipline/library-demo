@@ -1,0 +1,6 @@
+<input type="radio" name="itemType" ng-model="value" ng-bind="itemType" ng-change="updateFields(value)" value="cd" ng-disabled="!createMode">CD<br>
+<input type="radio" name="itemType" ng-bind="itemType" ng-model="value" ng-change="updateFields(value)" value="dvd" ng-disabled="!createMode">DVD<br>
+<input type="radio" name="itemType" ng-model="value"  ng-bind="itemType" value="ebook" ng-change="updateFields(value)" ng-disabled="!createMode">eBook<br>
+
+<span style="color:red" ng-show="myForm.itemType.$dirty && myForm.itemType.$invalid">
+  <span ng-show="myForm.itemType.$error.required">You must select what kind of item this is.</span>
