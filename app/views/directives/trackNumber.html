@@ -1,0 +1,6 @@
+<p>Track number:<br>
+  <input type="number" name="trackNumber" ng-model="value" data-validate-number required ng-disabled="!editMode">
+  <span style="color:red" ng-show="myTrackForm.trackNumber.$dirty && myTrackForm.trackNumber.$invalid">
+  <span ng-show="myTrackForm.trackNumber.$error.required">Track number is required.</span>
+  </span>
+</p>

@@ -1,0 +1,6 @@
+<p>File name:<br>
+  <input type="text" name="filename" ng-model="value" required ng-disabled="!editMode">
+  <span style="color:red" ng-show="myTrackForm.filename.$dirty && myTrackForm.filename.$invalid">
+  <span ng-show="myTrackForm.filename.$error.required">File name is required.</span>
+  </span>
+</p>
