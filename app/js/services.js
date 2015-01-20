@@ -37,25 +37,25 @@ angular.module('myApp.services', [])
         },
         "newEntry":
         {
-            "id": 1000,
-            "type": "dvd",
-            "title": "No title provided",
-            "subtitle": "No subtitle provided",
-            "author": "No author provided",
-            "summary": "No summary provided",
-            "runtime": "00:00:00",
-            "discourseDate": "0000-00-00",
-            "s3URL": "No s3url provided",
+            "id": 0,
+            "type": "",
+            "title": "",
+            "subtitle": "",
+            "author": "",
+            "summary": "",
+            "runtime": "",
+            "discourseDate": "",
+            "s3URL": "",
             "tracks": [],
             "active": false
         },
         "newTrack":
         {
-            "trackID": 1000,
-            "trackNumber": 100,
-            "trackName": "No track name provided",
-            "trackTime": "00:00:00",
-            "filename": "No file name provided"  
+            "trackID": 0,
+            "trackNumber": 0,
+            "trackName": "",
+            "trackTime": "",
+            "filename": ""  
         }
     },
     "cd":
@@ -84,25 +84,25 @@ angular.module('myApp.services', [])
         },
         "newEntry":
         {
-            "id": 1000,
-            "type": "cd",
-            "title": "No title provided",
-            "subtitle": "No subtitle provided",
-            "author": "No author provided",
-            "summary": "No summary provided",
-            "runtime": "00:00:00",
-            "discourseDate": "0000-00-00",
-            "s3URL": "No s3url provided",
+            "id": 0,
+            "type": "",
+            "title": "",
+            "subtitle": "",
+            "author": "",
+            "summary": "",
+            "runtime": "",
+            "discourseDate": "",
+            "s3URL": "",
             "tracks": [],
             "active": false
         },
         "newTrack":
         {
-            "trackID": 1000,
-            "trackNumber": 100,
-            "trackName": "No track name provided",
-            "trackTime": "00:00:00",
-            "filename": "No file name provided"  
+            "trackID": 0,
+            "trackNumber": 0,
+            "trackName": "",
+            "trackTime": "",
+            "filename": ""  
         }
     },
     "ebook":
@@ -131,24 +131,24 @@ angular.module('myApp.services', [])
         },
         "newEntry":
         {
-            "id": 1000,
-            "type": "ebook",
-            "title": "No book title provided",
-            "subtitle": "No subtitle provided",
-            "author": "No author provided",
-            "summary": "No summary provided",
-            "discourseDate": "0000-00-00",
-            "s3URL": "No s3url provided",
+            "id": 0,
+            "type": "",
+            "title": "",
+            "subtitle": "",
+            "author": "",
+            "summary": "",
+            "discourseDate": "",
+            "s3URL": "",
             "tracks": [],
             "active": false
         },
         "newTrack":
         {
-            "trackID": 1000,
-            "trackNumber": 100,
-            "trackName": "No track name provided",
-            "trackTime": "00:00:00",
-            "filename": "No file name provided"  
+            "trackID": 0,
+            "trackNumber": 0,
+            "trackName": "",
+            "trackTime": "",
+            "filename": ""  
         }
     }
 

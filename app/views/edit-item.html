@@ -1,4 +1,4 @@
-<a href="#/item-list">back</a>
+<a href="#/item-list" ng-bind="createMode ? 'cancel' : 'back' "></a>
 
 
 <button ng-click="createMode ? saveNew() : saveEdit()" ng-show="editMode">Save</button>
