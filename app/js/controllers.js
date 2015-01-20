@@ -40,7 +40,7 @@ angular.module('myApp.controllers', [])
 
 	
 }])
-.controller('editItemCtrl', ['$scope', '$location', 'sharedProperties', function($scope, $location, sharedProperties){
+.controller('editItemCtrl', ['$scope', '$location',  'sharedProperties', function($scope, $location, sharedProperties){
 	$scope.item=sharedProperties.getEditItem();
 	$scope.createMode = false;
 	$scope.editMode = false;
@@ -127,17 +127,16 @@ angular.module('myApp.controllers', [])
 		$scope.tracksCopy.push(newTrack);
 		$scope.updateTracksEdited(true);
 	}
-
 	$scope.filteroutTracks = function(obj){
 		 var result = angular.copy($scope.itemCopy);
 		 delete result["tracks"];
-    	
-    console.log(result);
-    return result;
+    	return result;
 	}
 
-	if($scope.item==null){
-		//protocol for new item creation.
+
+	$scope.runtimeFormat = function(rtstring){
+		return rtstring.split(":");
+
 	}
 }]);
 

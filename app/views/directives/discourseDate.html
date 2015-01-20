@@ -1,0 +1,6 @@
+<p>Discourse Date:<br>
+  <input type="date" name="discourseDate" ng-model="value" required ng-disabled="!editMode">
+  <span style="color:red" ng-show="myForm.discourseDate.$dirty && myForm.discourseDate.$invalid">
+  <span ng-show="myForm.discourseDate.$error.required">Discourse date is required.</span>
+  </span>
+</p>

@@ -1,6 +1,6 @@
 <a href="#/item-list" ng-bind="createMode ? 'cancel' : 'back' "></a>
 
-
+<form name="myForm" novalidate>
 <button ng-click="createMode ? saveNew() : saveEdit()" ng-show="editMode">Save</button>
 <button ng-click="toggleEditMode(!editMode)" ng-show="!createMode" ng-bind="editMode ? 'Cancel' : 'Edit'"></button>
 <button ng-click="deleteItem()" ng-show="!createMode">Delete</button>
@@ -14,7 +14,7 @@
 	<button ng-click="deleteTrack(track)"> Delete track</button>
 	<div ng-repeat="(key, value) in track" ng-include="key"></div><hr>
 </div>
-
+</form>
 
 <script type="text/ng-template" id="active"><span active></span></script>
 <script type="text/ng-template" id="author"><span author></span></script>
