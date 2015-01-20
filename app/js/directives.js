@@ -62,6 +62,12 @@ angular.module('myApp.directives', [])
     templateUrl: 'views/directives/title.html'
   }
 })
+.directive('tracks', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/directives/tracks.html'
+  }
+})
 .directive('itemType', function() {
   return {
     restrict: 'A',
