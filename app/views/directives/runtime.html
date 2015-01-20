@@ -1,5 +1,5 @@
 <p>Runtime:<br>
-  <input type="text" name="runtime" ng-model="value" required data-validate-runtime ng-disabled="!editMode">
+  <input type="text" name="runtime" ng-model="value" required data-validate-runtime ng-disabled="!editMode" ng-change="addEdit(key,value)">
   <span style="color:red" ng-show="myForm.runtime.$dirty && myForm.runtime.$invalid">
   <span ng-show="myForm.runtime.$error.required">Runtime is required.</span>
   <span ng-show="myForm.runtime.$error.invalidRuntime">Runtime must be in format "hh:mm:ss".</span>

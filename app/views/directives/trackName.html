@@ -1,5 +1,5 @@
 <p>Track name:<br>
-  <input type="text" name="trackName" ng-model="value" required ng-disabled="!editMode">
+  <input type="text" name="trackName" ng-model="track[key]" required ng-disabled="!editMode" ng-change="updateTracksEdited(true)">
   <span style="color:red" ng-show="myTrackForm.trackName.$dirty && myTrackForm.trackName.$invalid">
   <span ng-show="myTrackForm.trackName.$error.required">Track name is required.</span>
   </span>

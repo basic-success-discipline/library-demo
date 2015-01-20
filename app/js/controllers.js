@@ -107,8 +107,8 @@ angular.module('myApp.controllers', [])
 		} 
 
 		//for tracks array, send whole array with update
-		if($scope.tracksEdited){
-			console.log("tracks array updated");
+		if($scope.edits["tracks"]){
+			console.log($scope.tracksCopy);
 		}
 	}
 	$scope.updateTracksEdited = function(bool){
@@ -126,6 +126,19 @@ angular.module('myApp.controllers', [])
 		newTrack['id'] = Math.floor((Math.random()*100000)+1);
 		$scope.tracksCopy.push(newTrack);
 		$scope.updateTracksEdited(true);
+	}
+
+	$scope.deleteTrack = function(track){
+		var toDelete = -1;
+		for(var i=0; i<$scope.tracksCopy.length; i++){
+			if($scope.tracksCopy[i].trackID == track.trackID){
+				toDelete = i;
+			}
+		}
+		if(toDelete>=0){
+			$scope.tracksCopy.splice(toDelete,1);
+			$scope.updateTracksEdited(true);
+		}
 	}
 	$scope.filteroutTracks = function(obj){
 		 var result = angular.copy($scope.itemCopy);
