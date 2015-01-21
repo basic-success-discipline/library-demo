@@ -1,4 +1,4 @@
-<p>Subtitle:<br>
-  <input type="text" name="subtitle" ng-model="item.copy[key]" ng-disabled="!editMode" ng-change="addEdit(key)">
-  </span>
+<p>Subtitle:
+<span class="no-edit" ng-show="!editMode">{{item.copy[key]}}</span>
+  <input type="text" name="subtitle" ng-model="item.copy[key]" ng-show="editMode" ng-change="addEdit(key)">
 </p>

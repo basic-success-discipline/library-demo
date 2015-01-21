@@ -1,5 +1,6 @@
-<p>S3 Folder Name:<br>
-  <input type="text" name="s3Url"  ng-model="item.copy[key]" required ng-disabled="!editMode" ng-change="addEdit(key)">
+<p>S3 Folder Name:
+<span class="no-edit" ng-show="!editMode">{{item.copy[key]}}</span>
+  <input type="text" name="s3Url"  ng-model="item.copy[key]" required ng-show="editMode" ng-change="addEdit(key)">
   <span style="color:red" ng-show="myForm.s3Url.$dirty && myForm.s3Url.$invalid">
   <span ng-show="myForm.s3Url.$error.required">S3 folder name is required.</span>
   </span>

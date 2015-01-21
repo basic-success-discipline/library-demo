@@ -56,5 +56,40 @@
 // EDIT ITEM VIEW
 
 
+.edit-item .myForm .top-bar button, .edit-item .myForm .top-bar a{
+  margin-right: 10px;
+}
+.edit-item .myForm .top-bar .error-message{
+  color: red;
+}
+
+
+
+//FIELD DIRECTIVES -- ITEM LEVEL
+
+
+.field p{
+  clear: both;
+}
+.field input, .field textarea{
+  float: right;
+  width: 500px;
+  margin-bottom: 1em;
+}
+.field .no-edit{
+  float:right;
+  width: 500px;
+}
+
+.active.field input{ 
+  float: none;
+  margin-left: 30px;
+}
+
+
+
+
+
+
 
 

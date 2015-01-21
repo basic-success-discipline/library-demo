@@ -1,4 +1,4 @@
-<p>Summary:<br>
-  <input type="text" name="summary"  ng-model="item.copy[key]" ng-disabled="!editMode" ng-change="addEdit(key)">
-  </span>
+<p>Summary:
+<span class="no-edit" ng-show="!editMode">{{item.copy[key]}}</span>
+  <textarea name="summary"  ng-model="item.copy[key]" ng-show="editMode" rows="5"ng-change="addEdit(key)"></textarea>
 </p>
