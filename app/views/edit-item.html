@@ -2,11 +2,11 @@
 
 	<form class="myForm" name="myForm" novalidate>
 		<div class="top-bar">
-		<a class="back-btn" href="javascript:void(0);" ng-bind="createMode ? 'Cancel' : 'Back to list'" ng-click="confirmLeaveEdit()"></a>
-		<button class="save-btn" ng-click="createMode ? saveNew() : saveEdit()" ng-show="editMode" ng-disabled="myForm.$invalid">Save</button>
-		<button class="edit-btn" ng-click="toggleEditMode(!editMode)" ng-show="!createMode" ng-bind="editMode ? 'Cancel' : 'Edit'"></button>
-		<button ng-click="deleteItem()" ng-show="!createMode">Delete</button>
-		<span class="error-message" ng-show="myForm.$invalid">You must complete form with valid data to save.</span>
+			<a class="back-btn" href="javascript:void(0);" ng-bind="createMode ? 'Cancel' : 'Back to list'" ng-click="confirmLeaveEdit()"></a>
+			<button ng-click="deleteItem()" ng-show="!createMode">Delete</button>
+			<button class="edit-btn" ng-click="toggleEditMode(!editMode)" ng-show="!createMode" ng-bind="editMode ? 'Cancel' : 'Edit'"></button>
+			<button class="save-btn" ng-click="createMode ? saveNew() : saveEdit()" ng-show="editMode" ng-disabled="myForm.$invalid">Save</button>
+			<span class="error-message" ng-show="myForm.$invalid">You must complete form with valid data to save. </span>
 		</div>
 		<div class="field {{key}}" ng-repeat="(key, value) in item.copy" ng-include="key"></div>
 	</form>

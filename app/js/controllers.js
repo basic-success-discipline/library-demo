@@ -54,6 +54,8 @@ angular.module('myApp.controllers', [])
 		$scope.item.obj = template[$scope.itemType].newEntry;
 		$scope.item.obj['id'] = Math.floor((Math.random()*100000)+1);
 	}
+
+	$scope.itemType = $scope.item.obj["type"];
 	$scope.edits ={};
 
 
@@ -157,6 +159,7 @@ angular.module('myApp.controllers', [])
 	}
 
 	$scope.deleteTrack = function(track){
+
 		for(var i=0; i<$scope.item.copy["tracks"].length; i++){
 			if($scope.item.copy["tracks"][i].trackID == track.trackID){
 				delete $scope.item.copy["tracks"][i];

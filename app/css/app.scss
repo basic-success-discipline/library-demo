@@ -59,8 +59,16 @@
 .edit-item .myForm .top-bar button, .edit-item .myForm .top-bar a{
   margin-right: 10px;
 }
+.edit-item .myForm .top-bar button{
+  float: right;
+}
 .edit-item .myForm .top-bar .error-message{
   color: red;
+  float:right;
+  margin-right: 10px;
+}
+.edit-item .myForm .top-bar{
+  margin-bottom: 30px;
 }
 
 
@@ -76,15 +84,43 @@
   width: 500px;
   margin-bottom: 1em;
 }
+.field span:not(.no-edit){
+  display: block;
+}
 .field .no-edit{
   float:right;
   width: 500px;
 }
 
-.active.field input{ 
-  float: none;
-  margin-left: 30px;
+// .active.field input{ 
+//   float: none;
+//   margin-left: 30px;
+// }
+
+.type.field p,{
+  display: inline-block;
+  width: 100px;
 }
+
+.type.field  input{
+  float: none;
+  width: auto;
+  margin-right: 10px;
+}
+
+
+//TRACK LEVEL
+
+.tracks-wrapper{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.tracks-wrapper hr{
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
 
 
 

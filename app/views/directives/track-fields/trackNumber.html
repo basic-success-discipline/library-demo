@@ -1,5 +1,6 @@
-<p>Track number:<br>
-  <input type="number" name="trackNumber" ng-model="track[key]" data-validate-number required ng-disabled="!editMode" ng-change="addEdit('tracks',item.copy['tracks'])">
+<p>Track number:
+<span class="no-edit" ng-show="!editMode">{{track[key]}}</span>
+  <input type="number" name="trackNumber" ng-model="track[key]" data-validate-number required ng-show="editMode" ng-change="addEdit('tracks',item.copy['tracks'])">
   <span style="color:red" ng-show="myTrackForm.trackNumber.$dirty && myTrackForm.trackNumber.$invalid">
   <span ng-show="myTrackForm.trackNumber.$error.required">Track number is required.</span>
   </span>
