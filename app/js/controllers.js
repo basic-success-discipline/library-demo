@@ -87,7 +87,6 @@ angular.module('myApp.controllers', [])
 		if(!bool){
 			$scope.refreshEditItemView();
 			$scope.edits={};
-
 		}
 		console.log("toggle edit: " + $scope.item.copy["tracks"][0]["filename"]);
 	}
@@ -107,11 +106,38 @@ angular.module('myApp.controllers', [])
 		if($scope.edits["tracks"]){
 			console.log("edited tracks: " + $scope.edits["tracks"][0]["filename"]);
 		}
+		$scope.editMode = false;
+		$scope.refreshEditItemView();
+		$scope.edits={};
+
+	}
+
+	$scope.unsavedEdits = function(){
+		for(var prop in $scope.edits) { 
+			return true;
+		}
+		return false;
 	}
 
 	$scope.deleteItem = function(){
-		alert("shit got deleted yo!");
-		$location.path("/item-list")
+		var retVal = confirm("Deleting entry \n\nTHIS CANNOT BE UNDONE \n\n" + "Deactivating is the safer option.");
+		if(retVal){
+			alert("shit got deleted yo!");
+			$location.path("/item-list")
+		}
+		
+	}
+
+
+	$scope.confirmLeaveEdit = function(){
+		if($scope.editMode && $scope.unsavedEdits()){
+			var retVal = confirm("Leaving edit view with unsaved changes.");
+			if(retVal){
+				$location.path("/item-list");
+			}	
+		}else{
+			$location.path("/item-list");
+		}
 	}
 
 
@@ -125,7 +151,7 @@ angular.module('myApp.controllers', [])
 	$scope.addNewTrack = function(){
 		var template = angular.copy(sharedProperties.getTemplate());
 		var newTrack = template[$scope.itemType].newTrack;
-		newTrack['trackId'] = Math.floor((Math.random()*100000)+1);
+		newTrack['trackID'] = Math.floor((Math.random()*100000)+1);
 		$scope.item.copy["tracks"].push(newTrack);
 		$scope.addEdit('tracks',$scope.item.copy["tracks"]);
 	}

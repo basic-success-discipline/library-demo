@@ -1,4 +1,4 @@
-<a href="#/item-list" ng-bind="createMode ? 'cancel' : 'back' "></a>
+<button ng-bind="createMode ? 'cancel' : 'back'" ng-click="confirmLeaveEdit()"></button>
 
 <form name="myForm" novalidate>
 <button ng-click="createMode ? saveNew() : saveEdit()" ng-show="editMode" ng-disabled="myForm.$invalid">Save</button>

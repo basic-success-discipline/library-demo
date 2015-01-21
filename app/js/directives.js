@@ -11,68 +11,68 @@ angular.module('myApp.directives', [])
 .directive('active', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/active.html'
+    templateUrl: 'views/directives/item-fields/active.html'
   }
 })
 .directive('author', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/author.html'
+    templateUrl: 'views/directives/item-fields/author.html'
   }
 })
 .directive('discourseDate', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/discourseDate.html'
+    templateUrl: 'views/directives/item-fields/discourseDate.html'
   }
 })
 .directive('itemId', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/itemId.html'
+    templateUrl: 'views/directives/item-fields/itemId.html'
   }
 })
 .directive('runtime', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/runtime.html'
+    templateUrl: 'views/directives/item-fields/runtime.html'
   }
 })
 .directive('awsFolderName', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/s3URL.html'
+    templateUrl: 'views/directives/item-fields/s3URL.html'
   }
 })
 .directive('subtitle', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/subtitle.html'
+    templateUrl: 'views/directives/item-fields/subtitle.html'
   }
 })
 .directive('summary', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/summary.html'
+    templateUrl: 'views/directives/item-fields/summary.html'
   }
 })
 .directive('title', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/title.html'
+    templateUrl: 'views/directives/item-fields/title.html'
   }
 })
 .directive('tracks', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/tracks.html',
+    templateUrl: 'views/directives/item-fields/tracks.html',
     controller: 'tracksCtrl'
   }
 })
 .directive('itemType', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/itemType.html'
+    templateUrl: 'views/directives/item-fields/itemType.html'
   }
 })
 
@@ -86,31 +86,31 @@ angular.module('myApp.directives', [])
 .directive('filename', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/filename.html'
+    templateUrl: 'views/directives/track-fields/filename.html'
   }
 })
 .directive('trackId', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/trackId.html'
+    templateUrl: 'views/directives/track-fields/trackId.html'
   }
 })
 .directive('trackName', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/trackName.html'
+    templateUrl: 'views/directives/track-fields/trackName.html'
   }
 })
 .directive('trackNumber', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/trackNumber.html'
+    templateUrl: 'views/directives/track-fields/trackNumber.html'
   }
 })
 .directive('trackTime', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/trackTime.html'
+    templateUrl: 'views/directives/track-fields/trackTime.html'
   }
 })
 
