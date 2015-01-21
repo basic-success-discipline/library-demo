@@ -5,8 +5,9 @@
 <button ng-click="toggleEditMode(!editMode)" ng-show="!createMode" ng-bind="editMode ? 'Cancel' : 'Edit'"></button>
 <button ng-click="deleteItem()" ng-show="!createMode">Delete</button>
 <span ng-show="myForm.$invalid">You must complete form with valid data to save.</span>
-<div ng-repeat="(key, value) in itemCopy" ng-include="key"></div>
+<div ng-repeat="(key, value) in item.copy" ng-include="key"></div>
 </form>
+
 
 <script type="text/ng-template" id="active"><span active></span></script>
 <script type="text/ng-template" id="author"><span author></span></script>
@@ -19,9 +20,3 @@
 <script type="text/ng-template" id="title"><span title></span></script>
 <script type="text/ng-template" id="tracks"><span tracks></span></script>
 <script type="text/ng-template" id="type"><span item-type></span></script>
-
-<script type="text/ng-template" id="filename"><span filename></span></script>
-<script type="text/ng-template" id="trackID"><span track-id></span></script>
-<script type="text/ng-template" id="trackNumber"><span track-number></span></script>
-<script type="text/ng-template" id="trackTime"><span track-time></span></script>
-<script type="text/ng-template" id="trackName"><span track-name></span></script>

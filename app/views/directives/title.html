@@ -1,5 +1,5 @@
 <p>Title:<br>
-  <input type="text" name="title"  ng-model="itemCopy[key]" required ng-disabled="!editMode" ng-change="addEdit(key)">
+  <input type="text" name="title"  ng-model="item.copy[key]" required ng-disabled="!editMode" ng-change="addEdit(key)">
   <span style="color:red" ng-show="myForm.title.$dirty && myForm.title.$invalid">
   <span ng-show="myForm.title.$error.required">Title is required.</span>
   </span>

@@ -41,54 +41,59 @@ angular.module('myApp.controllers', [])
 	
 }])
 .controller('editItemCtrl', ['$scope', '$location',  'sharedProperties', function($scope, $location, sharedProperties){
-	$scope.item=sharedProperties.getEditItem();
+	var item = sharedProperties.getEditItem();
+	$scope.item = {"obj": item, "copy":""};
 	$scope.createMode = false;
 	$scope.editMode = false;
 	$scope.itemType = "cd";
 
-	if ($scope.item == null){
+	if ($scope.item.obj == null){
 		$scope.createMode = true;
 		$scope.editMode = true;
 		var template = angular.copy(sharedProperties.getTemplate());
-		$scope.item = template[$scope.itemType].newEntry;
+		$scope.item.obj = template[$scope.itemType].newEntry;
+		$scope.item.obj['id'] = Math.floor((Math.random()*100000)+1);
 	}
-	$scope.itemCopy = angular.copy($scope.item);
-	$scope.tracksCopy = angular.copy($scope.item['tracks']);
 	$scope.edits ={};
+
 
 	$scope.updateFields = function(type){
 		if($scope.createMode){
 			$scope.itemType=type;
 			var template = angular.copy(sharedProperties.getTemplate());
-			$scope.item = template[$scope.itemType].newEntry;
-			$scope.itemCopy = angular.copy($scope.item);
+			$scope.item.obj = template[$scope.itemType].newEntry;
+			$scope.refreshEditItemView();
 		}
 	};
 	$scope.saveNew = function(){
 		//send new Item to API
 		alert("you've created a new item!");
+
 		$scope.createMode =false;
 		$scope.editMode = false;
 		//get edit item from server
 		//set as edit item
 		//begin again as if just entered edit item view
-		$scope.itemsCopy =  angular.copy($scope.item);
-		$scope.tracksCopy = angular.copy($scope.item['tracks']);
+		$scope.refreshEditItemView();
 		$scope.edits ={};
+
+	}
+	$scope.refreshEditItemView = function(){
+		$scope.item.copy =  angular.copy($scope.item.obj);
 	}
 
 	$scope.toggleEditMode = function(bool){
 		$scope.editMode = bool;
 		if(!bool){
-			$scope.itemCopy = angular.copy($scope.item);
-			$scope.tracksCopy = angular.copy($scope.item['tracks']);
+			$scope.refreshEditItemView();
 			$scope.edits={};
+
 		}
+		console.log("toggle edit: " + $scope.item.copy["tracks"][0]["filename"]);
 	}
 
-
 	$scope.addEdit = function(key){
-		$scope.edits[key] = $scope.itemCopy[key];
+		$scope.edits[key] = $scope.item.copy[key];
 	}
 
 	$scope.saveEdit = function(){
@@ -96,10 +101,11 @@ angular.module('myApp.controllers', [])
 		for(var key in $scope.edits){
 			console.log(key + " : " + $scope.edits[key]);
 		} 
+		console.log("save edit: " + $scope.item.copy["tracks"][0]["filename"]);
 
 		//for tracks array, send whole array with update
 		if($scope.edits["tracks"]){
-			console.log($scope.tracksCopy);
+			console.log("edited tracks: " + $scope.edits["tracks"][0]["filename"]);
 		}
 	}
 
@@ -108,35 +114,35 @@ angular.module('myApp.controllers', [])
 		$location.path("/item-list")
 	}
 
+
+	$scope.refreshEditItemView();
+
+}])
+
+.controller('tracksCtrl', ['$scope', 'sharedProperties', function($scope, sharedProperties){
+	
+
 	$scope.addNewTrack = function(){
 		var template = angular.copy(sharedProperties.getTemplate());
 		var newTrack = template[$scope.itemType].newTrack;
-		newTrack['id'] = Math.floor((Math.random()*100000)+1);
-		$scope.tracksCopy.push(newTrack);
-		$scope.addEdit('tracks',$scope.tracksCopy);
+		newTrack['trackId'] = Math.floor((Math.random()*100000)+1);
+		$scope.item.copy["tracks"].push(newTrack);
+		$scope.addEdit('tracks',$scope.item.copy["tracks"]);
 	}
 
 	$scope.deleteTrack = function(track){
-		for(var i=0; i<$scope.tracksCopy.length; i++){
-			if($scope.tracksCopy[i].trackID == track.trackID){
-				delete $scope.tracksCopy[i];
-				$scope.addEdit('tracks',$scope.tracksCopy)
+		for(var i=0; i<$scope.item.copy["tracks"].length; i++){
+			if($scope.item.copy["tracks"][i].trackID == track.trackID){
+				delete $scope.item.copy["tracks"][i];
+				$scope.addEdit('tracks',$scope.item.copy["tracks"])
 			}
 		}
-
-	}
-	$scope.filteroutTracks = function(obj){
-		var result = angular.copy($scope.itemCopy);
-		delete result["tracks"];
-		return result;
 	}
 
+}])
 
-	$scope.runtimeFormat = function(rtstring){
-		return rtstring.split(":");
 
-	}
-}]);
+;
 
 
 
