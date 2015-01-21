@@ -1,17 +1,23 @@
+<div class="item-list">
 
-	<input ng-model="searchText">
+	<div class="top-bar">
+		<span><input ng-model="searchText" placeholder="Search"></span>
+		<span><input type="checkbox" ng-model="filterOptions.types.cd"> CDs </span>
+		<span><input type="checkbox" ng-model="filterOptions.types.dvd"> DVDs </span>
+		<span><input type="checkbox" ng-model="filterOptions.types.ebook"> EBooks </span>
+		<span class="add-new-btn"><button ng-click="showEditItemView()">Add New</button></span>
+	</div>
 
-	<span>CDs<input type="checkbox" ng-model="filterOptions.types.cd"></span>
-	<span>DVDs<input type="checkbox" ng-model="filterOptions.types.dvd"></span>
-	<span>EBooks<input type="checkbox" ng-model="filterOptions.types.ebook"></span>
+	<div class="second-bar">
+		<span>Sort by: <select ng-model="selectedSortOption"><option ng-repeat="option in sortOptions" value="{{option}}">{{option}}</option></select></span>
+		<span><input type="checkbox" ng-model="filterOptions.activeOnly"> Active Only</span>
+	</div>
+
+	<div class="activeLabel">Active</div>
+	<div class="item" ng-repeat="item in items | filter:searchText | itemListFilter:filterOptions | orderBy:selectedSortOption">
+		<span class="title"  ng-click="showEditItemView(item)"> {{item.title}} </span>
+		<span class="active" > <input type="checkbox" ng-checked="item.active == 1" ng-model="isChecked" ng-change="updateActive(item, isChecked)" ></span>
+		<span class="type"> {{item.type}}</span>
+	</div>
 	
-	<span>Active Only<input type="checkbox" ng-model="filterOptions.activeOnly"></span>
-	<button ng-click="showEditItemView()">Add New</button>
-	<span>Sort by: <select ng-model="selectedSortOption"><option ng-repeat="option in sortOptions" value="{{option}}">{{option}}</option></select></span>
-
-
-<div class="item" ng-repeat="item in items | filter:searchText | itemListFilter:filterOptions | orderBy:selectedSortOption">
-<span style="margin-right: 20px;"  ng-click="showEditItemView(item)"> {{item.title}} </span>
-<span style="float:right; margin-right: 100px;"> <input type="checkbox" ng-checked="item.active == 1" ng-model="isChecked" ng-change="updateActive(item, isChecked)" ></span>
-<span style="float:right; margin-right: 100px;"> {{item.type}}</div>
-
+</div>

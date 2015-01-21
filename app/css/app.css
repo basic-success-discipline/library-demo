@@ -1,35 +1,41 @@
 /* app css stylesheet */
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em; }
+.wrapper {
+  margin: 40px auto 40px auto;
+  width: 768px; }
 
-.menu:before {
-  content: "["; }
+.item-list .top-bar span, .item-list .second-bar span {
+  margin-right: 15px; }
 
-.menu:after {
-  content: "]"; }
+.item-list .top-bar {
+  margin-bottom: 5px; }
 
-.menu > li {
-  display: inline; }
+.item-list .second-bar {
+  margin-bottom: 20px; }
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em; }
+.item-list .add-new-btn {
+  float: right;
+  margin-right: 10px; }
 
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0; }
+.activeLabel {
+  float: right;
+  margin-right: 27px; }
 
 .item {
-  cursor: pointer; }
+  clear: both; }
 
-.eiv {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: green; }
+.item .title {
+  cursor: pointer;
+  width: 500px;
+  overflow: hidden;
+  display: inline-block; }
+
+.item .title:hover {
+  text-decoration: underline; }
+
+.item .active {
+  float: right;
+  margin-right: 43px; }
+
+.item .type {
+  float: right;
+  margin-right: 80px; }
