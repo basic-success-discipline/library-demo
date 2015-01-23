@@ -8,6 +8,54 @@ angular.module('myApp.directives', [])
 
 
 // Item-level directives
+.directive('fieldCheckbox', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/directives/field-checkbox.html'
+  }
+})
+.directive('fieldRequiredText', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/directives/field-required-text.html'
+  }
+})
+.directive('fieldDate', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/directives/field-date.html'
+  }
+})
+.directive('fieldNoEdit', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/directives/field-no-edit.html'
+  }
+})
+.directive('fieldRuntime', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/directives/field-runtime.html'
+  }
+})
+.directive('fieldOptionalText', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/directives/field-optional-text.html'
+  }
+})
+.directive('fieldOptionalTextarea', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/directives/field-optional-textarea.html'
+  }
+})
+.directive('fieldRequiredNumber', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/directives/field-required-number.html'
+  }
+})
 .directive('active', function() {
   return {
     restrict: 'A',

@@ -1,0 +1,5 @@
+<ng-form name="fieldForm" no-validate>
+<p>{{key}}:
+<span class="no-edit" ng-show="!editMode">{{bindItem[key]}}</span>
+  <input type="text" name="fieldName" ng-model="bindItem[key]" ng-show="editMode" ng-change="addEdit(key)">
+</p>

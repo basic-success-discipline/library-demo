@@ -56,7 +56,8 @@ angular.module('myApp.controllers', [])
 	}
 
 	$scope.itemType = $scope.item.obj["type"];
-	$scope.edits ={};
+	$scope.edits ={"obj":{}};
+
 
 
 	$scope.updateFields = function(type){
@@ -77,45 +78,46 @@ angular.module('myApp.controllers', [])
 		//set as edit item
 		//begin again as if just entered edit item view
 		$scope.refreshEditItemView();
-		$scope.edits ={};
+		$scope.edits.obj ={};
 
 	}
 	$scope.refreshEditItemView = function(){
 		$scope.item.copy =  angular.copy($scope.item.obj);
+		$scope.bindItem = $scope.item.copy;
 	}
 
 	$scope.toggleEditMode = function(bool){
 		$scope.editMode = bool;
 		if(!bool){
 			$scope.refreshEditItemView();
-			$scope.edits={};
+			$scope.edits.obj={};
 		}
 		console.log("toggle edit: " + $scope.item.copy["tracks"][0]["filename"]);
 	}
 
 	$scope.addEdit = function(key){
-		$scope.edits[key] = $scope.item.copy[key];
+		$scope.edits.obj[key] = $scope.item.copy[key];
 	}
 
 	$scope.saveEdit = function(){
 		//only send updates
-		for(var key in $scope.edits){
-			console.log(key + " : " + $scope.edits[key]);
+		for(var key in $scope.edits.obj){
+			console.log(key + " : " + $scope.edits.obj[key]);
 		} 
 		console.log("save edit: " + $scope.item.copy["tracks"][0]["filename"]);
 
 		//for tracks array, send whole array with update
-		if($scope.edits["tracks"]){
-			console.log("edited tracks: " + $scope.edits["tracks"][0]["filename"]);
+		if($scope.edits.obj["tracks"]){
+			console.log("edited tracks: " + $scope.edits.obj["tracks"][0]["filename"]);
 		}
 		$scope.editMode = false;
 		$scope.refreshEditItemView();
-		$scope.edits={};
+		$scope.edits.obj={};
 
 	}
 
 	$scope.unsavedEdits = function(){
-		for(var prop in $scope.edits) { 
+		for(var prop in $scope.edits.obj) { 
 			return true;
 		}
 		return false;
@@ -149,6 +151,8 @@ angular.module('myApp.controllers', [])
 
 .controller('tracksCtrl', ['$scope', 'sharedProperties', function($scope, sharedProperties){
 	
+	$scope.bindItem=
+
 
 	$scope.addNewTrack = function(){
 		var template = angular.copy(sharedProperties.getTemplate());
@@ -168,6 +172,14 @@ angular.module('myApp.controllers', [])
 		}
 	}
 
+	$scope.addEdit = function(key){
+		$scope.edits.obj['tracks'] = $scope.item.copy['tracks'];
+	}
+
+}])
+
+.controller('trackCtrl', ['$scope', function($scope){
+	$scope.bindItem= $scope.track;
 }])
 
 
