@@ -92,7 +92,6 @@ angular.module('myApp.controllers', [])
 			$scope.refreshEditItemView();
 			$scope.edits.obj={};
 		}
-		console.log("toggle edit: " + $scope.item.copy["tracks"][0]["filename"]);
 	}
 
 	$scope.addEdit = function(key){
@@ -102,14 +101,15 @@ angular.module('myApp.controllers', [])
 	$scope.saveEdit = function(){
 		//only send updates
 		for(var key in $scope.edits.obj){
-			console.log(key + " : " + $scope.edits.obj[key]);
+			if(key!="tracks"){
+				console.log(key + " : " + $scope.edits.obj[key]);
+			}else{
+				for(var i=0; i<$scope.edits.obj["tracks"].length; i++){
+					var track = $scope.edits.obj["tracks"][i];
+					console.log(track);
+				}
+			}
 		} 
-		console.log("save edit: " + $scope.item.copy["tracks"][0]["filename"]);
-
-		//for tracks array, send whole array with update
-		if($scope.edits.obj["tracks"]){
-			console.log("edited tracks: " + $scope.edits.obj["tracks"][0]["filename"]);
-		}
 		$scope.editMode = false;
 		$scope.refreshEditItemView();
 		$scope.edits.obj={};
