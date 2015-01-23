@@ -28,52 +28,132 @@ angular.module('myApp.directives', [])
 
 
 // Generic field directives
-.directive('fieldCheckbox', function() {
+.directive('fieldCheckbox', function($compile) {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/field-checkbox.html'
+    templateUrl: 'views/directives/field-checkbox.html',
+    scope: {
+      k: "=",
+      v: "=",
+      ic: "=",
+      ae: "&",
+      em: "="
+    },
+    link: function (scope, elm, attrs) {
+        $compile(elm.contents())(scope);
+    }
   }
 })
-.directive('fieldRequiredText', function() {
+.directive('fieldRequiredText', function($compile) {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/field-required-text.html'
+    templateUrl: 'views/directives/field-required-text.html',
+    scope: {
+      k: "=",
+      v: "=",
+      ic: "=",
+      ae: "&",
+      em: "="
+    },
+    link: function (scope, elm, attrs) {
+        $compile(elm.contents())(scope);
+    }
   }
 })
-.directive('fieldDate', function() {
+.directive('fieldDate', function($compile) {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/field-date.html'
+    templateUrl: 'views/directives/field-date.html',
+    scope: {
+      k: "=",
+      v: "=",
+      ic: "=",
+      ae: "&",
+      em: "="
+    },
+    link: function (scope, elm, attrs) {
+        $compile(elm.contents())(scope);
+    }
   }
 })
-.directive('fieldNoEdit', function() {
+.directive('fieldNoEdit', function($compile) {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/field-no-edit.html'
+    templateUrl: 'views/directives/field-no-edit.html',
+    scope: {
+      k: "=",
+      v: "=",
+      ic: "=",
+      ae: "&",
+      em: "="
+    },
+    link: function (scope, elm, attrs) {
+        $compile(elm.contents())(scope);
+    }
   }
 })
-.directive('fieldRuntime', function() {
+.directive('fieldRuntime', function($compile) {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/field-runtime.html'
+    templateUrl: 'views/directives/field-runtime.html',
+    scope: {
+      k: "=",
+      v: "=",
+      ic: "=",
+      ae: "&",
+      em: "="
+    },
+    link: function (scope, elm, attrs) {
+        $compile(elm.contents())(scope);
+    }
   }
 })
-.directive('fieldOptionalText', function() {
+.directive('fieldOptionalText', function($compile) {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/field-optional-text.html'
+    templateUrl: 'views/directives/field-optional-text.html',
+    scope: {
+      k: "=",
+      v: "=",
+      ic: "=",
+      ae: "&",
+      em: "="
+    },
+    link: function (scope, elm, attrs) {
+        $compile(elm.contents())(scope);
+    }
   }
 })
-.directive('fieldOptionalTextarea', function() {
+.directive('fieldOptionalTextarea', function($compile) {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/field-optional-textarea.html'
+    templateUrl: 'views/directives/field-optional-textarea.html',
+    scope: {
+      k: "=",
+      v: "=",
+      ic: "=",
+      ae: "&",
+      em: "="
+    },
+    link: function (scope, elm, attrs) {
+        $compile(elm.contents())(scope);
+    }
   }
 })
-.directive('fieldRequiredNumber', function() {
+.directive('fieldRequiredNumber', function($compile) {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/field-required-number.html'
+    templateUrl: 'views/directives/field-required-number.html',
+    scope: {
+      k: "=",
+      v: "=",
+      ic: "=",
+      ae: "&",
+      em: "="
+    },
+    link: function (scope, elm, attrs) {
+        $compile(elm.contents())(scope);
+    }
   }
 })
 

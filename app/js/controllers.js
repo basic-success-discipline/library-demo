@@ -151,7 +151,6 @@ angular.module('myApp.controllers', [])
 
 .controller('tracksCtrl', ['$scope', 'sharedProperties', function($scope, sharedProperties){
 	
-	$scope.bindItem=
 
 
 	$scope.addNewTrack = function(){

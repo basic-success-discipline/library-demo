@@ -1,9 +1,9 @@
 <ng-form name="fieldForm" novalidate>
-<p>{{key}}:
-	<span class="no-edit" ng-show="!editMode">{{bindItem[key]}}</span>
-	<input type="date" name="fieldName" ng-model="bindItem[key]" required ng-show="editMode" ng-change="addEdit(key)">
+<p>{{k}}:
+	<span class="no-edit" ng-show="!em">{{ic[k]}}</span>
+	<input type="date" name="fieldName" ng-model="ic[k]" required ng-show="em" ng-change="ae">
 	<span style="color:red" ng-show="fieldForm.fieldName.$dirty && fieldForm.fieldName.$invalid">
-		<span ng-show="fieldForm.fieldName.$error.required">{{key}} is required.</span>
+		<span ng-show="fieldForm.fieldName.$error.required">{{k}} is required.</span>
 	</span>
 </p>
 </ng-form>

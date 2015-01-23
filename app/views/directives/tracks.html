@@ -6,16 +6,26 @@
 	<hr>
 	<div class="track" ng-repeat="track in item.copy['tracks']">
 		<ng-form name="myTrackForm" novalidate>
-		<div ng-repeat="(key, value) in track" ng-include="key" ng-controller="trackCtrl"></div>
-		<a href="javascript:void(0);" ng-click="deleteTrack(track)" ng-show="editMode"> Delete track</a>
-		<hr>
-	</ng-form>
-</div>
+			<div ng-repeat="(key, value) in track" ng-include="key"></div>
+			<a href="javascript:void(0);" ng-click="deleteTrack(track)" ng-show="editMode"> Delete track</a>
+			<hr>
+		</ng-form>
+	</div>
 </div>
 
 
-<script type="text/ng-template" id="filename"><span field-required-text></span></script>
-<script type="text/ng-template" id="trackID"><span field-no-edit></span></script>
-<script type="text/ng-template" id="trackNumber"><span field-required-number></span></script>
-<script type="text/ng-template" id="trackTime"><span field-runtime></span></script>
-<script type="text/ng-template" id="trackName"><span field-required-text></span></script>
+<script type="text/ng-template" id="filename">
+	<span field-required-text k="key" v="value" ic="track" ae="addEdit('tracks')" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="trackID">
+	<span field-no-edit k="key" v="value" ic="track" ae="addEdit('tracks')" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="trackNumber">
+	<span field-required-number k="key" v="value" ic="track" ae="addEdit('tracks')" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="trackTime">
+	<span field-runtime k="key" v="value" ic="track" ae="addEdit('tracks')" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="trackName">
+	<span field-required-text k="key" v="value" ic="track" ae="addEdit('tracks')" em="editMode"></span>
+</script>

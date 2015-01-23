@@ -9,18 +9,38 @@
 			<span class="error-message" ng-show="myForm.$invalid">You must complete form with valid data to save. </span>
 		</div>
 
-		<div class="field {{key}}" ng-repeat="(key, value) in bindItem" ng-include="key" ></div>
+		<div class="field {{key}}" ng-repeat="(key, value) in item.copy" ng-include="key" ></div>
 	</form>
 </div>
 
-<script type="text/ng-template" id="active"><span field-checkbox ></span></script>
-<script type="text/ng-template" id="author"><span field-required-text></span></script>
-<script type="text/ng-template" id="discourseDate"><span field-date></span></script>
-<script type="text/ng-template" id="id"><span field-no-edit></span></script>
-<script type="text/ng-template" id="runtime"><span field-runtime></span></script>
-<script type="text/ng-template" id="s3URL"><span field-required-text></span></script>
-<script type="text/ng-template" id="subtitle"><span field-optional-text></span></script>
-<script type="text/ng-template" id="summary"><span field-optional-textarea></span></script>
-<script type="text/ng-template" id="title"><span field-required-text></span></script>
+
+
+<script type="text/ng-template" id="active">
+	<span field-checkbox k="key" v="value" ic="item.copy" ae="addEdit(key)" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="author">
+	<span field-required-text k="key" v="value" ic="item.copy" ae="addEdit(key)" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="discourseDate">
+	<span field-date k="key" v="value" ic="item.copy" ae="addEdit(key)" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="id">
+	<span field-no-edit k="key" v="value" ic="item.copy" ae="addEdit(key)" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="runtime">
+	<span field-runtime k="key" v="value" ic="item.copy" ae="addEdit(key)" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="s3URL">
+	<span field-required-text k="key" v="value" ic="item.copy" ae="addEdit(key)" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="subtitle">
+	<span field-optional-text k="key" v="value" ic="item.copy" ae="addEdit(key)" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="summary">
+	<span field-optional-textarea k="key" v="value" ic="item.copy" ae="addEdit(key)" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="title">
+	<span field-required-text k="key" v="value" ic="item.copy" ae="addEdit(key)" em="editMode"></span>
+</script>
 <script type="text/ng-template" id="tracks"><span tracks></span></script>
-<script type="text/ng-template" id="type"><span item-type></span></script>
+<script type="text/ng-template" id="type"><span item-type ></span></script>
