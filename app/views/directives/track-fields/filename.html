@@ -1,7 +1,0 @@
-<p>File name:
-<span class="no-edit" ng-show="!editMode">{{track[key]}}</span>
-  <input type="text" name="filename" ng-model="track[key]"  required ng-show="editMode" ng-change="addEdit('tracks', item.copy['tracks'])">
-  <span style="color:red" ng-show="myTrackForm.filename.$dirty && myTrackForm.filename.$invalid">
-  <span ng-show="myTrackForm.filename.$error.required">File name is required.</span>
-  </span>
-</p>

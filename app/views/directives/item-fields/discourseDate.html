@@ -1,7 +1,0 @@
-<p>Discourse Date:
-<span class="no-edit" ng-show="!editMode">{{item.copy[key]}}</span>
-  <input type="date" name="discourseDate" ng-model="item.copy[key]" required ng-show="editMode" ng-change="addEdit(key)">
-  <span style="color:red" ng-show="myForm.discourseDate.$dirty && myForm.discourseDate.$invalid">
-  <span ng-show="myForm.discourseDate.$error.required">Discourse date is required.</span>
-  </span>
-</p>

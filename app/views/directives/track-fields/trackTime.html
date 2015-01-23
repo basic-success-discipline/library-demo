@@ -1,9 +1,0 @@
-<p>Track runtime:
-<span class="no-edit" ng-show="!editMode">{{track[key]}}</span>
-  <input type="text" name="trackTime" ng-model="track[key]" required data-validate-runtime ng-show="editMode" ng-change="addEdit('tracks',item.copy['tracks'])">
-  <span style="color:red" ng-show="myTrackForm.trackTime.$dirty && myTrackForm.trackTime.$invalid">
-  <span ng-show="myTrackForm.trackTime.$error.required">Track runtime is required.</span>
-  <span ng-show="myTrackForm.trackTime.$error.invalidRuntime">Track runtime must be in format "hh:mm:ss".</span>
-  </span>
-</p>
-

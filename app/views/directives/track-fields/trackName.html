@@ -1,7 +1,0 @@
-<p>Track name:
-<span class="no-edit" ng-show="!editMode">{{track[key]}}</span>
-  <input type="text" name="trackName" ng-model="track[key]" required ng-show="editMode" ng-change="addEdit('tracks',item.copy['tracks'])">
-  <span style="color:red" ng-show="myTrackForm.trackName.$dirty && myTrackForm.trackName.$invalid">
-  <span ng-show="myTrackForm.trackName.$error.required">Track name is required.</span>
-  </span>
-</p>
