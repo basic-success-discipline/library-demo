@@ -3,12 +3,12 @@
 <span style="color: blue; display: inline-block;" ng-show="editMode"> *additions and deletions are not final until entire {{itemType}} is saved</span>
 
 <div class="tracks-wrapper">
-<hr>
-<div class="track" ng-repeat="track in item.copy['tracks']">
-	<ng-form name="myTrackForm" novalidate>
-	<div ng-repeat="(key, value) in track" ng-include="key" ng-controller="trackCtrl"></div>
-	<a href="javascript:void(0);" ng-click="deleteTrack(track)" ng-show="editMode"> Delete track</a>
 	<hr>
+	<div class="track" ng-repeat="track in bindItem['tracks']">
+		<ng-form name="myTrackForm" novalidate>
+		<div ng-repeat="(key, value) in track" ng-include="key" ng-controller="trackCtrl"></div>
+		<a href="javascript:void(0);" ng-click="deleteTrack(track)" ng-show="editMode"> Delete track</a>
+		<hr>
 	</ng-form>
 </div>
 </div>

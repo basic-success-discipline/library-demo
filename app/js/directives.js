@@ -7,7 +7,27 @@ angular.module('myApp.directives', [])
 
 
 
-// Item-level directives
+
+//Specialized directives
+.directive('tracks', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/directives/item-fields/tracks.html',
+    controller: 'tracksCtrl'
+  }
+})
+.directive('itemType', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/directives/item-fields/item-type.html'
+  }
+})
+
+
+
+
+
+// Generic field directives
 .directive('fieldCheckbox', function() {
   return {
     restrict: 'A',
@@ -56,111 +76,9 @@ angular.module('myApp.directives', [])
     templateUrl: 'views/directives/field-required-number.html'
   }
 })
-.directive('active', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/item-fields/active.html'
-  }
-})
-.directive('author', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/item-fields/author.html'
-  }
-})
-.directive('discourseDate', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/item-fields/discourseDate.html'
-  }
-})
-.directive('itemId', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/item-fields/itemId.html'
-  }
-})
-.directive('runtime', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/item-fields/runtime.html'
-  }
-})
-.directive('awsFolderName', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/item-fields/s3URL.html'
-  }
-})
-.directive('subtitle', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/item-fields/subtitle.html'
-  }
-})
-.directive('summary', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/item-fields/summary.html'
-  }
-})
-.directive('title', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/item-fields/title.html'
-  }
-})
-.directive('tracks', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/item-fields/tracks.html',
-    controller: 'tracksCtrl'
-  }
-})
-.directive('itemType', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/item-fields/itemType.html'
-  }
-})
 
 
 
-
-
-
-// Track-level directives
-
-.directive('filename', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/track-fields/filename.html'
-  }
-})
-.directive('trackId', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/track-fields/trackId.html'
-  }
-})
-.directive('trackName', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/track-fields/trackName.html'
-  }
-})
-.directive('trackNumber', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/track-fields/trackNumber.html'
-  }
-})
-.directive('trackTime', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/directives/track-fields/trackTime.html'
-  }
-})
 
 
 
