@@ -104,7 +104,7 @@ angular.module('myApp.directives', [])
       em: "="
     },
     link: function (scope, elm, attrs) {
-        $compile(elm.contents())(scope);
+        //This directive's compile call is in a nested directive validateRuntime
     }
   }
 })
@@ -165,13 +165,19 @@ angular.module('myApp.directives', [])
 
 // Validation directives
 
-.directive("validateRuntime", function(){
+.directive("validateRuntime", function($compile){
           return {
            restrict: 'A',
            require: 'ngModel',
            link: function(scope, ele, attrs, ctrl){
+            
+            //This replaces the compile call in the fieldRuntime directive
+            $compile(ele.contents())(scope);
+
+
               ctrl.$parsers.unshift(function(value) {
                 if(value){
+
                   var valid = false;
                 	var values = value.split(":");
                 	if(values.length==3){
@@ -182,10 +188,13 @@ angular.module('myApp.directives', [])
                 			}
                 		}
                 	}
+                  console.log(valid);
                   ctrl.$setValidity('invalidRuntime', valid);
                 }
+              
                 return valid ? value : undefined;
               });
+
            }
           }
         })
