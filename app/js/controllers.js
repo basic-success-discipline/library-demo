@@ -7,13 +7,10 @@ angular.module('myApp.controllers', [])
 	$scope.sortOptions = ['title', 'id', 'discourseDate', 'type'];
 	$scope.selectedSortOption = $scope.sortOptions[0];
 
+
 	$scope.showEditItemView = function(item){
 		sharedProperties.setEditItem(item);
 		$location.path('/edit-item');
-	}
-
-	$scope.showCreateItemView = function(){
-		$location.path('create-item');
 	}
 
 	$scope.updateActive = function(item, isChecked){
@@ -23,6 +20,10 @@ angular.module('myApp.controllers', [])
 			item.active=0;
 		}
 		//when i've got endpoints its just a matter of updating the active field.
+	}
+
+	$scope.sayHello = function(){
+		$scope.greeting="Hello, world";
 	}
 
 
@@ -95,7 +96,9 @@ angular.module('myApp.controllers', [])
 	}
 
 	$scope.addEdit = function(key){
-		$scope.edits.obj[key] = $scope.item.copy[key];
+		if($scope.item.copy[key]){
+			$scope.edits.obj[key] = $scope.item.copy[key];
+		}
 	}
 
 	$scope.saveEdit = function(){
