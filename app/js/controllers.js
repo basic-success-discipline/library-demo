@@ -165,8 +165,9 @@ angular.module('myApp.controllers', [])
 
 		for(var i=0; i<$scope.item.copy["tracks"].length; i++){
 			if($scope.item.copy["tracks"][i].trackID == track.trackID){
-				delete $scope.item.copy["tracks"][i];
+				$scope.item.copy["tracks"].splice(i,1);
 				$scope.addEdit('tracks',$scope.item.copy["tracks"])
+
 			}
 		}
 	}
