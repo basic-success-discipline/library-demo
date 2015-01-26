@@ -9,13 +9,14 @@
 	</div>
 
 	<div class="second-bar">
+		<span><input ng-model="search.title" placeholder="Search Title"></span>
 		<span>Sort by: <select ng-model="selectedSortOption"><option ng-repeat="option in sortOptions" value="{{option}}">{{option}}</option></select></span>
 		<span><input type="checkbox" ng-model="filterOptions.activeOnly"> Active Only</span>
 	</div>
 
 	<div class="activeLabel">Active</div>
-	<div class="item" ng-repeat="item in items | filter:searchText | itemListFilter:filterOptions | orderBy:selectedSortOption">
-		<span class="title"  ng-click="showEditItemView(item)"> {{item.title}} </span>
+	<div class="item" ng-repeat="item in items | filter:searchText | filter:search | itemListFilter:filterOptions | orderBy:selectedSortOption">
+		<span class="title" ng-click="showEditItemView(item)"> {{item.title}} </span>
 		<span class="active" > <input type="checkbox" ng-checked="item.active == 1" ng-model="isChecked" ng-change="updateActive(item, isChecked)" ></span>
 		<span class="type"> {{item.type}}</span>
 	</div>
