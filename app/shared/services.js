@@ -6,9 +6,13 @@ angular.module('myApp.sharedAssets', [])
         return {
             getAll: function () {
                 return $http.get("/app/shared/testData.json");
+            },
+            getPubStruct: function(){
+                return $http.get("/app/shared/testPublicationStructure.json");
             }
         }
     })
+
 .service('sharedProperties', function () {
     var template = {
     "dvd":
