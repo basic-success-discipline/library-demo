@@ -1,0 +1,153 @@
+AL Admin behavior
+
+
+
+
+*
+should prohibit any users without proper authentication
+should allow access to users with authentication
+should route to /item-list and /edit-item correctly
+should load /item-list as default view
+
+
+/item-list
+should connect to api server 
+should grab all cd, dvd, and ebook db entries (items) and store locally as db model
+should display titles and type of all selected items (based on filters) 
+should redirect to /edit-view with no item passed as parameter when Add New is clicked (item==null)
+each line item should be clickable to redirect to /edit-item with said item as parameter (item!=null)
+each line item should have a checkbox that updates the active field for that item
+if active checkbox is checked, active field is set to 1/true in api server
+if active checkbox is unchecked, active field is set to 0/false in api server
+local db model is updated when api server is updated
+filters
+should default to settings such that all and only active items are visible, ordered by title
+should display cd items when cd checkbox is checked	 
+should display dvd items when dvd checkbox is checked
+should display ebook items when ebook checkbox is checked
+should display only active items when active only checkbox is checked
+should display both active and deactivated items when active only is unchecked
+should display titles of items with fields filtered by search parameter in generic search
+should display titles of items with title field filtered by search parameter in title search
+should order items by title when sort by title is selected
+should order items by id when sort by id is selected
+should order items by discourseDate when sort by discourseDate is selected
+should order items by type when sort by type is selected
+
+
+
+
+/edit-item
+should read item from redirect source
+should sync local item model with “new entry” item model (all fields empty) and enter create mode if item is null
+should sync local item model with corresponding model on api server and enter no-edit mode if item is not null
+should display corresponding directives for key/value pairings (field directives) of item based on item type of provided item, or default type if item is null.
+should always display item type radio button.
+should update what field directives are displayed if item type radio button is changed.
+should return to ./item-list if “back” button is selected
+should show confirm delete dialogue box when “delete” button is pressed
+should do nothing if “cancel” is selected on confirm delete dialog box
+should send delete item command to api server if “confirm” is selected on confirm delete dialog box and then redirect to ./item-list
+no-edit mode
+should only display “back”, “edit”, and “delete” buttons
+should enter edit mode when “edit” button is selected
+should display the item type radio button as disabled
+should display each field directive in its “no-edit mode”
+edit mode
+should only display “back”, “save”, “cancel”, and “delete” buttons
+should leave edit mode (entering no-edit mode) when “cancel” is selected, overwriting local item model with corresponding item model on api server
+should enable “save” button as clickable if top-level form (“myForm”) is valid.
+should disable “save” button and display message saying “You must complete form with valid data to save.” if top-level form is not valid.
+should enforce that top level form is valid only if all nested forms (including forms in field directives) are valid.
+should send update command to api server with item id and json object containing updates ({key1: updatedvalue1, key2:updatedvalue2…}) when “save” is selected, display success message upon on confirmation from api server, and overwrite local item model with corresponding item model on api server (which should have the updated values).
+should display the item type radio button as disabled
+should display each field directive in its “edit mode”
+create mode
+should only display “back” and “save” buttons
+should enable “save” button as clickable if top-level form (“myForm”) is valid.
+should disable “save” button and display message saying “You must complete form with valid data to save.” if top-level form is not valid.
+should enforce that top level form is valid only if all nested forms (including forms in field directives) are valid.
+should generate new guid for new item and apply to id field of item model
+should display the item type radio button as enabled
+should display each field directive in its “edit mode”
+
+Field directives
+should toggle between “edit mode” and “no-edit mode” as dictated by no-edit mode, edit mode, and create mode in the parent scope
+should call addEdit(key) on the parent controller when its input element is changed
+should display appropriate error message(s) if input is invalid.
+
+field-checkbox
+should display a disabled checkbox in “no-edit mode”
+should display an enabled checkbox in “edit mode”
+
+field-no-edit
+should display an un-editable text field in either “edit mode” or “no-edit mode”
+
+field-optional-text
+should display an un-editable text field in “no-edit mode”
+should display an enabled text input field in “edit mode”
+
+field-optional-textarea
+should display an un-editable text field in “no-edit mode”
+should display an enabled textarea input field in “edit mode”
+
+field-required-date
+should display a disabled date input field in “no-edit mode”
+should display an enabled date input field in “edit mode”
+should only be valid when a properly formatted date is entered
+
+field-required-number
+should display an un-editable text field in “no-edit mode”
+should display an enabled number input field in “edit mode”
+should only be valid when number is entered
+
+field-required-text
+should display an un-editable text field in “no-edit mode”
+should display an enabled number input field in “edit mode”
+should only be valid when number is entered
+
+field-required-runtime
+should display an un-editable text field in “no-edit mode”
+should display an enabled text input field in “edit mode”
+should only be valid when a valid runtime (format “hh:mm:ss”) is entered
+
+
+
+
+field-book-category
+should display an un-editable text field in both “no-edit mode” and “edit mode” 
+should display a message saying that book category must be edited on /publication-structure view
+should display a button that goes to /publication-structure
+should show confirm dialog box if there are unsaved edits saying that unsaved edits will be lost when the “publication structure” button is selected.
+
+
+tracks (special field requiring nested field directives)
+should display array of json objects (“trackItems”) in the “tracks” field of the item model
+should toggle between “edit mode” and “no-edit mode” as dictated by no-edit mode, edit mode, and create mode in the parent scope
+should call addEdit(‘tracks’) on the parent controller when a trackItem is added, deleted, or a change in any trackItems inputs is made (this effectively overwrites any addEdit(key) calls by its nested field directives)
+should display each trackItem as a list of field directives corresponding to that trackItem’s model
+edit mode
+should display “add track” button along with message indicating that all track additions and deletions will only be finalized upon saving the entire item
+should create new trackItem with empty fields and new track guid when “add track”pressed
+should display “delete track” button at the bottom of each trackItem display
+should delete corresponding trackItem from “tracks” array in local item model when “delete track” is selected
+
+
+
+/publication-structure
+should get publication structure from api server and save as local structure model
+should display structure as nested objects of categories (similar to typical json object display or directory structure) 
+should display bottom level items (ebook items) as list of titles
+should allow for adding of new categories
+should allow for adding of new subcategories
+should allow for adding of new bottom level items from pool of selected items 
+should allow for easy re-ordering of bottom level items.
+should allow for deletion of categories
+should allow for deletion of subcategories
+should allow for deletion of bottom level items
+should display “back to list view” that goes to /item-list
+should display “back to edit item view” when navigating from edit item view that returns to /edit-item
+should display save button that is only enabled when there are unsaved edits
+should send update categories command with updates to api server when “Save” is selected
+should display cancel button that is only enabled when there are unsaved edits
+should overwrite local publication structure with publication structure from api server when cancel is selected.

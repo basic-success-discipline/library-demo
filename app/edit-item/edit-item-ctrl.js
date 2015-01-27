@@ -1,46 +1,6 @@
 'use strict';
 
 angular.module('myApp.controllers', [])
-.controller('itemListCtrl', ['$scope', '$location', '$filter', 'getData', 'sharedProperties', function($scope, $location, $filter, getData, sharedProperties) {
-
-	$scope.filterOptions ={"types":{"cd":true,"dvd":true,"ebook":true}, "activeOnly":true};
-	$scope.sortOptions = ['title', 'id', 'discourseDate', 'type'];
-	$scope.selectedSortOption = $scope.sortOptions[0];
-
-
-	$scope.showEditItemView = function(item){
-		sharedProperties.setEditItem(item);
-		$location.path('/edit-item');
-	}
-
-	$scope.updateActive = function(item, isChecked){
-		if(isChecked){
-			item.active=1;
-		}else{
-			item.active=0;
-		}
-		//when i've got endpoints its just a matter of updating the active field.
-	}
-
-	$scope.sayHello = function(){
-		$scope.greeting="Hello, world";
-	}
-
-
-
-	var promise = getData.getAll();
-	promise.then(
-		function(payload) { 
-			$scope.items=payload.data;
-		},
-		function(errorPayload) {
-			$log.error('failure loading test data', errorPayload);
-		});
-	
-	
-
-	
-}])
 .controller('editItemCtrl', ['$scope', '$location',  'sharedProperties', function($scope, $location, sharedProperties){
 	var item = sharedProperties.getEditItem();
 	$scope.item = {"obj": item, "copy":""};
@@ -189,10 +149,6 @@ angular.module('myApp.controllers', [])
 	$scope.bindItem= $scope.track;
 }])
 
-
-.controller('publicationStructureCtrl', ['$scope', function($scope){
-	
-}])
 ;
 
 
