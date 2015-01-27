@@ -41,4 +41,9 @@ describe('editItemCtrl', function() {
       expect(refreshEditItemView).toHaveBeenCalled();
       expect(scope.edits.obj).toEqual({});
     });
+
+  it('should do all the right stuff when calling saveEdit', 
+    function() {
+     
+    });
 })

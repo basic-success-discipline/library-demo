@@ -12,6 +12,7 @@ angular.module('myApp', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/item-list', {templateUrl: 'views/item-list.html', controller: 'itemListCtrl'});
   $routeProvider.when('/edit-item', {templateUrl: 'views/edit-item.html', controller: 'editItemCtrl'});
+  $routeProvider.when('/publication-structure', {templateUrl: 'views/publication-structure.html', controller: 'publicationStructureCtrl'});
   $routeProvider.otherwise({redirectTo: '/item-list'});
   
 }]);

@@ -190,7 +190,13 @@ angular.module('myApp.controllers', [])
 }])
 
 
+.controller('publicationStructureCtrl', ['$scope', function($scope){
+	
+}])
 ;
+
+
+
 
 
 
