@@ -14,4 +14,21 @@ angular.module('myApp.pubStruct', [])
 			$log.error('failure loading publication structure', errorPayload);
 		});
 
-}]);
+}])
+
+
+.directive('recursiveStructure', function(recursionHelper) {
+  return {
+    restrict: 'E',
+    required: 'category',
+    scope:{
+    	category: "="
+    },
+    templateUrl: 'pub-struct/recursive-structure.html',
+    compile: function(element) {
+            // Use the compile function from the RecursionHelper,
+            // And return the linking function(s) which it returns
+            return recursionHelper.compile(element);
+        }
+  }
+});

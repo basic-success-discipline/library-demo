@@ -1,0 +1,9 @@
+<h1>{{category.title}}</h1>
+<h2 ng-show="category.publications.length>0">Publications</h2>
+<div ng-repeat="pub in category.publications" ng-show="category.publications.length>0">
+	<p>{{pub}}</p>
+</div>
+<div ng-repeat="subcat in category.subcategories" ng-show="category.subcategories.length>0">
+	<recursive-structure category="subcat"></recursive-structure>
+</div>
+
