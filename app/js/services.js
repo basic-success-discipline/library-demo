@@ -38,7 +38,7 @@ angular.module('myApp.services', [])
         "newEntry":
         {
             "id": 0,
-            "type": "",
+            "type": "dvd",
             "title": "",
             "subtitle": "",
             "author": "",
@@ -85,7 +85,7 @@ angular.module('myApp.services', [])
         "newEntry":
         {
             "id": 0,
-            "type": "",
+            "type": "cd",
             "title": "",
             "subtitle": "",
             "author": "",
@@ -132,7 +132,7 @@ angular.module('myApp.services', [])
         "newEntry":
         {
             "id": 0,
-            "type": "",
+            "type": "ebook",
             "title": "",
             "subtitle": "",
             "author": "",

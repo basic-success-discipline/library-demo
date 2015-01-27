@@ -60,10 +60,10 @@ angular.module('myApp.directives', [])
     }
   }
 })
-.directive('fieldDate', function($compile) {
+.directive('fieldRequiredDate', function($compile) {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/field-date.html',
+    templateUrl: 'views/directives/field-required-date.html',
     scope: {
       k: "=",
       v: "=",
@@ -92,10 +92,10 @@ angular.module('myApp.directives', [])
     }
   }
 })
-.directive('fieldRuntime', function($compile) {
+.directive('fieldRequiredRuntime', function($compile) {
   return {
     restrict: 'A',
-    templateUrl: 'views/directives/field-runtime.html',
+    templateUrl: 'views/directives/field-required-runtime.html',
     scope: {
       k: "=",
       v: "=",

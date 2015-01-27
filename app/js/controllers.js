@@ -82,11 +82,13 @@ angular.module('myApp.controllers', [])
 		$scope.edits.obj ={};
 
 	}
+
+	//has test
 	$scope.refreshEditItemView = function(){
 		$scope.item.copy =  angular.copy($scope.item.obj);
-		$scope.bindItem = $scope.item.copy;
 	}
 
+	//has test
 	$scope.toggleEditMode = function(bool){
 		$scope.editMode = bool;
 		if(!bool){
@@ -95,6 +97,7 @@ angular.module('myApp.controllers', [])
 		}
 	}
 
+	//has test
 	$scope.addEdit = function(key){
 		if($scope.item.copy[key]){
 			$scope.edits.obj[key] = $scope.item.copy[key];
@@ -118,6 +121,7 @@ angular.module('myApp.controllers', [])
 		$scope.edits.obj={};
 
 	}
+
 
 	$scope.unsavedEdits = function(){
 		for(var prop in $scope.edits.obj) { 
