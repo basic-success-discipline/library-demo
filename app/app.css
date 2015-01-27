@@ -92,8 +92,8 @@
   margin-bottom: 20px;
   border: 1px solid rgba(77, 152, 248, 0.2);
   border-left: 1px solid rgba(77, 152, 248, 0.5);
-  border-bottom: none;
-  border-radius: 10px; }
+  border-bottom: 1px solid rgba(77, 152, 248, 0.1);
+  border-radius: 15px; }
 
 .rec-struct-wrapper .pub {
   margin-left: 10px; }
