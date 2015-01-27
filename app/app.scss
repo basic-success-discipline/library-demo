@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
 /* app css stylesheet */
 
 .wrapper{
@@ -119,6 +121,35 @@
 .tracks-wrapper hr{
   margin-top: 35px;
   margin-bottom: 35px;
+}
+
+
+
+//PUBLICATION STRUCTURE
+
+
+.rec-struct-wrapper{
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid  rgba(77, 152, 248, 0.2);
+  border-left: 1px solid  rgba(77, 152, 248, 0.5);
+  border-bottom: none;
+  border-radius: 10px;
+}
+
+
+.rec-struct-wrapper .pub{
+  margin-left: 10px;
+}
+
+.rec-struct-wrapper h1{
+  font-size: 20px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.rec-struct-wrapper h2{
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
 }
 
 
