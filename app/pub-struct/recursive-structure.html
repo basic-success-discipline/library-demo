@@ -1,11 +1,18 @@
 <div class="rec-struct-wrapper">
-<h1>{{category.title}}</h1>
-<h2 ng-show="category.publications.length>0">Publications</h2>
-<div class="pub" ng-repeat="pub in category.publications | pubStructFilter:items" ng-show="category.publications.length>0">
-	<p>{{pub}}</p>
+	<h1>{{category.title}}</h1>
+	<h2 ng-show="category.publications.length>0">Publications</h2>
+	<ol class="publication-container" ui-sortable="{connectWith:'.publication-container', dropOnEmpty: true}" ng-model="category.publications" >
+		<li class="pub" ng-repeat="pub in category.publications | pubStructFilter:items">
+			<p>{{pub}}</p>
+		</li>
+	</ol>
+
+
+	<ol class="category-container" ui-sortable="{connectWith:'.category-container'}" ng-model="category.subcategories">
+		<li ng-repeat="subcat in category.subcategories" >
+			<recursive-structure category="subcat" items="items"></recursive-structure>
+		</li>
+	</ol>
 </div>
-<div ng-repeat="subcat in category.subcategories" ng-show="category.subcategories.length>0">
-	<recursive-structure category="subcat" items="items"></recursive-structure>
-</div>
-</div>
+
 

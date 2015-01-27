@@ -1,4 +1,8 @@
 <a ng-href="#/item-list" >Back to list</a>
-<div ng-repeat="subcat in ps['Categories']">
-	<recursive-structure category="subcat" font-size="30px" items="items"></recursive-structure>
-</div>
+
+<ol class="category-container top-container" ui-sortable="{connectWith:'.category-container', dropOnEmpty: true}" ng-model="categories">
+  <li ng-repeat="subcat in categories">
+  	<recursive-structure category="subcat" items="items" ></recursive-structure>
+  </li>
+</ol>
+

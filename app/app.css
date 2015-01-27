@@ -93,7 +93,8 @@
   border: 1px solid rgba(77, 152, 248, 0.2);
   border-left: 1px solid rgba(77, 152, 248, 0.5);
   border-bottom: 1px solid rgba(77, 152, 248, 0.1);
-  border-radius: 15px; }
+  border-radius: 15px;
+  box-sizing: border-box; }
 
 .rec-struct-wrapper .pub {
   margin-left: 10px; }
@@ -105,3 +106,17 @@
 .rec-struct-wrapper h2 {
   font-size: 16px;
   font-family: "Open Sans", sans-serif; }
+
+.category-container {
+  padding: 40px;
+  width: 100%;
+  cursor: move;
+  position: relative;
+  box-sizing: border-box; }
+
+.publication-container {
+  padding-bottom: 30px;
+  width: 100%;
+  cursor: move;
+  position: relative;
+  box-sizing: border-box; }

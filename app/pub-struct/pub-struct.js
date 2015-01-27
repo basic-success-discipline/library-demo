@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.pubStruct', [])
+angular.module('myApp.pubStruct', ['ui.sortable'])
 .controller('pubStructCtrl', ['$scope', 'getData', function($scope, getData){
 	
 	var getItems= function(){
@@ -20,6 +20,7 @@ angular.module('myApp.pubStruct', [])
 		promise.then(
 			function(payload) { 
 				$scope.ps=payload.data;
+				$scope.categories=$scope.ps["Categories"];
 			},
 			function(errorPayload) {
 				$log.error('failure loading publication structure', errorPayload);
