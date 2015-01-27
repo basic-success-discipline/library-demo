@@ -1,11 +1,11 @@
 'use strict';
 
 
-angular.module('myApp.services', [])
+angular.module('myApp.sharedAssets', [])
 .service('getData', function ($http) {
         return {
             getAll: function () {
-                return $http.get("/app/json/testData.json");
+                return $http.get("/app/shared/testData.json");
             }
         }
     })

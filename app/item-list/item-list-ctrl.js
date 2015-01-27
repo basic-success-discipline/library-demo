@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.controllers', [])
+angular.module('myApp.itemList', [])
 .controller('itemListCtrl', ['$scope', '$location', '$filter', 'getData', 'sharedProperties', function($scope, $location, $filter, getData, sharedProperties) {
 
 	$scope.filterOptions ={"types":{"cd":true,"dvd":true,"ebook":true}, "activeOnly":true};
@@ -37,4 +37,35 @@ angular.module('myApp.controllers', [])
 			$log.error('failure loading test data', errorPayload);
 		});
 	
-}]);
+}])
+
+
+
+
+
+
+.filter('itemListFilter', function(){
+	return function (items, filterOptions){
+		var filtered = [];
+			
+		angular.forEach(items, function(item){
+			//type
+
+			if(filterOptions.types[item.type]){
+				
+				//active
+				if(filterOptions.activeOnly){
+					if(item.active==1){
+						filtered.push(item);
+					}
+				}else{
+					filtered.push(item);
+				}
+			}
+		});
+		return filtered;
+	}
+})
+
+
+;
