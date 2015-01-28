@@ -30,16 +30,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 
 
 
-	$scope.drag = function(ev) {
-		console.log("here");
-		ev.dataTransfer.setData("text", ev.target.id);
-	}
 
-	$scope.drop = function(ev) {
-		ev.preventDefault();
-		var data = ev.dataTransfer.getData("text");
-		ev.target.appendChild(document.getElementById(data));
-	}
 
 	
 
@@ -89,7 +80,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 		scope: {
 			pub: "=",
 			category: "=",
-			parentArray: "=",
+			parentCategory: "=",
 			draggableType: "@"
 		},
 		link: function(scope, element) {
@@ -101,13 +92,15 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 				e.dataTransfer.effectAllowed = 'move'; //could make it copyMove later
 				if(scope.draggableType=="pub"){
 					e.dataTransfer.setData('Text', JSON.stringify(scope.pub));
-		
+
 				}
 				else if(scope.draggableType=="category"){
 					e.dataTransfer.setData('Text', JSON.stringify(scope.category));
-				
+					scope.category.gotDropped=false;
+
 				}
 				
+				scope.parentCategory.gotDropped=false;
 				this.classList.add('drag');
 				return false;
 			});
@@ -115,23 +108,26 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			el.addEventListener('dragend', function(e){
 				this.classList.remove('drag');
 				e.stopPropagation();
-				if(scope.draggableType=="pub"){
-					scope.$apply(function(){
-						for (var i=0; i<scope.parentArray.length; i++){
-							if(scope.parentArray[i] == scope.pub.id){
-								scope.parentArray.splice(i,1);
+
+				if(!scope.parentCategory.gotDropped && !scope.category.gotDropped){
+					if(scope.draggableType=="pub"){
+						scope.$apply(function(){
+							for (var i=0; i<scope.parentCategory.publications.length; i++){
+								if(scope.parentCategory.publications[i] == scope.pub.id){
+									scope.parentCategory.publications.splice(i,1);
+								}
 							}
-						}
-					});
-				}
-				else if(scope.draggableType=="category"){
-					scope.$apply(function(){
-						for (var i=0; i<scope.parentArray.length; i++){
-							if(scope.parentArray[i].title == scope.category.title){
-								scope.parentArray.splice(i,1);
+						});
+					}
+					else if(scope.draggableType=="category"){
+						scope.$apply(function(){
+							for (var i=0; i<scope.parentCategory.subcategories.length; i++){
+								if(scope.parentCategory.subcategories[i].title == scope.category.title){
+									scope.parentCategory.subcategories.splice(i,1);
+								}
 							}
-						}
-					});
+						});
+					}
 				}
 				return false;
 			});
@@ -151,6 +147,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			el.addEventListener(
 				'dragover',
 				function(e) {
+					e.stopPropagation();
 					e.dataTransfer.dropEffect = 'move'; 
 			        // allows us to drop
 			        if (e.preventDefault) e.preventDefault();
@@ -163,6 +160,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			el.addEventListener(
 				'dragenter',
 				function(e) {
+					e.stopPropagation();
 					this.classList.add('over');
 					return false;
 				},
@@ -172,6 +170,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			el.addEventListener(
 				'dragleave',
 				function(e) {
+					e.stopPropagation();
 					this.classList.remove('over');
 					return false;
 				},
@@ -197,27 +196,35 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			        		}
 			        	}
 			        	if(noDuplicate){
-				        	scope.$apply(function(){
-				        		scope.category.publications.push(item.id);
-				        	});
-				        }
+			        		scope.$apply(function(){
+			        			scope.category.publications.push(item.id);
+			        		});
+			        	}
 			        	
 
 			        }else if(item.hasOwnProperty('subcategories')){
 			        	console.log("category: " + item.title+ " dropped in category: " +scope.category.title);
+			        	
 			        	var noDuplicate = true;
 			        	for(var i=0; i<scope.category.subcategories.length; i++){
 			        		if(scope.category.subcategories[i].title == item.title){
 			        			noDuplicate = false;
 			        		}
 			        	}
-			        	if(noDuplicate){
-				        	scope.$apply(function(){
-				        		scope.category.subcategories.push(item);
-				        	});
-				        }
+			     
+			        	if(item.title==scope.category.title){
+			        		scope.category.gotDropped = true;
+
+			        	}
+			        	else if(noDuplicate){
+			        		scope.$apply(function(){
+			        			scope.category.subcategories.push(item);	
+			        		});
+			        	}
+			        	scope.category.gotDropped=true;
 
 			        }
+
 			        
 			        // this.appendChild(item);
 
@@ -225,8 +232,8 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			    },
 			    false
 			    );
-		}
-	}
+}
+}
 })
 
 

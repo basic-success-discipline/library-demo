@@ -94,7 +94,8 @@
   border-left: 1px solid rgba(77, 152, 248, 0.5);
   border-bottom: 1px solid rgba(77, 152, 248, 0.1);
   border-radius: 15px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  background-color: white; }
 
 .top-wrapper {
   padding-left: 0;
@@ -124,3 +125,6 @@
   cursor: move;
   position: relative;
   box-sizing: border-box; }
+
+.over {
+  background-color: #bbcccc; }

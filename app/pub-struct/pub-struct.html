@@ -3,7 +3,7 @@
 <div class="rec-struct-wrapper top-wrapper" category="category" droppable>
 <h1>{{category.title}}</h1>
 <ol class="category-container top-container" ng-model="category.subcategories" >
-  <li ng-repeat="subcat in category.subcategories" draggable category="subcat" parent-array="category.subcategories" draggable-type="category">
+  <li ng-repeat="subcat in category.subcategories" draggable category="subcat" parent-category="category" draggable-type="category">
   	<recursive-structure category="subcat" items="items" ></recursive-structure>
   </li>
 </ol>
