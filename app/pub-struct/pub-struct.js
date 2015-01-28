@@ -85,12 +85,14 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 
 
 .directive('draggable', function() {
-	return function(scope, element) {
-		var el = element[0];
-		el.draggable = true;
-		el.addEventListener('dragstart', 
-			function(e){
-				e.stopPropagation();
+	return {
+		scope: true,
+		link: function(scope, element) {
+			var el = element[0];
+			el.draggable = true;
+			el.addEventListener('dragstart', 
+				function(e){
+					e.stopPropagation();
 				e.dataTransfer.effectAllowed = 'move'; //could make it copyMove later
 				if(scope.pub){
 					console.log("publication : " + scope.pub.id);
@@ -105,16 +107,21 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 				return false;
 			});
 
-		el.addEventListener('dragend', function(e){
-			this.classList.remove('drag');
-			return false;
-		});
+			el.addEventListener('dragend', function(e){
+				this.classList.remove('drag');
+				return false;
+			});
+		}
 	}
 })
 
 
 .directive('droppable', function() {
-	return function(scope, element) {
+	return {
+		scope: {
+			category: '=',
+		},
+		link: function(scope, element) {
 
 			var el = element[0];
 			el.addEventListener(
@@ -127,7 +134,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			        return false;
 			    },
 			    false
-			);
+			    );
 
 			el.addEventListener(
 				'dragenter',
@@ -136,7 +143,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 					return false;
 				},
 				false
-			);
+				);
 
 			el.addEventListener(
 				'dragleave',
@@ -145,7 +152,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 					return false;
 				},
 				false
-			);
+				);
 
 
 			el.addEventListener(
@@ -159,20 +166,45 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			        var item =JSON.parse(e.dataTransfer.getData('Text'));
 			        if(item.hasOwnProperty('id')){
 			        	console.log("publication: " + item.id+ " dropped in category: " + scope.category.title);
+			        	var noDuplicate = true;
+			        	for(var i=0; i<scope.category.publications.length; i++){
+			        		if(scope.category.publications[i] == item.id){
+			        			noDuplicate = false;
+			        		}
+			        	}
+			        	if(noDuplicate){
+				        	scope.$apply(function(){
+				        		scope.category.publications.push(item.id);
+				        		console.log(scope.category.publications);
+				        	});
+				        }
+			        	
 
 			        }else if(item.hasOwnProperty('subcategories')){
-				        console.log("category: " + item.title+ " dropped in category: " +scope.category.title);
+			        	console.log("category: " + item.title+ " dropped in category: " +scope.category.title);
+			        	var noDuplicate = true;
+			        	for(var i=0; i<scope.category.subcategories.length; i++){
+			        		if(scope.category.subcategories[i].title == item.title){
+			        			noDuplicate = false;
+			        		}
+			        	}
+			        	if(noDuplicate){
+				        	scope.$apply(function(){
+				        		scope.category.subcategories.push(item);
+				        		console.log(scope.category.subcategories);
+				        	});
+				        }
 
-					}
+			        }
 			        
 			        // this.appendChild(item);
 
 			        return false;
 			    },
-		    false
-		    );
+			    false
+			    );
 		}
-
+	}
 })
 
 
