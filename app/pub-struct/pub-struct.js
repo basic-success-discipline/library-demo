@@ -17,7 +17,8 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 		var promise = getData.getPubStruct();
 		promise.then(
 			function(payload) { 
-				$scope.category=payload.data;
+				$scope.originalStructure = payload.data;
+				$scope.category=angular.copy($scope.originalStructure);
 				$scope.category["subcategories"]=$scope.category["Categories"];
 				$scope.category["title"]="Publications";
 				$scope.category["publications"]=[];
@@ -28,7 +29,12 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 	}
 	getItems();
 
-
+	$scope.undo = function(){
+			$scope.category=angular.copy($scope.originalStructure);
+			$scope.category["subcategories"]=$scope.category["Categories"];
+				$scope.category["title"]="Publications";
+				$scope.category["publications"]=[];
+	}
 
 
 
@@ -109,7 +115,8 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 				this.classList.remove('drag');
 				e.stopPropagation();
 
-				if(!scope.parentCategory.gotDropped && !scope.category.gotDropped){
+				var categoryGotDropped = scope.category ? scope.category.gotDropped : false;
+				if(!scope.parentCategory.gotDropped && !categoryGotDropped){
 					if(scope.draggableType=="pub"){
 						scope.$apply(function(){
 							for (var i=0; i<scope.parentCategory.publications.length; i++){
@@ -186,6 +193,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 
 			        this.classList.remove('over');
 
+			        scope.category.gotDropped=true;
 			        var item =JSON.parse(e.dataTransfer.getData('Text'));
 			        if(item.hasOwnProperty('id')){
 			        	console.log("publication: " + item.id+ " dropped in category: " + scope.category.title);
@@ -211,22 +219,16 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			        			noDuplicate = false;
 			        		}
 			        	}
-			     
-			        	if(item.title==scope.category.title){
-			        		scope.category.gotDropped = true;
-
-			        	}
-			        	else if(noDuplicate){
+		
+			        	if(noDuplicate && item.title!=scope.category.title){
 			        		scope.$apply(function(){
 			        			scope.category.subcategories.push(item);	
 			        		});
 			        	}
-			        	scope.category.gotDropped=true;
+			        	
 
 			        }
-
 			        
-			        // this.appendChild(item);
 
 			        return false;
 			    },
