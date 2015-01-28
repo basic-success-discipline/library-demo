@@ -86,21 +86,26 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 
 .directive('draggable', function() {
 	return {
-		scope: true,
+		scope: {
+			pub: "=",
+			category: "=",
+			parentArray: "=",
+			draggableType: "@"
+		},
 		link: function(scope, element) {
 			var el = element[0];
 			el.draggable = true;
 			el.addEventListener('dragstart', 
 				function(e){
-					e.stopPropagation();
+				e.stopPropagation();
 				e.dataTransfer.effectAllowed = 'move'; //could make it copyMove later
-				if(scope.pub){
-					console.log("publication : " + scope.pub.id);
+				if(scope.draggableType=="pub"){
 					e.dataTransfer.setData('Text', JSON.stringify(scope.pub));
+		
 				}
-				else if(scope.category){
-					console.log("category : " + scope.category.title);
+				else if(scope.draggableType=="category"){
 					e.dataTransfer.setData('Text', JSON.stringify(scope.category));
+				
 				}
 				
 				this.classList.add('drag');
@@ -109,6 +114,25 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 
 			el.addEventListener('dragend', function(e){
 				this.classList.remove('drag');
+				e.stopPropagation();
+				if(scope.draggableType=="pub"){
+					scope.$apply(function(){
+						for (var i=0; i<scope.parentArray.length; i++){
+							if(scope.parentArray[i] == scope.pub.id){
+								scope.parentArray.splice(i,1);
+							}
+						}
+					});
+				}
+				else if(scope.draggableType=="category"){
+					scope.$apply(function(){
+						for (var i=0; i<scope.parentArray.length; i++){
+							if(scope.parentArray[i].title == scope.category.title){
+								scope.parentArray.splice(i,1);
+							}
+						}
+					});
+				}
 				return false;
 			});
 		}
@@ -175,7 +199,6 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			        	if(noDuplicate){
 				        	scope.$apply(function(){
 				        		scope.category.publications.push(item.id);
-				        		console.log(scope.category.publications);
 				        	});
 				        }
 			        	
@@ -191,7 +214,6 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			        	if(noDuplicate){
 				        	scope.$apply(function(){
 				        		scope.category.subcategories.push(item);
-				        		console.log(scope.category.subcategories);
 				        	});
 				        }
 
