@@ -138,6 +138,10 @@
   box-sizing:border-box;
 }
 
+.top-wrapper{
+  padding-left: 0;
+  border: none;
+}
 
 .rec-struct-wrapper .pub{
   margin-left: 10px;
@@ -152,6 +156,8 @@
   font-size: 16px;
   font-family: "Open Sans", sans-serif;
 }
+
+
 
 .category-container{
   padding: 40px;

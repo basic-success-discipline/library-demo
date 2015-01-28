@@ -1,8 +1,12 @@
 <a ng-href="#/item-list" >Back to list</a>
 
-<ol class="category-container top-container" ng-model="categories" droppable>
-  <li ng-repeat="subcat in categories">
+<div class="rec-struct-wrapper top-wrapper" droppable>
+<h1>{{category.title}}</h1>
+<div draggable ng-model="category">
+<ol class="category-container top-container" ng-model="category.subcategories" >
+  <li ng-repeat="subcat in category.subcategories">
   	<recursive-structure category="subcat" items="items" ></recursive-structure>
   </li>
 </ol>
 
+</div>

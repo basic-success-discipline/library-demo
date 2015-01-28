@@ -17,8 +17,10 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 		var promise = getData.getPubStruct();
 		promise.then(
 			function(payload) { 
-				$scope.ps=payload.data;
-				$scope.categories=$scope.ps["Categories"];
+				$scope.category=payload.data;
+				$scope.category["subcategories"]=$scope.category["Categories"];
+				$scope.category["title"]="Publications";
+				$scope.category["publications"]=[];
 			},
 			function(errorPayload) {
 				$log.error('failure loading publication structure', errorPayload);
@@ -112,9 +114,8 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 
 
 .directive('droppable', function() {
-	return {
-		scope: {},
-		link: function(scope, element) {
+	return function(scope, element) {
+
 			var el = element[0];
 			el.addEventListener(
 				'dragover',
@@ -157,9 +158,11 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 
 			        var item =JSON.parse(e.dataTransfer.getData('Text'));
 			        if(item.hasOwnProperty('id')){
-			        	console.log("publication dropped: " + item.id);
+			        	console.log("publication: " + item.id+ " dropped in category: " + scope.category.title);
+
 			        }else if(item.hasOwnProperty('subcategories')){
-				        console.log("category dropped: " + item.title);
+				        console.log("category: " + item.title+ " dropped in category: " +scope.category.title);
+
 					}
 			        
 			        // this.appendChild(item);
@@ -169,8 +172,8 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 		    false
 		    );
 		}
-	}
-});
+
+})
 
 
 

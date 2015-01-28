@@ -96,6 +96,10 @@
   border-radius: 15px;
   box-sizing: border-box; }
 
+.top-wrapper {
+  padding-left: 0;
+  border: none; }
+
 .rec-struct-wrapper .pub {
   margin-left: 10px; }
 
