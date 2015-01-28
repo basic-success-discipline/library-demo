@@ -1,15 +1,15 @@
-<div class="rec-struct-wrapper">
+<div class="rec-struct-wrapper" draggable>
 	<h1>{{category.title}}</h1>
+
 	<h2 ng-show="category.publications.length>0">Publications</h2>
-	<ol class="publication-container" ui-sortable="{connectWith:'.publication-container', dropOnEmpty: true}" ng-model="category.publications" >
-		<li class="pub" ng-repeat="pub in category.publications | pubStructFilter:items">
-			<p>{{pub}}</p>
+	<ol class="publication-container" ng-model="category.publications" droppable>
+		<li class="pub" draggable ng-repeat="pub in category.publications | pubStructFilter:items">
+			<p >{{pub.title}}</p>
 		</li>
 	</ol>
 
-
-	<ol class="category-container" ui-sortable="{connectWith:'.category-container'}" ng-model="category.subcategories">
-		<li ng-repeat="subcat in category.subcategories" >
+	<ol class="category-container" ng-model="category.subcategories" droppable>
+		<li  ng-repeat="subcat in category.subcategories" >
 			<recursive-structure category="subcat" items="items"></recursive-structure>
 		</li>
 	</ol>

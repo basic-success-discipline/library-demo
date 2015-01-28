@@ -1,6 +1,6 @@
 <a ng-href="#/item-list" >Back to list</a>
 
-<ol class="category-container top-container" ui-sortable="{connectWith:'.category-container', dropOnEmpty: true}" ng-model="categories">
+<ol class="category-container top-container" ng-model="categories" droppable>
   <li ng-repeat="subcat in categories">
   	<recursive-structure category="subcat" items="items" ></recursive-structure>
   </li>
