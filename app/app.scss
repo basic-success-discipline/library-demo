@@ -177,10 +177,20 @@
    box-sizing:border-box;
 }
 
+
+.pub p{
+  margin-top: 0px;
+  margin-bottom: 0;
+  padding-top: 10px;
+}
+
 .over{
   background-color: rgb(187, 204, 204);
 }
 
+.sorta-over{
+  border-top: 2px solid rgb(34, 96, 128);
+}
 
 
 

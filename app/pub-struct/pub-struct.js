@@ -30,10 +30,10 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 	getItems();
 
 	$scope.undo = function(){
-			$scope.category=angular.copy($scope.originalStructure);
-			$scope.category["subcategories"]=$scope.category["Categories"];
-				$scope.category["title"]="Publications";
-				$scope.category["publications"]=[];
+		$scope.category=angular.copy($scope.originalStructure);
+		$scope.category["subcategories"]=$scope.category["Categories"];
+		$scope.category["title"]="Publications";
+		$scope.category["publications"]=[];
 	}
 
 
@@ -94,7 +94,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			el.draggable = true;
 			el.addEventListener('dragstart', 
 				function(e){
-				e.stopPropagation();
+					e.stopPropagation();
 				e.dataTransfer.effectAllowed = 'move'; //could make it copyMove later
 				if(scope.draggableType=="pub"){
 					e.dataTransfer.setData('Text', JSON.stringify(scope.pub));
@@ -118,6 +118,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 				var categoryGotDropped = scope.category ? scope.category.gotDropped : false;
 				if(!scope.parentCategory.gotDropped && !categoryGotDropped){
 					if(scope.draggableType=="pub"){
+
 						scope.$apply(function(){
 							for (var i=0; i<scope.parentCategory.publications.length; i++){
 								if(scope.parentCategory.publications[i] == scope.pub.id){
@@ -196,22 +197,36 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			        scope.category.gotDropped=true;
 			        var item =JSON.parse(e.dataTransfer.getData('Text'));
 			        if(item.hasOwnProperty('id')){
-			        	console.log("publication: " + item.id+ " dropped in category: " + scope.category.title);
-			        	var noDuplicate = true;
-			        	for(var i=0; i<scope.category.publications.length; i++){
-			        		if(scope.category.publications[i] == item.id){
-			        			noDuplicate = false;
-			        		}
-			        	}
-			        	if(noDuplicate){
-			        		scope.$apply(function(){
+			        	// console.log("publication: " + item.id+ " dropped in category: " + scope.category.title);
+
+			        	scope.$apply(function(){
+			        		
+			        		if(!scope.category.pubDropIndex){
+			        			scope.category.pubDropIndex = scope.category.publications.length;
 			        			scope.category.publications.push(item.id);
-			        		});
-			        	}
+			        		}else{
+			        			scope.category.publications.splice(scope.category.pubDropIndex, 0, item.id);
+			        		}
+
+			        		
+			        		var dupIndex = null
+			        		for(var i=0; i<scope.category.publications.length; i++){
+			        			if(scope.category.publications[i] == item.id && i!=scope.category.pubDropIndex){
+			        				// 
+			        				dupIndex=i;
+			        			}
+			        		}
+			        		if(dupIndex!=null){
+			        				scope.category.publications.splice(dupIndex,1);
+			        		}
+			        		delete scope.category.pubDropIndex;
+
+
+			        	});
 			        	
 
 			        }else if(item.hasOwnProperty('subcategories')){
-			        	console.log("category: " + item.title+ " dropped in category: " +scope.category.title);
+			        	// console.log("category: " + item.title+ " dropped in category: " +scope.category.title);
 			        	
 			        	var noDuplicate = true;
 			        	for(var i=0; i<scope.category.subcategories.length; i++){
@@ -219,7 +234,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			        			noDuplicate = false;
 			        		}
 			        	}
-		
+
 			        	if(noDuplicate && item.title!=scope.category.title){
 			        		scope.$apply(function(){
 			        			scope.category.subcategories.push(item);	
@@ -236,6 +251,46 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			    );
 }
 }
+})
+
+.directive('sortaDroppable', function() {
+	return {
+		scope: {
+			parentCategory: "=",
+			index: "@"
+		},
+		link: function(scope, element) {
+
+			var el = element[0];
+			el.addEventListener(
+				'dragenter',
+				function(e) {
+					this.classList.add('sorta-over');
+					return false;
+				},
+				false
+				);
+
+			el.addEventListener(
+				'dragleave',
+				function(e) {
+					this.classList.remove('sorta-over');
+					return false;
+				},
+				false
+				);
+			el.addEventListener(
+				'drop',
+				function(e) {
+					scope.parentCategory.pubDropIndex = scope.index;
+					this.classList.remove('sorta-over');
+					return false;
+				},
+				false
+				);
+
+		}
+	}
 })
 
 
