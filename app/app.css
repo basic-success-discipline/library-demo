@@ -114,13 +114,14 @@
 
 .category-container {
   padding: 40px;
+  padding-top: 0px;
   width: 100%;
   cursor: move;
   position: relative;
   box-sizing: border-box; }
 
 .publication-container {
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   width: 100%;
   cursor: move;
   position: relative;
@@ -136,3 +137,10 @@
 
 .sorta-over {
   border-top: 2px solid #226080; }
+
+.sorta-droppable-category {
+  padding-top: 60px; }
+
+.sorta-droppable-category.sorta-over {
+  padding-top: 60px;
+  border-top: 6px solid #226080; }

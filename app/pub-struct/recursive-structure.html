@@ -12,7 +12,9 @@
 
 	<ol class="category-container" ng-model="category.subcategories">
 		<li  ng-repeat="subcat in category.subcategories" draggable category="subcat" parent-category="category" draggable-type="category">
-			<recursive-structure category="subcat" items="items"></recursive-structure>
+			<div class="sorta-droppable-category" sorta-droppable index="{{$index}}" parent-category="category">
+				<recursive-structure category="subcat" items="items"></recursive-structure>
+			</div>
 		</li>
 	</ol>
 </div>
