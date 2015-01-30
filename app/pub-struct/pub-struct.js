@@ -47,14 +47,24 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 		category.publications.push(59);
 	}
 	$scope.deleteCategory = function(category, parentCategory){
-		console.log("deleting " + category.title + " from " + parentCategory.title);
 		for (var i =0; i <parentCategory.subcategories.length; i++){
-			if(parentCategory.subcategories[i].title = category.title){
+			if(parentCategory.subcategories[i].title == category.title){
 				parentCategory.subcategories.splice(i,1);
 			}
 		}
-
 	}
+
+	$scope.deletePublication = function(category, publication){
+		for (var i =0; i <category.publications.length; i++){
+			if(parseInt(category.publications[i]) == parseInt(publication.id)){
+
+				category.publications.splice(i,1);
+			}
+		}
+	}
+
+	
+
 
 
 	
@@ -91,7 +101,8 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			items: "=",
 			addCategory: "&",
 			addPublication: "&",
-			deleteCategory: "&"
+			deleteCategory: "&",
+			deletePublication: "&"
 		},
 
 		templateUrl: 'pub-struct/recursive-structure.html',
@@ -107,6 +118,9 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
             	}
             	scope.deleteCategoryRecursive = function(cat, parentCat){
             		scope.deleteCategory({subcat: cat, parentcat: parentCat});
+            	}
+            	scope.deletePublicationRecursive = function(cat, pub){
+            		scope.deletePublication({subcat: cat, pub: pub});
             	}
             });
         }
