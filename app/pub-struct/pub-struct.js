@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.pubStruct', ['ui.sortable'])
+angular.module('myApp.pubStruct', [])
 .controller('pubStructCtrl', ['$scope', 'getData', function($scope, getData){
 	var getItems= function(){
 		var promise = getData.getAll();
@@ -40,7 +40,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 	}
 
 	$scope.save = function(){
-		alert("shit got saved yo! (but not really because I don't have endpoints yet");
+		console.log($scope.category);
 	}
 
 	$scope.addCategory = function(category){
@@ -114,6 +114,12 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
             // Use the compile function from the RecursionHelper,
             // And return the linking function(s) which it returns
             return recursionHelper.compile(element, function(scope){
+            	scope.titleEditable=false;
+
+            	scope.toggleEditable = function(bool){
+            		scope.titleEditable=bool;
+            		console.log(scope.titleEditable);
+            	}
             	scope.addCategoryRecursive = function(cat){
             		scope.addCategory({subcat: cat});
             	}

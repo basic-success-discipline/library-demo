@@ -1,6 +1,10 @@
-<div class="rec-struct-wrapper" category="category" droppable>
+<div class="rec-struct-wrapper " category="category" droppable>
 <button class="{{category.title}}" style="float:right; margin-top: 20px;" ng-click="deleteCategoryRecursive(category, parentCategory)">Delete category</button>
-	<h1>{{category.title}}</h1>
+	<!-- <h1>{{category.title}}</h1> -->
+
+	<div ng-click="toggleEditable(true)" >
+		<textarea class="category-title" rows="3" ng-model="category.title" ng-disabled="!titleEditable"  ></textarea>
+	</div>
 	
 
 

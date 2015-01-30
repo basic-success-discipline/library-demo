@@ -147,3 +147,7 @@
 
 button.Publications {
   display: none; }
+
+.category-title {
+  width: 100%;
+  border: none; }
