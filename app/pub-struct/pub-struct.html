@@ -14,4 +14,5 @@
 </div> -->
 
 
-<recursive-structure category="category" items="items" add-category="addCategory(subcat)"  ></recursive-structure>
+<!-- in this case, subcat is the same as category - this is for the sake of using add-category recursively -->
+<recursive-structure category="category" items="items" add-category="addCategory(subcat)" add-publication="addPublication(subcat)" ></recursive-structure>

@@ -9,12 +9,12 @@
 			</div>
 		</li>
 	</ol>
-	<!-- <button ng-click="ap">Add publication</button> -->
+	<button ng-click="addPublicationRecursive(category)">Add publication</button>
 
 	<ol class="category-container" ng-model="category.subcategories">
 		<li  ng-repeat="subcat in category.subcategories" draggable category="subcat" parent-category="category" draggable-type="category">
 			<div class="sorta-droppable-category" sorta-droppable index="{{$index}}" parent-category="category">
-				<recursive-structure category="subcat" items="items" add-category="addCategoryRecursive(subcat)" ></recursive-structure>
+				<recursive-structure category="subcat" items="items" add-category="addCategoryRecursive(subcat)" add-publication="addPublicationRecursive(subcat)" ></recursive-structure>
 			</div>
 		</li>
 	</ol>

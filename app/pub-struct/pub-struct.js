@@ -39,7 +39,11 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 	}
 
 	$scope.addCategory = function(category){
-		console.log(category);
+		category.subcategories.push({title:"newly added sub", subcategories: [], publications: []});
+	}
+
+	$scope.addPublication = function(category){
+		category.publications.push(59);
 	}
 
 
@@ -74,7 +78,8 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 		scope:{
 			category: "=",
 			items: "=",
-			addCategory: "&"
+			addCategory: "&",
+			addPublication: "&"
 		},
 
 		templateUrl: 'pub-struct/recursive-structure.html',
@@ -84,6 +89,9 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
             return recursionHelper.compile(element, function(scope){
             	scope.addCategoryRecursive = function(cat){
             		scope.addCategory({subcat: cat});
+            	}
+            	scope.addPublicationRecursive = function(cat){
+            		scope.addPublication({subcat: cat});
             	}
             });
         }
