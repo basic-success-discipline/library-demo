@@ -1,7 +1,7 @@
 <a ng-href="#/item-list" >Back to list</a>
 <button ng-click="undo()">Undo</button>
 
-<div class="rec-struct-wrapper top-wrapper" category="category" droppable>
+<!-- <div class="rec-struct-wrapper top-wrapper" category="category" droppable>
 	<h1>{{category.title}}</h1>
 	<ol class="category-container top-container" ng-model="category.subcategories" >
 		<li ng-repeat="subcat in category.subcategories" draggable category="subcat" parent-category="category" draggable-type="category">
@@ -11,4 +11,7 @@
 		</li>
 	</ol>
 	<button ng-click="addCategory(category)">Add Category</button>
-</div>
+</div> -->
+
+
+<recursive-structure category="category" items="items" add-category="addCategory(subcat)"  ></recursive-structure>

@@ -22,6 +22,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 				$scope.category["subcategories"]=$scope.category["Categories"];
 				$scope.category["title"]="Publications";
 				$scope.category["publications"]=[];
+				$scope.subcat=$scope.category;
 			},
 			function(errorPayload) {
 				$log.error('failure loading publication structure', errorPayload);
@@ -34,6 +35,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 		$scope.category["subcategories"]=$scope.category["Categories"];
 		$scope.category["title"]="Publications";
 		$scope.category["publications"]=[];
+		$scope.subcat=$scope.category;
 	}
 
 	$scope.addCategory = function(category){
@@ -80,12 +82,9 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
             // Use the compile function from the RecursionHelper,
             // And return the linking function(s) which it returns
             return recursionHelper.compile(element, function(scope){
-            	scope.addCategoryClick = function(){
-        			scope.addCategory({cat: scope.category});
-        		}
-        		scope.addCategoryRecursive = function(subcat){
-        			scope.addCategory({cat: subcat});
-        		}
+            	scope.addCategoryRecursive = function(cat){
+            		scope.addCategory({subcat: cat});
+            	}
             });
         }
 
@@ -93,7 +92,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 })
 
 
-.directive('draggable', function() {
+.directive('draggable', function(validDrop) {
 	return {
 		scope: {
 			pub: "=",
@@ -140,23 +139,48 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 						});
 					}
 					else if(scope.draggableType=="category"){
-						scope.$apply(function(){
-							for (var i=0; i<scope.parentCategory.subcategories.length; i++){
-								if(scope.parentCategory.subcategories[i].title == scope.category.title){
-									scope.parentCategory.subcategories.splice(i,1);
+						if(validDrop.wasValidDrop()){
+							scope.$apply(function(){
+								for (var i=0; i<scope.parentCategory.subcategories.length; i++){
+									if(scope.parentCategory.subcategories[i].title == scope.category.title){
+										scope.parentCategory.subcategories.splice(i,1);
+									}
 								}
-							}
-						});
+							});
+						}
 					}
 				}
 				return false;
 			});
+}
+}
+})
+
+.service('validDrop', function () {
+	var vd = true;
+	return {
+		isValidDrop : function(drag, drop){
+			var validDrop = true;
+			if(drag.title == drop.title){
+				validDrop = false;
+			}else{
+				for(var i=0; i<drag.subcategories.length; i++){
+
+					if(validDrop){
+						validDrop = this.isValidDrop(drop, drag.subcategories[i]);
+					}
+				}
+			}
+			vd = validDrop;
+			return validDrop;
+		},
+		wasValidDrop: function(){
+			return vd;
 		}
 	}
 })
 
-
-.directive('droppable', function() {
+.directive('droppable', function(validDrop) {
 	return {
 		scope: {
 			category: '=',
@@ -246,57 +270,45 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 			        	
 
 			        	scope.$apply(function(){
+			        		if(validDrop.isValidDrop(item, scope.category)){
+			        			// console.log("was valid drop");
 
 
+					        	//add the new item at the right place, saving that index
+					        	if(!scope.category.dropIndex){
+					        		// console.log('no drop index');
+					        		scope.category.dropIndex = scope.category.subcategories.length;
+					        		scope.category.subcategories.push(item);
+					        	}else{
+					        		// console.log('drop index: ' + scope.category.dropIndex);
+					        		scope.category.subcategories.splice(scope.category.dropIndex, 0, item);
+					        	}
 
-			        	//add the new item at the right place, saving that index
-			        	if(!scope.category.dropIndex){
-			        		console.log('no drop index');
-			        		scope.category.dropIndex = scope.category.subcategories.length;
-			        		scope.category.subcategories.push(item);
-			        	}else{
-			        		console.log('drop index: ' + scope.category.dropIndex);
-			        		scope.category.subcategories.splice(scope.category.dropIndex, 0, item);
-			        	}
+
+				        		//find any duplicates (there should only be one)
+				        		var dupIndex = null
+				        		for(var i=0; i<scope.category.subcategories.length; i++){
+				        			if(scope.category.subcategories[i].title == item.title && i!=scope.category.dropIndex){
+				        				dupIndex=i;
+				        			}
+				        		}
+
+				        		//delete duplicate if any
+				        		if(dupIndex!=null){
+				        			scope.category.subcategories.splice(dupIndex,1);
+				        		}
+				        		delete scope.category.dropIndex;
+				        		
+				        	}
+				        });
+
+}	
+return false;
+},
+false
+);
 
 
-			        		//find any duplicates (there should only be one)
-			        		var dupIndex = null
-			        		for(var i=0; i<scope.category.subcategories.length; i++){
-			        			if(scope.category.subcategories[i].title == item.title && i!=scope.category.dropIndex){
-			        				dupIndex=i;
-			        			}
-			        		}
-
-			        		//delete duplicate if any
-			        		if(dupIndex!=null){
-			        			scope.category.subcategories.splice(dupIndex,1);
-			        		}
-			        		delete scope.category.dropIndex;
-
-			        	});
-
-			        	// var noDuplicate = true;
-			        	// for(var i=0; i<scope.category.subcategories.length; i++){
-			        	// 	if(scope.category.subcategories[i].title == item.title){
-			        	// 		noDuplicate = false;
-			        	// 	}
-			        	// }
-
-			        	// if(noDuplicate && item.title!=scope.category.title){
-			        	// 	scope.$apply(function(){
-			        	// 		scope.category.subcategories.push(item);	
-			        	// 	});
-			        	// }
-			        	
-
-			        }
-			        
-
-			        return false;
-			    },
-			    false
-			    );
 }
 }
 })
@@ -331,7 +343,6 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 				'drop',
 				function(e) {
 					scope.parentCategory.dropIndex = scope.index;
-					console.log(scope.parentCategory.dropIndex);
 					this.classList.remove('sorta-over');
 					return false;
 				},
