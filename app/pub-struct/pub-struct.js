@@ -39,6 +39,10 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 		$scope.subcat=$scope.category;
 	}
 
+	$scope.save = function(){
+		alert("shit got saved yo! (but not really because I don't have endpoints yet");
+	}
+
 	$scope.addCategory = function(category){
 		category.subcategories.push({title:"newly added sub", subcategories: [], publications: []});
 	}
