@@ -36,6 +36,9 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 		$scope.category["publications"]=[];
 	}
 
+	$scope.addCategory = function(category){
+		console.log(category);
+	}
 
 
 	
@@ -68,15 +71,24 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 		required: 'category',
 		scope:{
 			category: "=",
-			items: "="
+			items: "=",
+			addCategory: "&"
 		},
 
 		templateUrl: 'pub-struct/recursive-structure.html',
 		compile: function(element) {
             // Use the compile function from the RecursionHelper,
             // And return the linking function(s) which it returns
-            return recursionHelper.compile(element);
+            return recursionHelper.compile(element, function(scope){
+            	scope.addCategoryClick = function(){
+        			scope.addCategory({cat: scope.category});
+        		}
+        		scope.addCategoryRecursive = function(subcat){
+        			scope.addCategory({cat: subcat});
+        		}
+            });
         }
+
     }
 })
 
