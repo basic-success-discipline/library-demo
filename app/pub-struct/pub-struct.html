@@ -15,4 +15,4 @@
 
 
 <!-- in this case, subcat is the same as category - this is for the sake of using add-category recursively -->
-<recursive-structure category="category" items="items" add-category="addCategory(subcat)" add-publication="addPublication(subcat)" ></recursive-structure>
+<recursive-structure category="category" items="items" add-category="addCategory(subcat)" add-publication="addPublication(subcat)" delete-category="deleteCategory(subcat, parentcat)"></recursive-structure>

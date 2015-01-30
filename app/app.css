@@ -144,3 +144,6 @@
 .sorta-droppable-category.sorta-over {
   padding-top: 60px;
   border-top: 6px solid #226080; }
+
+button.Publications {
+  display: none; }

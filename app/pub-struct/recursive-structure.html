@@ -1,5 +1,7 @@
 <div class="rec-struct-wrapper" category="category" droppable>
 	<h1>{{category.title}}</h1>
+	<button class="{{category.title}}" ng-click="deleteCategoryRecursive(category, parentCategory)">Delete category</button>
+
 
 	<h2 ng-show="category.publications.length>0">Publications</h2>
 	<ol class="publication-container" ng-model="category.publications">
@@ -14,7 +16,7 @@
 	<ol class="category-container" ng-model="category.subcategories">
 		<li  ng-repeat="subcat in category.subcategories" draggable category="subcat" parent-category="category" draggable-type="category">
 			<div class="sorta-droppable-category" sorta-droppable index="{{$index}}" parent-category="category">
-				<recursive-structure category="subcat" items="items" add-category="addCategoryRecursive(subcat)" add-publication="addPublicationRecursive(subcat)" ></recursive-structure>
+				<recursive-structure category="subcat" parent-category="category" items="items" add-category="addCategoryRecursive(subcat)" add-publication="addPublicationRecursive(subcat)" delete-category="deleteCategoryRecursive(subcat, parentcat)"></recursive-structure>
 			</div>
 		</li>
 	</ol>

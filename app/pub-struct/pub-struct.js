@@ -23,6 +23,7 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 				$scope.category["title"]="Publications";
 				$scope.category["publications"]=[];
 				$scope.subcat=$scope.category;
+				$scope.parentcat=null;
 			},
 			function(errorPayload) {
 				$log.error('failure loading publication structure', errorPayload);
@@ -44,6 +45,15 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 
 	$scope.addPublication = function(category){
 		category.publications.push(59);
+	}
+	$scope.deleteCategory = function(category, parentCategory){
+		console.log("deleting " + category.title + " from " + parentCategory.title);
+		for (var i =0; i <parentCategory.subcategories.length; i++){
+			if(parentCategory.subcategories[i].title = category.title){
+				parentCategory.subcategories.splice(i,1);
+			}
+		}
+
 	}
 
 
@@ -77,9 +87,11 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
 		required: 'category',
 		scope:{
 			category: "=",
+			parentCategory: "=",
 			items: "=",
 			addCategory: "&",
-			addPublication: "&"
+			addPublication: "&",
+			deleteCategory: "&"
 		},
 
 		templateUrl: 'pub-struct/recursive-structure.html',
@@ -92,6 +104,9 @@ angular.module('myApp.pubStruct', ['ui.sortable'])
             	}
             	scope.addPublicationRecursive = function(cat){
             		scope.addPublication({subcat: cat});
+            	}
+            	scope.deleteCategoryRecursive = function(cat, parentCat){
+            		scope.deleteCategory({subcat: cat, parentcat: parentCat});
             	}
             });
         }
