@@ -47,8 +47,9 @@ angular.module('myApp.pubStruct', [])
 		category.subcategories.push({title:"newly added sub", subcategories: [], publications: []});
 	}
 
-	$scope.addPublication = function(category){
-		category.publications.push(59);
+	$scope.addPublication = function(category, pubID){
+		console.log("added publication: " + pubID + " to " + category);
+		category.publications.push(pubID);
 	}
 	$scope.deleteCategory = function(category, parentCategory){
 		for (var i =0; i <parentCategory.subcategories.length; i++){
@@ -95,7 +96,7 @@ angular.module('myApp.pubStruct', [])
 
 })
 
-.directive('recursiveStructure', function(recursionHelper) {
+.directive('recursiveStructure', function(recursionHelper, getData) {
 	return {
 		restrict: 'E',
 		required: 'category',
@@ -115,16 +116,20 @@ angular.module('myApp.pubStruct', [])
             // And return the linking function(s) which it returns
             return recursionHelper.compile(element, function(scope){
             	scope.titleEditable=false;
+            	scope.addingNewPub=false;
 
             	scope.toggleEditable = function(bool){
             		scope.titleEditable=bool;
-            		console.log(scope.titleEditable);
             	}
             	scope.addCategoryRecursive = function(cat){
             		scope.addCategory({subcat: cat});
             	}
-            	scope.addPublicationRecursive = function(cat){
-            		scope.addPublication({subcat: cat});
+            	scope.showNewPubSelect = function(bool){
+            		scope.addingNewPub=bool;
+            	}
+            	scope.addPublicationRecursive = function(cat, pub){
+            		scope.addPublication({subcat: cat, pub: pub});
+            		scope.showNewPubSelect(false);
             	}
             	scope.deleteCategoryRecursive = function(cat, parentCat){
             		scope.deleteCategory({subcat: cat, parentcat: parentCat});

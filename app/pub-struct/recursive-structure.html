@@ -12,17 +12,23 @@
 	<ol class="publication-container" ng-model="category.publications">
 		<li class="pub" draggable pub="pub" parent-category="category" draggable-type="pub" ng-repeat="pub in category.publications | pubStructFilter:items" >
 			<div sorta-droppable index="{{$index}}" parent-category="category">
-				<button ng-click="deletePublicationRecursive(category, pub)">Delete publication</button>
+				<button style="float:right" ng-click="deletePublicationRecursive(category, pub)">Delete publication</button>
 				<p >{{pub.title}}</p>
 			</div>
 		</li>
 	</ol>
-	<button ng-click="addPublicationRecursive(category)">Add publication</button>
+	<button ng-click="showNewPubSelect(true)">Add publication</button>
+	<div ng-show="addingNewPub">
+		<button ng-click="showNewPubSelect(false)" style="float:right">Close</button>
+		<span><input ng-model="search.title" placeholder="Search and select"></span>
+		<select ng-model="newItem" ng-init="newItem=options[0]"><option ng-repeat="item in items | filter:search" value="{{item.id}}">{{item.title}}</option></select>
+		<button ng-click="addPublicationRecursive(category, newItem)" ng-show="newItem">Add it!</button>
+	</div>
 
 	<ol class="category-container" ng-model="category.subcategories">
 		<li  ng-repeat="subcat in category.subcategories" draggable category="subcat" parent-category="category" draggable-type="category">
 			<div class="sorta-droppable-category" sorta-droppable index="{{$index}}" parent-category="category">
-				<recursive-structure category="subcat" parent-category="category" items="items" add-category="addCategoryRecursive(subcat)" add-publication="addPublicationRecursive(subcat)" delete-category="deleteCategoryRecursive(subcat, parentcat)" delete-publication="deletePublicationRecursive(subcat, pub)"></recursive-structure>
+				<recursive-structure category="subcat" parent-category="category" items="items" add-category="addCategoryRecursive(subcat)" add-publication="addPublicationRecursive(subcat, pub)" delete-category="deleteCategoryRecursive(subcat, parentcat)" delete-publication="deletePublicationRecursive(subcat, pub)"></recursive-structure>
 			</div>
 		</li>
 	</ol>
