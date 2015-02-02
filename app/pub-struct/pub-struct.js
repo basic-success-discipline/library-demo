@@ -210,6 +210,7 @@ angular.module('myApp.pubStruct', [])
 
 .service('validDrop', function () {
 	var vd = true;
+	var rd = false;
 	return {
 		isValidDrop : function(drag, drop){
 			var validDrop = true;
@@ -227,8 +228,20 @@ angular.module('myApp.pubStruct', [])
 			return validDrop;
 		},
 		wasValidDrop: function(){
-			return vd;
+			if(rd){
+				rd=false;
+				return vd;
+			}else{
+				return false;
+			}
+			
+		},
+		receivedDrop: function(bool){
+			rd= true;
 		}
+
+
+
 	}
 })
 
@@ -283,6 +296,7 @@ angular.module('myApp.pubStruct', [])
 			        this.classList.remove('over');
 
 			        scope.category.gotDropped=true;
+			        validDrop.receivedDrop();
 			        var item =JSON.parse(e.dataTransfer.getData('Text'));
 			        if(item.hasOwnProperty('id')){
 			        	// console.log("publication: " + item.id+ " dropped in category: " + scope.category.title);

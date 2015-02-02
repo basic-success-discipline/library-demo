@@ -148,6 +148,8 @@
 button.Publications {
   display: none; }
 
-.category-title {
+textarea.category-title {
   width: 100%;
-  border: none; }
+  border: none;
+  resize: none;
+  font-size: 20px; }
