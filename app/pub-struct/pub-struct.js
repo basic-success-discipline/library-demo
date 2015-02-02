@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.pubStruct', [])
+angular.module('myApp.pubStruct', ['monospaced.elastic'])
 .controller('pubStructCtrl', ['$scope', 'getData', function($scope, getData){
 	var getItems= function(){
 		var promise = getData.getAll();
@@ -135,6 +135,7 @@ angular.module('myApp.pubStruct', [])
             	scope.addPublicationRecursive = function(cat, pub){
             		scope.addPublication({subcat: cat, pub: pub});
             		scope.showNewPubSelect(false);
+            		scope.search="";
             	}
             	scope.deleteCategoryRecursive = function(cat, parentCat){
             		scope.deleteCategory({subcat: cat, parentcat: parentCat});
@@ -142,6 +143,10 @@ angular.module('myApp.pubStruct', [])
             	scope.deletePublicationRecursive = function(cat, pub){
             		scope.deletePublication({subcat: cat, pub: pub});
             	}
+
+
+
+  
             });
         }
 

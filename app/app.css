@@ -98,7 +98,8 @@
   border-bottom: 1px solid rgba(77, 152, 248, 0.1);
   border-radius: 15px;
   box-sizing: border-box;
-  background-color: white; }
+  background-color: white;
+  position: relative; }
 
 .top-wrapper {
   padding-left: 0;
@@ -116,12 +117,13 @@
   font-family: "Open Sans", sans-serif; }
 
 .category-container {
-  padding: 40px;
   padding-top: 0px;
   width: 100%;
   cursor: move;
   position: relative;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  margin-top: 0;
+  margin-bottom: 0; }
 
 .publication-container {
   padding-bottom: 10px;
@@ -133,7 +135,8 @@
 .pub p {
   margin-top: 0px;
   margin-bottom: 0;
-  padding-top: 10px; }
+  padding-top: 10px;
+  line-height: 1.3; }
 
 .over {
   background-color: #bbcccc; }
@@ -142,14 +145,75 @@
   border-top: 2px solid #226080; }
 
 .sorta-droppable-category {
-  padding-top: 60px; }
+  padding-top: 36px; }
 
 .sorta-droppable-category.sorta-over {
-  padding-top: 60px;
+  padding-top: 30px;
   border-top: 6px solid #226080; }
 
 textarea.category-title {
-  width: 100%;
+  width: calc(100% - 0px);
   border: none;
   resize: none;
-  font-size: 20px; }
+  font-size: 20px;
+  line-height: 1.2;
+  font-family: "Open Sans";
+  background-color: transparent;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  height: calc(1em + 20px); }
+
+textarea.category-title:focus {
+  background-color: white; }
+
+.rec-struct-wrapper a {
+  opacity: 0.6;
+  color: #4d98f8;
+  font-family: "Open Sans";
+  font-weight: 300;
+  text-decoration: none;
+  margin: 0 0 0 0; }
+
+.rec-struct-wrapper a:hover {
+  opacity: 1; }
+
+.rec-struct-wrapper a.delete-category {
+  float: right; }
+
+.rec-struct-wrapper a.delete-pub {
+  float: right;
+  margin-right: 10px;
+  display: none; }
+
+.rec-struct-wrapper p:hover {
+  background-color: rgba(77, 152, 248, 0.1); }
+  .rec-struct-wrapper p:hover a.delete-pub {
+    display: initial; }
+
+.rec-struct-wrapper .category-title-container h1 {
+  padding-right: 20px;
+  box-sizing: border-box;
+  margin-top: 0px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 0; }
+
+.rec-struct-wrapper a.add-btn {
+  display: inline-block;
+  margin-right: 10px; }
+
+.rec-struct-wrapper .add-new-pub-container {
+  width: 100%;
+  position: relative; }
+  .rec-struct-wrapper .add-new-pub-container select {
+    width: 100%;
+    margin-top: 5px; }
+  .rec-struct-wrapper .add-new-pub-container .add-it-btn {
+    margin-left: 10px;
+    font-weight: 400;
+    color: #27ae60;
+    opacity: 1; }
+  .rec-struct-wrapper .add-new-pub-container .add-it-btn:hover {
+    font-weight: 600; }
