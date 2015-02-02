@@ -185,7 +185,8 @@ textarea.category-title:focus {
 .rec-struct-wrapper a.delete-pub {
   float: right;
   margin-right: 10px;
-  display: none; }
+  display: none;
+  margin-top: -4px; }
 
 .rec-struct-wrapper p:hover {
   background-color: rgba(77, 152, 248, 0.1); }
@@ -228,3 +229,12 @@ textarea.category-title:focus {
     opacity: 1; }
   .rec-struct-wrapper .add-new-pub-container .add-it-btn:hover {
     font-weight: 600; }
+
+.pub-struct .top-bar {
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px; }
+
+.pub-struct .top-bar button {
+  float: right;
+  margin-left: 10px; }

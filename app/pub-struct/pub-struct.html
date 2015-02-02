@@ -1,20 +1,11 @@
-<a ng-href="#/item-list" >Back to list</a>
-<button ng-click="undo()">Undo</button>
-<button ng-click="save()">Save</button>
-
-<!-- <div class="rec-struct-wrapper top-wrapper" category="category" droppable>
-	<h1>{{category.title}}</h1>
-	<ol class="category-container top-container" ng-model="category.subcategories" >
-		<li ng-repeat="subcat in category.subcategories" draggable category="subcat" parent-category="category" draggable-type="category">
-			<div sorta-droppable index="{{$index}}" parent-category="category">
-				<recursive-structure category="subcat" items="items" add-category="addCategory(cat)" ></recursive-structure>
-			</div>
-		</li>
-	</ol>
-	<button ng-click="addCategory(category)">Add Category</button>
-</div> -->
-
-
+<div class="pub-struct">
+	<div class="top-bar">
+		<a ng-href="#/item-list" >Back to list</a>
+		<button ng-click="save()">Save</button>
+		<button ng-click="undo()">Undo</button>
+	</div>
 
 <!-- in this case, subcat is the same as category - this is for the sake of using add-category recursively -->
 <recursive-structure category="category" items="items" add-category="addCategory(subcat)" add-publication="addPublication(subcat, pub)" delete-category="deleteCategory(subcat, parentcat)" delete-publication="deletePublication(subcat, pub)" is-top="true"></recursive-structure>
+
+</div>

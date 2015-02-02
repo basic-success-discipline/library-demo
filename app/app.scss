@@ -230,7 +230,7 @@ textarea.category-title:focus{
 
 .rec-struct-wrapper a{
     opacity: 0.6;
-  color: rgb(77, 152, 248);
+        color: rgb(77, 152, 248);
   font-family: "Open Sans";
   font-weight: 300;
   text-decoration: none;
@@ -252,6 +252,7 @@ textarea.category-title:focus{
   float: right;
   margin-right: 10px;
   display: none;
+  margin-top: -4px;
 }
 
 .rec-struct-wrapper p:hover{
@@ -315,7 +316,15 @@ textarea.category-title:focus{
 }
 
 
-
+.pub-struct .top-bar{
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+}
+.pub-struct .top-bar button{
+  float: right;
+  margin-left: 10px;
+}
 
 
 
