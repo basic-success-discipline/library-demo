@@ -206,12 +206,23 @@ textarea.category-title:focus {
 
 .rec-struct-wrapper .add-new-pub-container {
   width: 100%;
-  position: relative; }
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 30px; }
   .rec-struct-wrapper .add-new-pub-container select {
     width: 100%;
     margin-top: 5px; }
+  .rec-struct-wrapper .add-new-pub-container input {
+    width: calc(100% - 180px);
+    box-sizing: border-box; }
+  .rec-struct-wrapper .add-new-pub-container a {
+    width: 90px;
+    text-align: center;
+    float: right; }
   .rec-struct-wrapper .add-new-pub-container .add-it-btn {
-    margin-left: 10px;
+    text-align: right;
+    padding-right: 5px;
+    box-sizing: border-box;
     font-weight: 400;
     color: #27ae60;
     opacity: 1; }

@@ -286,12 +286,25 @@ textarea.category-title:focus{
 .rec-struct-wrapper .add-new-pub-container{
   width: 100%;
   position:relative;
+  margin-top: 10px;
+  margin-bottom: 30px;
   & select{
     width: 100%;
     margin-top: 5px;
   }
+  & input{
+    width: calc(100% - 180px);
+    box-sizing: border-box;
+  }
+  & a{
+    width: 90px;
+    text-align: center;
+    float: right;
+  }
   & .add-it-btn{
-    margin-left: 10px;
+    text-align: right;
+    padding-right: 5px;
+    box-sizing: border-box;
     font-weight: 400;
     color: #27ae60;
     opacity: 1;

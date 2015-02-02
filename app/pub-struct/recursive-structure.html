@@ -30,9 +30,10 @@
 	
 
 	<div ng-show="addingNewPub" class="add-new-pub-container">
-		<a href="javascript:void(0);" ng-click="showNewPubSelect(false)" style="float:right">Cancel</a>
-		<input ng-model="search.title" placeholder="Search and select">
+		<a href="javascript:void(0);" ng-click="showNewPubSelect(false)" >Cancel</a>
 		<a href="javascript:void(0);" class="add-it-btn" ng-click="addPublicationRecursive(category, newItem)" ng-show="newItem">Add it!</a>
+		<input ng-model="search.title" placeholder="Search and select">
+		
 		<select ng-model="newItem" ><option ng-repeat="item in items | filter:search" value="{{item.id}}" >{{item.type}} — {{item.title}}</option></select>
 
 		
