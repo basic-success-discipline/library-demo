@@ -44,7 +44,7 @@ angular.module('myApp.pubStruct', ['monospaced.elastic'])
 	}
 
 	$scope.addCategory = function(category){
-		category.subcategories.push({title:"newly added sub", subcategories: [], publications: []});
+		category.subcategories.push({title:"New Category", subcategories: [], publications: []});
 	}
 
 	$scope.addPublication = function(category, pubID){
@@ -318,7 +318,10 @@ angular.module('myApp.pubStruct', ['monospaced.elastic'])
 			        		if(!scope.category.dropIndex){
 			        			scope.category.dropIndex = scope.category.publications.length;
 			        			scope.category.publications.push(item.id);
-			        		}else{
+			        		}else if(scope.category.dropIndex >scope.category.publications.length){
+				        		scope.category.dropIndex = scope.category.publications.length;
+	        					scope.category.publications.push(item.id);
+				        	}else{
 			        			scope.category.publications.splice(scope.category.dropIndex, 0, item.id);
 			        		}
 
@@ -353,6 +356,9 @@ angular.module('myApp.pubStruct', ['monospaced.elastic'])
 					        	//add the new item at the right place, saving that index
 					        	if(!scope.category.dropIndex){
 					        		// console.log('no drop index');
+					        		scope.category.dropIndex = scope.category.subcategories.length;
+					        		scope.category.subcategories.push(item);
+					        	}else if(scope.category.dropIndex >scope.category.subcategories.length){
 					        		scope.category.dropIndex = scope.category.subcategories.length;
 					        		scope.category.subcategories.push(item);
 					        	}else{
