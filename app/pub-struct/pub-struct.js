@@ -107,7 +107,8 @@ angular.module('myApp.pubStruct', [])
 			addCategory: "&",
 			addPublication: "&",
 			deleteCategory: "&",
-			deletePublication: "&"
+			deletePublication: "&",
+			isTop: "="
 		},
 
 		templateUrl: 'pub-struct/recursive-structure.html',
@@ -119,7 +120,11 @@ angular.module('myApp.pubStruct', [])
             	scope.addingNewPub=false;
 
             	scope.toggleEditable = function(bool){
+
             		scope.titleEditable=bool;
+            		if(scope.isTop){
+            			scope.titleEditable = false;
+            		}
             	}
             	scope.addCategoryRecursive = function(cat){
             		scope.addCategory({subcat: cat});

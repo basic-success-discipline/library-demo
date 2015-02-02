@@ -6,13 +6,14 @@
 		<span><input type="checkbox" ng-model="filterOptions.types.dvd"> DVDs </span>
 		<span><input type="checkbox" ng-model="filterOptions.types.ebook"> EBooks </span>
 		<span class="add-new-btn"><button ng-click="showEditItemView()">Add New</button></span>
-		<span class="pub-struct-btn"><a href="#/publication-structure">Publication Structure</a></span>
 	</div>
 
 	<div class="second-bar">
 		<span><input ng-model="search.title" placeholder="Search Title"></span>
 		<span>Sort by: <select ng-model="selectedSortOption"><option ng-repeat="option in sortOptions" value="{{option}}">{{option}}</option></select></span>
 		<span><input type="checkbox" ng-model="filterOptions.activeOnly"> Active Only</span>
+		
+		<span class="pub-struct-btn"><a href="#/publication-structure">Publication Structure</a></span>
 	</div>
 
 	<div class="activeLabel">Active</div>
