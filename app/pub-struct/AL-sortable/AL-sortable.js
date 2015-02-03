@@ -86,15 +86,6 @@ angular.module('al.sortable', [])
 				dragDrop.setDragVars(scope.pub, scope.category, scope.parentCategory, scope.draggableType);
 				var dragItem = dragDrop.getDragItem();
 				e.dataTransfer.setData('Text', JSON.stringify(dragItem));
-				// if(scope.draggableType=="pub"){
-				// 	e.dataTransfer.setData('Text', JSON.stringify(scope.pub));
-
-				// }
-				// else if(scope.draggableType=="category"){
-				// 	e.dataTransfer.setData('Text', JSON.stringify(scope.category));
-				// 	scope.category.gotDropped=false;
-
-				// }
 				
 				// scope.parentCategory.gotDropped=false;
 				this.classList.add('drag');
@@ -108,7 +99,7 @@ angular.module('al.sortable', [])
 				// var categoryGotDropped = scope.category ? scope.category.gotDropped : false;
 				var drag = dragDrop.getDrag();
 				var drop = dragDrop.getDrop();
-				if(drop.category.title!=drag.parent.title){
+				if(drop.category!=null && drop.category.title!=drag.parent.title){
 					if(drag.type=="pub"){
 
 						scope.$apply(function(){
@@ -209,17 +200,7 @@ angular.module('al.sortable', [])
 			        			sorta.index = scope.category.publications.length;
 			        			scope.category.publications.push(item.id);
 			        		}
-			        		// if(sorta.index==null){
-			        		// 	scope.category.dropIndex = scope.category.publications.length;
-			        		// 	scope.category.publications.push(item.id);
-			        		// }else if(scope.category.dropIndex >scope.category.publications.length){
-				        	// 	scope.category.dropIndex = scope.category.publications.length;
-	        				// 	scope.category.publications.push(item.id);
-				        	// }else{
-			        		// 	scope.category.publications.splice(scope.category.dropIndex, 0, item.id);
-			        		// }
-
-
+			 
 			        		//find any duplicates (there should only be one)
 			        		var dupIndex = null
 			        		for(var i=0; i<scope.category.publications.length; i++){
@@ -244,24 +225,9 @@ angular.module('al.sortable', [])
 			        	scope.$apply(function(){
 
 			        		if(dragDrop.isValidDrop(item, scope.category)){
-			        			// console.log("is valid drop");
-			        			// console.log("was valid drop");
+			        			
 
-
-					        	//add the new item at the right place, saving that index
-					        	// if(!scope.category.dropIndex){
-					        	// 	// console.log('no drop index');
-					        	// 	scope.category.dropIndex = scope.category.subcategories.length;
-					        	// 	scope.category.subcategories.push(item);
-					        	// }else if(scope.category.dropIndex >scope.category.subcategories.length){
-					        	// 	scope.category.dropIndex = scope.category.subcategories.length;
-					        	// 	scope.category.subcategories.push(item);
-					        	// }else{
-					        	// 	// console.log('drop index: ' + scope.category.dropIndex);
-					        	// 	scope.category.subcategories.splice(scope.category.dropIndex, 0, item);
-					        	// }
-
-					        		var sorta = dragDrop.getSortaDrop();
+					        var sorta = dragDrop.getSortaDrop();
 			        		//add the new item at the right place, saving that index
 			        		if(sorta.category!=null && sorta.category.title==scope.category.title && sorta.index<scope.category.subcategories.length){
 			        			scope.category.subcategories.splice(sorta.index, 0, item);
@@ -288,16 +254,12 @@ angular.module('al.sortable', [])
 				        		
 				        	}
 				        });
-
-}	
-return false;
-},
-false
-);
-
-
-}
-}
+					}	
+					return false;
+				},false
+			);
+		}
+	}
 })
 
 .directive('sortaDroppable', function(dragDrop) {
