@@ -4,12 +4,12 @@
 angular.module('myApp.sharedAssets', [])
 .factory('dataModel', function ($http) {
     var editItem, template;
-    $http.get("/app/shared/testDefaultItem.json").
+    $http.get("/getDefaultItem").
         success(function(data, status){
             editItem = data;
         });
 
-    $http.get("/app/shared/testTemplate.json").
+    $http.get("/getTemplate").
         success(function(data, status){
             template = data;
         });
@@ -17,10 +17,11 @@ angular.module('myApp.sharedAssets', [])
 
     return {
         getAll: function () {
-            return $http.get("/app/shared/testData.json");
+            // return $http.get("/app/shared/testData.json");
+            return $http.get("/getAll");
         },
         getPubStruct: function(){
-            return $http.get("/app/shared/testPublicationStructure.json");
+            return $http.get("/getPubStruct");
         },
         getTemplate: function(){
             return template;
