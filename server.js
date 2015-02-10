@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var debug = require('debug')('ALAdmin');
+var favicon = require('serve-favicon');
 
 
 
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
+app.use(favicon(__dirname + '/app/favicon.ico'));
 
 
 
