@@ -34,6 +34,9 @@ angular.module('myApp.sharedAssets', [])
         },
         updateItem: function(id, updates){
             return $http.post('/updateItem', {id:id, updates:updates});
+        },
+        updatePubStruct: function(newPubStruct){
+            return $http.post('/updatePubStruct', newPubStruct);
         }
 
     }

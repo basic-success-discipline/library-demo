@@ -17,19 +17,15 @@ angular.module('myApp.itemList', [])
 		var promise = dataModel.updateItem(item.id, {active:isChecked});
 		promise.then(
 			function(payload) { 
-				$scope.getAllData();
+				getAllData();
 			},
 			function(errorPayload) {
 				$log.error('failure setting active on item', errorPayload);
 			});
 	}
 
-	$scope.sayHello = function(){
-		$scope.greeting="Hello, world";
-	}
 
-
-	$scope.getAllData = function(){
+	var getAllData = function(){
 		var promise = dataModel.getAll();
 		promise.then(
 			function(payload) { 
@@ -40,7 +36,7 @@ angular.module('myApp.itemList', [])
 			});
 	}
 
-	$scope.getAllData();
+	getAllData();
 	
 	
 }])

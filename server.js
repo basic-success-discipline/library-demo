@@ -45,6 +45,13 @@ app.post('/updateItem', function (req, res) {
     console.log(req.body);
     res.send('200');
 });
+
+app.post('/updatePubStruct', function (req, res) {
+
+    //must actually update model!
+    console.log(req.body);
+    res.send('200');
+});
 app.get('*', function (req, res) {
   res.redirect('/');
 });

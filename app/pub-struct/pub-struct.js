@@ -40,7 +40,14 @@ angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
 	}
 
 	$scope.save = function(){
-		console.log($scope.category);
+		var promise = dataModel.updatePubStruct($scope.category);
+		promise.then(
+			function(payload){
+				getStruct();
+			},
+			function(errorPayload) {
+				$log.error('failure saving publication structure', errorPayload);
+			});
 	}
 
 	$scope.addCategory = function(category){
@@ -137,9 +144,9 @@ angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
             		scope.deletePublication({subcat: cat, pub: pub});
             	}
             });
-        }
+}
 
-    }
+}
 })
 
 
