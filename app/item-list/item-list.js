@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp.itemList', [])
-.controller('itemListCtrl', ['$scope', '$location', '$filter', 'getData', 'sharedProperties', function($scope, $location, $filter, getData, sharedProperties) {
+.controller('itemListCtrl', ['$scope', '$location', '$filter', 'dataModel', function($scope, $location, $filter, dataModel) {
 
 	$scope.filterOptions ={"types":{"cd":true,"dvd":true,"ebook":true}, "activeOnly":true};
 	$scope.sortOptions = ['title', 'id', 'discourseDate', 'type'];
@@ -9,7 +9,7 @@ angular.module('myApp.itemList', [])
 
 
 	$scope.showEditItemView = function(item){
-		sharedProperties.setEditItem(item);
+		dataModel.setEditItem(item);
 		$location.path('/edit-item');
 	}
 
@@ -28,7 +28,7 @@ angular.module('myApp.itemList', [])
 
 
 
-	var promise = getData.getAll();
+	var promise = dataModel.getAll();
 	promise.then(
 		function(payload) { 
 			$scope.items=payload.data;

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myApp.editItem', [])
-.controller('editItemCtrl', ['$scope', '$location',  'sharedProperties', function($scope, $location, sharedProperties){
-	var item = sharedProperties.getEditItem();
+.controller('editItemCtrl', ['$scope', '$location',  'dataModel', function($scope, $location, dataModel){
+	var item = dataModel.getEditItem();
 	$scope.item = {"obj": item, "copy":""};
 	$scope.createMode = false;
 	$scope.editMode = false;
@@ -11,7 +11,7 @@ angular.module('myApp.editItem', [])
 	if ($scope.item.obj == null){
 		$scope.createMode = true;
 		$scope.editMode = true;
-		var template = angular.copy(sharedProperties.getTemplate());
+		var template = angular.copy(dataModel.getTemplate());
 		$scope.item.obj = template[$scope.itemType].newEntry;
 		$scope.item.obj['id'] = Math.floor((Math.random()*100000)+1);
 	}
@@ -24,7 +24,7 @@ angular.module('myApp.editItem', [])
 	$scope.updateFields = function(type){
 		if($scope.createMode){
 			$scope.itemType=type;
-			var template = angular.copy(sharedProperties.getTemplate());
+			var template = angular.copy(dataModel.getTemplate());
 			$scope.item.obj = template[$scope.itemType].newEntry;
 			$scope.refreshEditItemView();
 		}
@@ -116,12 +116,12 @@ angular.module('myApp.editItem', [])
 
 }])
 
-.controller('tracksCtrl', ['$scope', 'sharedProperties', function($scope, sharedProperties){
+.controller('tracksCtrl', ['$scope', 'dataModel', function($scope, dataModel){
 	
 
 
 	$scope.addNewTrack = function(){
-		var template = angular.copy(sharedProperties.getTemplate());
+		var template = angular.copy(dataModel.getTemplate());
 		var newTrack = template[$scope.itemType].newTrack;
 		newTrack['trackID'] = Math.floor((Math.random()*100000)+1);
 		$scope.item.copy["tracks"].push(newTrack);

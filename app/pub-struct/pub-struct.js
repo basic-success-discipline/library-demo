@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
-.controller('pubStructCtrl', ['$scope', 'getData', function($scope, getData){
+.controller('pubStructCtrl', ['$scope', 'dataModel', function($scope, dataModel){
 	var getItems= function(){
-		var promise = getData.getAll();
+		var promise = dataModel.getAll();
 		promise.then(
 			function(payload){
 				$scope.items=payload.data;
@@ -14,7 +14,7 @@ angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
 			});
 	}
 	var getStruct = function(){
-		var promise = getData.getPubStruct();
+		var promise = dataModel.getPubStruct();
 		promise.then(
 			function(payload) { 
 				$scope.originalStructure = payload.data;
@@ -68,15 +68,8 @@ angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
 		}
 	}
 
-	
-
-
-
-	
-
 }])
 .filter('pubStructFilter', function(){
-
 
 	return _.memoize(function (ids, items){
 		var filtered = [];
@@ -96,7 +89,7 @@ angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
 
 })
 
-.directive('recursiveStructure', function(recursionHelper, getData) {
+.directive('recursiveStructure', function(recursionHelper, dataModel) {
 	return {
 		restrict: 'E',
 		required: 'category',
@@ -143,10 +136,6 @@ angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
             	scope.deletePublicationRecursive = function(cat, pub){
             		scope.deletePublication({subcat: cat, pub: pub});
             	}
-
-
-
-  
             });
         }
 
