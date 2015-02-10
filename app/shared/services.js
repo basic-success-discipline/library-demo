@@ -33,7 +33,7 @@ angular.module('myApp.sharedAssets', [])
             editItem = newEditItem;
         },
         updateItem: function(id, updates){
-            $http.post('/updateItem', {id:id, updates:updates});
+            return $http.post('/updateItem', {id:id, updates:updates});
         }
 
     }

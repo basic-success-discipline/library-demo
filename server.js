@@ -39,9 +39,11 @@ app.get('/getTemplate', function (req, res) {
 app.get('/getDefaultItem', function (req, res) {
     res.send(testDefaultItem);
 });
-
 app.post('/updateItem', function (req, res) {
+
+    //must actually update model!
     console.log(req.body);
+    res.send('200');
 });
 app.get('*', function (req, res) {
   res.redirect('/');

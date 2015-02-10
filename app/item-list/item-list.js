@@ -14,14 +14,14 @@ angular.module('myApp.itemList', [])
 	}
 
 	$scope.updateActive = function(item, isChecked){
-		if(isChecked){
-			dataModel.updateItem(item.id, {active:true});
-			item.active=1;
-		}else{
-			dataModel.updateItem(item.id, {active:false});
-			item.active=0;
-		}
-		//when i've got endpoints its just a matter of updating the active field.
+		var promise = dataModel.updateItem(item.id, {active:isChecked});
+		promise.then(
+			function(payload) { 
+				$scope.getAllData();
+			},
+			function(errorPayload) {
+				$log.error('failure setting active on item', errorPayload);
+			});
 	}
 
 	$scope.sayHello = function(){
@@ -29,15 +29,19 @@ angular.module('myApp.itemList', [])
 	}
 
 
+	$scope.getAllData = function(){
+		var promise = dataModel.getAll();
+		promise.then(
+			function(payload) { 
+				$scope.items=payload.data;
+			},
+			function(errorPayload) {
+				$log.error('failure loading test data', errorPayload);
+			});
+	}
 
-	var promise = dataModel.getAll();
-	promise.then(
-		function(payload) { 
-			$scope.items=payload.data;
-		},
-		function(errorPayload) {
-			$log.error('failure loading test data', errorPayload);
-		});
+	$scope.getAllData();
+	
 	
 }])
 
@@ -49,7 +53,7 @@ angular.module('myApp.itemList', [])
 .filter('itemListFilter', function(){
 	return function (items, filterOptions){
 		var filtered = [];
-			
+
 		angular.forEach(items, function(item){
 			//type
 
