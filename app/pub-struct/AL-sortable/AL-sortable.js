@@ -1,4 +1,14 @@
 angular.module('al.sortable', [])
+.controller('dragDropCtrl', ['$scope', function($scope){
+
+	$scope.dragPub=null;
+	$scope.dragCat=null;
+	$scope.dragParent=null;
+	$scope.dragType=null;
+	$scope.dropCat=null;
+	$scope.dropIndex=null;
+
+}])
 
 
 .service('dragDrop', function(){
@@ -76,7 +86,8 @@ angular.module('al.sortable', [])
 			parentCategory: "=",
 			draggableType: "@"
 		},
-		link: function(scope, element) {
+		controller: "dragDropCtrl",
+		link: function(scope, element, attrs, dragDropCtrl) {
 			var el = element[0];
 			el.draggable = true;
 			el.addEventListener('dragstart', 
@@ -86,6 +97,7 @@ angular.module('al.sortable', [])
 				dragDrop.setDragVars(scope.pub, scope.category, scope.parentCategory, scope.draggableType);
 				var dragItem = dragDrop.getDragItem();
 				e.dataTransfer.setData('Text', JSON.stringify(dragItem));
+
 				
 				// scope.parentCategory.gotDropped=false;
 				this.classList.add('drag');
@@ -125,10 +137,10 @@ angular.module('al.sortable', [])
 				}
 				return false;
 			});
-}
-}
+		},
+		contoller: "dragDropCtrl"
+	}
 })
-
 
 
 .directive('droppable', function(dragDrop) {
@@ -136,7 +148,8 @@ angular.module('al.sortable', [])
 		scope: {
 			category: '=',
 		},
-		link: function(scope, element) {
+		controller: "dragDropCtrl",
+		link: function(scope, element, attrs, dragDropCtrl) {
 
 			var el = element[0];
 			el.addEventListener(
@@ -298,6 +311,7 @@ angular.module('al.sortable', [])
 				false
 				);
 
-		}
+		},
+		contoller: "dragDropCtrl"
 	}
 })
