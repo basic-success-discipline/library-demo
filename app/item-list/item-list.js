@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp.itemList', [])
-.controller('itemListCtrl', ['$scope', '$location', '$filter', 'dataModel', function($scope, $location, $filter, dataModel) {
+.controller('itemListCtrl', ['$scope', '$location', '$filter', 'dataModel',function($scope, $location, $filter, dataModel) {
 
 	$scope.filterOptions ={"types":{"cd":true,"dvd":true,"ebook":true}, "activeOnly":true};
 	$scope.sortOptions = ['title', 'id', 'discourseDate', 'type'];
@@ -15,8 +15,10 @@ angular.module('myApp.itemList', [])
 
 	$scope.updateActive = function(item, isChecked){
 		if(isChecked){
+			dataModel.updateItem(item.id, {active:true});
 			item.active=1;
 		}else{
+			dataModel.updateItem(item.id, {active:false});
 			item.active=0;
 		}
 		//when i've got endpoints its just a matter of updating the active field.

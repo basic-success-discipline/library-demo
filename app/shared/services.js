@@ -31,7 +31,11 @@ angular.module('myApp.sharedAssets', [])
         },
         setEditItem: function(newEditItem){
             editItem = newEditItem;
+        },
+        updateItem: function(id, updates){
+            $http.post('/updateItem', {id:id, updates:updates});
         }
+
     }
 })
 .factory('recursionHelper', ['$compile', function($compile){
