@@ -66,16 +66,17 @@ angular.module('myApp.editItem', [])
 
 	$scope.saveEdit = function(){
 		//only send updates
-		for(var key in $scope.edits.obj){
-			if(key!="tracks"){
-				console.log(key + " : " + $scope.edits.obj[key]);
-			}else{
-				for(var i=0; i<$scope.edits.obj["tracks"].length; i++){
-					var track = $scope.edits.obj["tracks"][i];
-					console.log(track);
-				}
-			}
-		} 
+		// for(var key in $scope.edits.obj){
+		// 	if(key!="tracks"){
+		// 		console.log(key + " : " + $scope.edits.obj[key]);
+		// 	}else{
+		// 		for(var i=0; i<$scope.edits.obj["tracks"].length; i++){
+		// 			var track = $scope.edits.obj["tracks"][i];
+		// 			console.log(track);
+		// 		}
+		// 	}
+		// } 
+    dataModel.updateItem({id:item.id, updates:$scope.edits.obj});
 		$scope.editMode = false;
 		$scope.refreshEditItemView();
 		$scope.edits.obj={};
@@ -112,7 +113,8 @@ angular.module('myApp.editItem', [])
 	}
 
 
-	$scope.refreshEditItemView();
+  $scope.refreshEditItemView();
+	
 
 }])
 

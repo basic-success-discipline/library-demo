@@ -3,19 +3,26 @@
 
 angular.module('myApp.sharedAssets', [])
 .factory('dataModel', function ($http) {
-    var editItem, template;
-    $http.get("/getDefaultItem").
-        success(function(data, status){
-            editItem = data;
-        });
+    var editItem, template, resolved = false;
 
-    $http.get("/getTemplate").
-        success(function(data, status){
-            template = data;
-        });
+
+    var promise = $http.get("/getTemplate").
+            then(function(template){
+                template = template.data;
+                return $http.get("/getDefaultItem");
+            }).
+            then(function(item){
+                    editItem = item.data;
+                    resolved=true;
+            });
+
 
 
     return {
+        promise: promise,
+        resolved: function(){
+            return resolved;
+        },
         getAll: function () {
             // return $http.get("/app/shared/testData.json");
             return $http.get("/getAll");
@@ -24,6 +31,7 @@ angular.module('myApp.sharedAssets', [])
             return $http.get("/getPubStruct");
         },
         getTemplate: function(){
+
             return template;
         },
         getEditItem: function () {
