@@ -7,14 +7,14 @@ angular.module('myApp.sharedAssets', [])
 
 
     var promise = $http.get("/getTemplate").
-            then(function(template){
-                template = template.data;
-                return $http.get("/getDefaultItem");
-            }).
-            then(function(item){
-                    editItem = item.data;
-                    resolved=true;
-            });
+    then(function(temp){
+        template = temp.data;
+        return $http.get("/getDefaultItem");
+    }).
+    then(function(item){
+        editItem = item.data;
+        resolved=true;
+    });
 
 
 
@@ -31,7 +31,6 @@ angular.module('myApp.sharedAssets', [])
             return $http.get("/getPubStruct");
         },
         getTemplate: function(){
-
             return template;
         },
         getEditItem: function () {
@@ -45,6 +44,15 @@ angular.module('myApp.sharedAssets', [])
         },
         updatePubStruct: function(newPubStruct){
             return $http.post('/updatePubStruct', newPubStruct);
+        },
+        addNewItem: function(newItem){
+            return $http.post('/addNewItem', newItem);
+        },
+        getItem: function(id){
+            return $http({url: '/getItem', 
+                method: "GET",
+                params: {id: id}
+            });
         }
 
     }

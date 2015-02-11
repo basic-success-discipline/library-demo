@@ -11,7 +11,7 @@ angular.module('myApp.editItem', [])
 	if ($scope.item.obj == null){
 		$scope.createMode = true;
 		$scope.editMode = true;
-		var template = angular.copy(dataModel.getTemplate());
+		var template = dataModel.getTemplate();
 		$scope.item.obj = template[$scope.itemType].newEntry;
 		$scope.item.obj['id'] = Math.floor((Math.random()*100000)+1);
 	}
@@ -32,14 +32,21 @@ angular.module('myApp.editItem', [])
 	$scope.saveNew = function(){
 		//send new Item to API
 		alert("you've created a new item!");
+    dataModel.addNewItem($scope.item.copy);
 
 		$scope.createMode =false;
 		$scope.editMode = false;
 		//get edit item from server
-		//set as edit item
-		//begin again as if just entered edit item view
-		$scope.refreshEditItemView();
-		$scope.edits.obj ={};
+    var promise = dataModel.getItem($scope.item.copy.id);
+    promise.then(function(item){
+    //set as edit item
+      dataModel.setEditItem(item.data);
+       //begin again as if just entered edit item view
+      $scope.item = {"obj": item.data, "copy":""};
+      $scope.refreshEditItemView();
+      $scope.edits.obj ={};
+    });
+
 
 	}
 
@@ -64,7 +71,7 @@ angular.module('myApp.editItem', [])
 		}
 	}
 
-	$scope.saveEdit = function(){
+	$scope.saveEdit = function(){  
 		//only send updates
 		// for(var key in $scope.edits.obj){
 		// 	if(key!="tracks"){
@@ -113,8 +120,7 @@ angular.module('myApp.editItem', [])
 	}
 
 
-  $scope.refreshEditItemView();
-	
+	$scope.refreshEditItemView();
 
 }])
 

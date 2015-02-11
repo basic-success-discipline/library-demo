@@ -52,6 +52,22 @@ app.post('/updatePubStruct', function (req, res) {
     console.log(req.body);
     res.send('200');
 });
+
+//temporary fix for testing only
+var item;
+app.post('/addNewItem', function (req, res) {
+
+    //must actually update model!
+    console.log(req.body);
+    res.send('200');
+    item = req.body
+});
+app.get('/getItem', function (req, res) {
+
+    //must actually update model!
+    console.log(req.query.id);
+    res.send(item);
+});
 app.get('*', function (req, res) {
   res.redirect('/');
 });
