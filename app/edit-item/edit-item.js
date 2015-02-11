@@ -64,7 +64,6 @@ angular.module('myApp.editItem', [])
 
 	//has test
 	$scope.addEdit = function(key){
-    console.log("in here");
 		if($scope.item.copy[key]){
 
 			$scope.edits.obj[key] = $scope.item.copy[key];
@@ -73,7 +72,7 @@ angular.module('myApp.editItem', [])
 
 	$scope.saveEdit = function(){  
     console.log($scope.edits.obj);
-    dataModel.updateItem({id:$scope.item.copy.id, updates:$scope.edits.obj});
+    dataModel.updateItem($scope.item.copy.id, $scope.edits.obj);
     // var promise = dataModel.getItem($scope.item.copy.id);
     // promise.then(function(item){
     //   dataModel.setEditItem(item.data);
@@ -96,7 +95,11 @@ angular.module('myApp.editItem', [])
   var retVal = confirm("Deleting entry \n\nTHIS CANNOT BE UNDONE \n\n" + "Deactivating is the safer option.");
   if(retVal){
    alert("shit got deleted yo!");
-   $location.path("/item-list")
+   var promise = dataModel.deleteItem($scope.item.copy.id);
+   promise.then(function(data){
+    $location.path("/item-list");
+   });
+   
  }
 
 }

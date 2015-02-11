@@ -53,6 +53,12 @@ angular.module('myApp.sharedAssets', [])
                 method: "GET",
                 params: {id: id}
             });
+        },
+        deleteItem: function(id){
+            return $http({url: '/deleteItem', 
+                method: "GET",
+                params: {id: id}
+            });
         }
 
     }

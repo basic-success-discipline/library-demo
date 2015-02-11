@@ -42,7 +42,7 @@ app.get('/getDefaultItem', function (req, res) {
 app.post('/updateItem', function (req, res) {
 
     //must actually update model!
-    console.log(req.body.updates);
+    console.log(req.body);
     res.send('200');
 });
 
@@ -65,9 +65,17 @@ app.post('/addNewItem', function (req, res) {
 app.get('/getItem', function (req, res) {
 
     //must actually update model!
-    console.log(req.query.id);
+    console.log(req.query.id + " gotten");
     res.send(item);
 });
+app.get('/deleteItem', function (req, res) {
+
+    //must actually update model!
+    console.log(req.query.id + " deleted");
+    res.send('200');
+});
+
+
 app.get('*', function (req, res) {
   res.redirect('/');
 });
