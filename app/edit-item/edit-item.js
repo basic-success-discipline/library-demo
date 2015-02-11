@@ -34,21 +34,19 @@ angular.module('myApp.editItem', [])
 		alert("you've created a new item!");
     dataModel.addNewItem($scope.item.copy);
 
-		$scope.createMode =false;
-		$scope.editMode = false;
+    $scope.createMode =false;
+    $scope.editMode = false;
 		//get edit item from server
     var promise = dataModel.getItem($scope.item.copy.id);
     promise.then(function(item){
-    //set as edit item
       dataModel.setEditItem(item.data);
-       //begin again as if just entered edit item view
       $scope.item = {"obj": item.data, "copy":""};
       $scope.refreshEditItemView();
       $scope.edits.obj ={};
     });
 
 
-	}
+  }
 
 	//has test
 	$scope.refreshEditItemView = function(){
@@ -66,61 +64,57 @@ angular.module('myApp.editItem', [])
 
 	//has test
 	$scope.addEdit = function(key){
+    console.log("in here");
 		if($scope.item.copy[key]){
+
 			$scope.edits.obj[key] = $scope.item.copy[key];
 		}
 	}
 
 	$scope.saveEdit = function(){  
-		//only send updates
-		// for(var key in $scope.edits.obj){
-		// 	if(key!="tracks"){
-		// 		console.log(key + " : " + $scope.edits.obj[key]);
-		// 	}else{
-		// 		for(var i=0; i<$scope.edits.obj["tracks"].length; i++){
-		// 			var track = $scope.edits.obj["tracks"][i];
-		// 			console.log(track);
-		// 		}
-		// 	}
-		// } 
-    dataModel.updateItem({id:item.id, updates:$scope.edits.obj});
-		$scope.editMode = false;
-		$scope.refreshEditItemView();
-		$scope.edits.obj={};
-
-	}
+    console.log($scope.edits.obj);
+    dataModel.updateItem({id:$scope.item.copy.id, updates:$scope.edits.obj});
+    // var promise = dataModel.getItem($scope.item.copy.id);
+    // promise.then(function(item){
+    //   dataModel.setEditItem(item.data);
+    //   $scope.item = {"obj": item.data, "copy":""};
+    //   $scope.editMode = false;
+    //   $scope.refreshEditItemView();
+    //   $scope.edits.obj={};
+    // });
+  }
 
 
-	$scope.unsavedEdits = function(){
-		for(var prop in $scope.edits.obj) { 
-			return true;
-		}
-		return false;
-	}
+  $scope.unsavedEdits = function(){
+    for(var prop in $scope.edits.obj) { 
+     return true;
+   }
+   return false;
+ }
 
-	$scope.deleteItem = function(){
-		var retVal = confirm("Deleting entry \n\nTHIS CANNOT BE UNDONE \n\n" + "Deactivating is the safer option.");
-		if(retVal){
-			alert("shit got deleted yo!");
-			$location.path("/item-list")
-		}
-		
-	}
+ $scope.deleteItem = function(){
+  var retVal = confirm("Deleting entry \n\nTHIS CANNOT BE UNDONE \n\n" + "Deactivating is the safer option.");
+  if(retVal){
+   alert("shit got deleted yo!");
+   $location.path("/item-list")
+ }
 
-
-	$scope.confirmLeaveEdit = function(){
-		if($scope.editMode && $scope.unsavedEdits()){
-			var retVal = confirm("Leaving edit view with unsaved changes.");
-			if(retVal){
-				$location.path("/item-list");
-			}	
-		}else{
-			$location.path("/item-list");
-		}
-	}
+}
 
 
-	$scope.refreshEditItemView();
+$scope.confirmLeaveEdit = function(){
+  if($scope.editMode && $scope.unsavedEdits()){
+   var retVal = confirm("Leaving edit view with unsaved changes.");
+   if(retVal){
+    $location.path("/item-list");
+  }	
+}else{
+ $location.path("/item-list");
+}
+}
+
+
+$scope.refreshEditItemView();
 
 }])
 
@@ -197,7 +191,7 @@ angular.module('myApp.editItem', [])
       em: "="
     },
     link: function (scope, elm, attrs) {
-        $compile(elm.contents())(scope);
+      $compile(elm.contents())(scope);
     }
   }
 })
@@ -213,7 +207,7 @@ angular.module('myApp.editItem', [])
       em: "="
     },
     link: function (scope, elm, attrs) {
-        $compile(elm.contents())(scope);
+      $compile(elm.contents())(scope);
     }
   }
 })
@@ -229,7 +223,7 @@ angular.module('myApp.editItem', [])
       em: "="
     },
     link: function (scope, elm, attrs) {
-        $compile(elm.contents())(scope);
+      $compile(elm.contents())(scope);
     }
   }
 })
@@ -245,7 +239,7 @@ angular.module('myApp.editItem', [])
       em: "="
     },
     link: function (scope, elm, attrs) {
-        $compile(elm.contents())(scope);
+      $compile(elm.contents())(scope);
     }
   }
 })
@@ -262,9 +256,9 @@ angular.module('myApp.editItem', [])
     },
     link: function (scope, elm, attrs) {
         //This directive's compile call is in a nested directive validateRuntime
+      }
     }
-  }
-})
+  })
 .directive('fieldOptionalText', function($compile) {
   return {
     restrict: 'A',
@@ -277,7 +271,7 @@ angular.module('myApp.editItem', [])
       em: "="
     },
     link: function (scope, elm, attrs) {
-        $compile(elm.contents())(scope);
+      $compile(elm.contents())(scope);
     }
   }
 })
@@ -293,7 +287,7 @@ angular.module('myApp.editItem', [])
       em: "="
     },
     link: function (scope, elm, attrs) {
-        $compile(elm.contents())(scope);
+      $compile(elm.contents())(scope);
     }
   }
 })
@@ -309,7 +303,7 @@ angular.module('myApp.editItem', [])
       em: "="
     },
     link: function (scope, elm, attrs) {
-        $compile(elm.contents())(scope);
+      $compile(elm.contents())(scope);
     }
   }
 })
@@ -323,38 +317,37 @@ angular.module('myApp.editItem', [])
 // Validation directives
 
 .directive("validateRuntime", function($compile){
-          return {
-           restrict: 'A',
-           require: 'ngModel',
-           link: function(scope, ele, attrs, ctrl){
-            
+  return {
+   restrict: 'A',
+   require: 'ngModel',
+   link: function(scope, ele, attrs, ctrl){
+
             //This replaces the compile call in the fieldRuntime directive
             $compile(ele.contents())(scope);
 
 
-              ctrl.$parsers.unshift(function(value) {
-                if(value){
+            ctrl.$parsers.unshift(function(value) {
+              if(value){
 
-                  var valid = false;
-                	var values = value.split(":");
-                	if(values.length==3){
-                		valid=true;
-                		for(var i=0; i<values.length; i++){
-                			if(!(values[i].length==2 && !isNaN(parseInt(values[i])))) {
-                				valid=false;
-                			}
-                		}
-                	}
-                  console.log(valid);
-                  ctrl.$setValidity('invalidRuntime', valid);
+                var valid = false;
+                var values = value.split(":");
+                if(values.length==3){
+                  valid=true;
+                  for(var i=0; i<values.length; i++){
+                   if(!(values[i].length==2 && !isNaN(parseInt(values[i])))) {
+                    valid=false;
+                  }
                 }
-              
-                return valid ? value : undefined;
-              });
+              }
+              ctrl.$setValidity('invalidRuntime', valid);
+            }
 
-           }
+            return valid ? value : undefined;
+          });
+
           }
-        })
+        }
+      })
 
 ;
 

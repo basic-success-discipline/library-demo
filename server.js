@@ -42,7 +42,7 @@ app.get('/getDefaultItem', function (req, res) {
 app.post('/updateItem', function (req, res) {
 
     //must actually update model!
-    console.log(req.body);
+    console.log(req.body.updates);
     res.send('200');
 });
 

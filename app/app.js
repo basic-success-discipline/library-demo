@@ -10,7 +10,6 @@ var app = angular.module('myApp', [
   'myApp.sharedAssets'
 ]);
 
-console.log();
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/item-list', {templateUrl: 'item-list/item-list.html', controller: 'itemListCtrl'});
