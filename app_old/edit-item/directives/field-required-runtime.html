@@ -1,0 +1,11 @@
+<ng-form name="fieldForm" novalidate>
+<p>{{k}}:
+<span class="no-edit" ng-show="!em">{{ic[k]}}</span>
+  <input type="text" name="fieldName" ng-model="ic[k]" required data-validate-runtime ng-show="em" ng-change="ae({key:k})">
+  <span style="color:red" ng-show="fieldForm.fieldName.$dirty && fieldForm.fieldName.$invalid">
+  <span ng-show="fieldForm.fieldName.$error.required">{{k}} is required.</span>
+  <span ng-show="fieldForm.fieldName.$error.invalidRuntime">{{k}} must be in format "hh:mm:ss".</span>
+  
+  </span>
+</p>
+</ng-form>

@@ -1,0 +1,46 @@
+<div class="rec-struct-wrapper " category="category" droppable>
+
+	<!-- <h1>{{category.title}}</h1> -->
+
+	<div class="category-title-container" ng-click="toggleEditable(true)" >
+		<h1 ng-show="!titleEditable" title="Double click to edit">{{category.title}}</h1>
+		<textarea class="category-title" ng-model="category.title" ng-show="titleEditable" msd-elastic></textarea>
+	</div>
+		<a href="javascript:void(0);" ng-show="titleEditable" class="edit-category-title" ng-click="toggleEditable(false)">stop editing</a>
+	
+
+
+	<ol class="category-container" ng-model="category.subcategories">
+		<li  ng-repeat="subcat in category.subcategories" draggable category="subcat" parent-category="category" draggable-type="category">
+			<div class="sorta-droppable-category" sorta-droppable index="{{$index}}" parent-category="category">
+				<recursive-structure category="subcat" parent-category="category" items="items" add-category="addCategoryRecursive(subcat)" add-publication="addPublicationRecursive(subcat, pub)" delete-category="deleteCategoryRecursive(subcat, parentcat)" delete-publication="deletePublicationRecursive(subcat, pub)" is-top="false"></recursive-structure>
+			</div>
+		</li>
+	</ol>
+
+
+	<ol class="publication-container" ng-model="category.publications">
+		<li class="pub" draggable pub="pub" parent-category="category" draggable-type="pub" ng-repeat="pub in category.publications | pubStructFilter:items" >
+			<div sorta-droppable index="{{$index}}" parent-category="category">
+				
+				<p >{{pub.title}} <a  href="javascript:void(0);" class="delete-pub" ng-click="deletePublicationRecursive(category, pub)" title="Delete publication"><i class="fa fa-close"></i></a></p>
+			</div>
+		</li>
+	</ol>
+	
+
+	<div ng-show="addingNewPub" class="add-new-pub-container">
+		<a href="javascript:void(0);" ng-click="showNewPubSelect(false)" >Cancel</a>
+		<a href="javascript:void(0);" class="add-it-btn" ng-click="addPublicationRecursive(category, newItem)" ng-show="newItem">Add it!</a>
+		<input ng-model="search.title" placeholder="Search and select">
+		<select ng-model="newItem" ><option ng-repeat="item in items | filter:search" value="{{item.id}}" >{{item.type}} — {{item.title}}</option></select>
+
+		
+	</div>
+
+	<a class="add-btn" href="javascript:void(0);" ng-click="addCategoryRecursive(category)" title="Add new category">+ Category</a>
+	<a class="add-btn" href="javascript:void(0);" ng-click="showNewPubSelect(true)" title="Add new publication">+ Publication</a>
+	<a href="javascript:void(0);" ng-hide="isTop" class="delete-category" ng-click="deleteCategoryRecursive(category, parentCategory)" title="Delete Category">Delete Category</a>
+</div>
+
+

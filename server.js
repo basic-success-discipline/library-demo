@@ -7,13 +7,16 @@ var bodyParser = require('body-parser');
 var compression = require('compression');
 var debug = require('debug')('ALAdmin');
 var favicon = require('serve-favicon');
+var https = require('https');
+
+
 
 
 
 var testData = require('./testData/testData.json');
 var testDefaultItem =  require('./testData/testDefaultItem.json');
 var testPubStruct = require('./testData/testPublicationStructure.json');
-var testTemplate = require('./testData/testTemplate.json');
+var testTemplate = require('./testData/templates.json');
 
 
 var app = express();
@@ -25,10 +28,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
 app.use(favicon(__dirname + '/app/favicon.ico'));
 
+var api_host = 'adl-dev.appspot.com';
+var api_v = '/api_v2.0';
+var api_headers = {'x-adl-admin-auth': '271828'};
 
-
-app.get('/getAll', function (req, res) {
+app.get('/getItems', function (req, res) {
     res.send(testData);
+   
 });
 app.get('/getpubStruct', function (req, res) {
     res.send(testPubStruct);
@@ -42,14 +48,12 @@ app.get('/getDefaultItem', function (req, res) {
 app.post('/updateItem', function (req, res) {
 
     //must actually update model!
-    console.log(req.body);
     res.send('200');
 });
 
 app.post('/updatePubStruct', function (req, res) {
 
     //must actually update model!
-    console.log(req.body);
     res.send('200');
 });
 
@@ -58,20 +62,17 @@ var item;
 app.post('/addNewItem', function (req, res) {
 
     //must actually update model!
-    console.log(req.body);
     res.send('200');
     item = req.body
 });
 app.get('/getItem', function (req, res) {
 
     //must actually update model!
-    console.log(req.query.id + " gotten");
     res.send(item);
 });
 app.get('/deleteItem', function (req, res) {
 
     //must actually update model!
-    console.log(req.query.id + " deleted");
     res.send('200');
 });
 

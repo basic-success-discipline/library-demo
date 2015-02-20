@@ -3,10 +3,10 @@
 angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
 .controller('pubStructCtrl', ['$scope', 'dataModel', function($scope, dataModel){
 	var getItems= function(){
-		var promise = dataModel.getAll();
+		var promise = dataModel.getItems();
 		promise.then(
 			function(payload){
-				$scope.items=payload.data;
+				$scope.items=payload;
 				getStruct();
 			},
 			function(errorPayload){
@@ -40,14 +40,15 @@ angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
 	}
 
 	$scope.save = function(){
-		var promise = dataModel.updatePubStruct($scope.category);
-		promise.then(
-			function(payload){
-				getStruct();
-			},
-			function(errorPayload) {
-				$log.error('failure saving publication structure', errorPayload);
-			});
+		alert("Publication structure saved! But not really because I do not have a real API");
+		// var promise = dataModel.updatePubStruct($scope.category);
+		// promise.then(
+		// 	function(payload){
+		// 		getStruct();
+		// 	},
+		// 	function(errorPayload) {
+		// 		$log.error('failure saving publication structure', errorPayload);
+		// 	});
 	}
 
 	$scope.addCategory = function(category){
@@ -55,7 +56,7 @@ angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
 	}
 
 	$scope.addPublication = function(category, pubID){
-		console.log("added publication: " + pubID + " to " + category);
+		// console.log("added publication: " + pubID + " to " + category);
 		category.publications.push(pubID);
 	}
 	$scope.deleteCategory = function(category, parentCategory){

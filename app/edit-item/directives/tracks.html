@@ -1,21 +1,29 @@
-<h1>Tracks</h1>
-<button ng-click="addNewTrack()" ng-show="editMode">Add new track</button>
-<span style="color: blue; display: inline-block;" ng-show="editMode"> *additions and deletions are not final until entire {{itemType}} is saved</span>
 
-<div class="tracks-wrapper">
-	<hr>
-	<div class="track" ng-repeat="track in item.copy['tracks']">
+<ng-form name="myTracksForm" novalidate >
+<h1>Tracks</h1>
+<button ng-click="addNewTrack()" ng-show="editMode">Add new {{itemType}} track</button>
+<span style="color: blue; display: inline-block;" ng-show="editMode"> *additions and deletions are not final until entire {{itemType}} is saved</span>
+<input type="number" name="tracksFieldName" ng-model="item.copy['tracks'].length" required min="1" ng-show="false">
+  <span style="color:red" ng-show="myTracksForm.tracksFieldName.$invalid">This item requires at least one track</span>
+
+<div class="tracks-wrapper" droppable-track>
+	
+	<div class="track" ng-repeat="track in item.copy['tracks']" track="{{track}}" draggable-track sorta-droppable-track index="{{$index}}">
 		<ng-form name="myTrackForm" novalidate>
-			<div ng-repeat="(key, value) in track" ng-include="key"></div>
-			<a href="javascript:void(0);" ng-click="deleteTrack(track)" ng-show="editMode"> Delete track</a>
-			<hr>
+			<div ng-repeat="(key, value) in track" ng-include="ensureUnique(key)"></div>
+			<a href="javascript:void(0);" ng-click="deleteTrack(track)" ng-show="editMode" ng-enabled=""> Delete track</a>
+			
 		</ng-form>
 	</div>
+
 </div>
+</ng-form>
 
-
-<script type="text/ng-template" id="filename">
+<script type="text/ng-template" id="trackFilename">
 	<span field-required-text k="key" v="value" ic="track" ae="addEdit('tracks')" em="editMode"></span>
+</script>
+<script type="text/ng-template" id="uuid">
+	<span field-no-edit k="key" v="value" ic="track" ae="addEdit('tracks')" em="editMode"></span>
 </script>
 <script type="text/ng-template" id="trackID">
 	<span field-no-edit k="key" v="value" ic="track" ae="addEdit('tracks')" em="editMode"></span>

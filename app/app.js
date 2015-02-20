@@ -21,7 +21,7 @@ app.config(['$routeProvider', function($routeProvider) {
   	controller: 'editItemCtrl', 
   	resolve: {
   		dataModelData: function(dataModel){
-  			if(!dataModel.resolved()){
+  			if(!dataModel.resolved){
 				return dataModel.promise;
   			}
   		}

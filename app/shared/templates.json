@@ -1,0 +1,163 @@
+{
+    "dvd":
+    { 
+        "mainEntry":
+        {
+            "type": "string",
+            "title": "string",
+            "subtitle": "string",
+            "author": "string",
+            "summary": "string",
+            "runtime": "string",
+            "discourseDate": "string",
+            "s3URL": "string",
+            "tracks": "array",
+            "active": "bool",
+            "filename": "string"
+        },
+        "trackEntry":
+        {
+            "trackName": "string",
+            "trackTime": "string"  
+        },
+        "newEntry":
+        {
+            "type": "dvd",
+            "title": "",
+            "subtitle": "",
+            "author": "",
+            "summary": "",
+            "runtime": "",
+            "discourseDate": "",
+            "s3URL": "",
+            "filename": "",
+            "tracks": [],
+            "active": false
+        },
+        "newTrack":
+        {
+            "trackName": "",
+            "trackTime": "" 
+        }, 
+        "itemOrder":
+        [
+            "active",
+            "uuid",
+            "id",
+            "title",
+            "subtitle",
+            "summary",
+            "author",
+            "discourseDate",
+            "runtime",
+            "s3URL",
+            "filename",
+            "type",
+            "tracks",
+            "created",
+            "updated"
+        ]
+    },
+    "cd":
+    { 
+        "mainEntry":
+        {
+            "type": "string",
+            "title": "string",
+            "subtitle": "string",
+            "author": "string",
+            "summary": "string",
+            "runtime": "string",
+            "discourseDate": "string",
+            "s3URL": "string",
+            "tracks": "array",
+            "active": "bool"
+        },
+        "trackEntry":
+        {
+            "trackName": "string",
+            "trackTime": "string",
+            "filename": "string"  
+        },
+        "newEntry":
+        {
+            "type": "cd",
+            "title": "",
+            "subtitle": "",
+            "author": "",
+            "summary": "",
+            "runtime": "",
+            "discourseDate": "",
+            "s3URL": "",
+            "tracks": [],
+            "active": false
+        },
+        "newTrack":
+        {
+            "trackName": "",
+            "trackTime": "",
+            "filename": ""  
+        },
+        "itemOrder":
+        [
+            "active",
+            "uuid",
+            "id",
+            "title",
+            "subtitle",
+            "summary",
+            "author",
+            "discourseDate",
+            "runtime",
+            "s3URL",
+            "type",
+            "tracks",
+            "created",
+            "updated"
+        ]
+    },
+    "ebook":
+    { 
+        "mainEntry":
+        {
+            "type": "string",
+            "title": "string",
+            "subtitle": "string",
+            "author": "string",
+            "active": "bool"
+        },
+        "trackEntry":
+        {
+              
+        },
+        "newEntry":
+        {
+            "type": "ebook",
+            "title": "",
+            "subtitle": "",
+            "author": "",
+            "active": false
+        },
+        "newTrack":
+        {
+             
+        },
+        "itemOrder":
+        [
+            "active",
+            "uuid",
+            "id",
+            "title",
+            "subtitle",
+            "summary",
+            "author",
+            "discourseDate",
+            "runtime",
+            "s3URL",
+            "type",
+            "tracks",
+            "created",
+            "updated"
+        ]
+    }
+}

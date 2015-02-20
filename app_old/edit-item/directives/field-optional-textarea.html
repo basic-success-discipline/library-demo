@@ -1,0 +1,6 @@
+<ng-form name="fieldForm" no-validate>
+<p>{{k}}:
+<span class="no-edit" ng-show="!em">{{ic[k]}}</span>
+  <textarea name="fieldName"  ng-model="ic[k]" ng-show="em" rows="5" ng-change="ae({key:k})"></textarea>
+</p>
+</ng-form>

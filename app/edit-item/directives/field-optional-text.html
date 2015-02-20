@@ -1,6 +1,6 @@
 <ng-form name="fieldForm" no-validate>
-<p>{{k}}:
+<p>{{k}}: <em>(optional)</em>
 <span class="no-edit" ng-show="!em">{{ic[k]}}</span>
-  <input type="text" name="fieldName" ng-model="ic[k]" ng-show="em" ng-change="ae({key:k})">
+  <input type="text" name="fieldName" ng-model="ic[k]" ng-show="em" save-cursor ng-change="ae({key:k})">
 </p>
 </ng-form>

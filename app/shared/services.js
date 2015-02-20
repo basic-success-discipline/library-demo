@@ -3,18 +3,17 @@
 
 angular.module('myApp.sharedAssets', [])
 .factory('dataModel', function ($http) {
-    var editItem, template, resolved = false;
+    var editItem = null, template, resolved = false;
 
-
+    var domstorage=window.localStorage || (window.globalStorage? globalStorage[location.hostname] : null);
+    if(domstorage && domstorage.editItem && domstorage.editItem != "undefined"){
+        editItem = JSON.parse(domstorage.editItem);    
+    }
     var promise = $http.get("/getTemplate").
     then(function(temp){
         template = temp.data;
-        return $http.get("/getDefaultItem");
-    }).
-    then(function(item){
-        editItem = item.data;
         resolved=true;
-    });
+    })
 
 
 
@@ -23,9 +22,9 @@ angular.module('myApp.sharedAssets', [])
         resolved: function(){
             return resolved;
         },
-        getAll: function () {
+        getItems: function () {
             // return $http.get("/app/shared/testData.json");
-            return $http.get("/getAll");
+            return $http.get("/getItems").then(function(payload){return payload.data;});
         },
         getPubStruct: function(){
             return $http.get("/getPubStruct");
@@ -38,6 +37,9 @@ angular.module('myApp.sharedAssets', [])
         },
         setEditItem: function(newEditItem){
             editItem = newEditItem;
+        if(domstorage){
+            domstorage.editItem= JSON.stringify(editItem);
+        } 
         },
         updateItem: function(id, updates){
             return $http.post('/updateItem', {id:id, updates:updates});
@@ -59,6 +61,9 @@ angular.module('myApp.sharedAssets', [])
                 method: "GET",
                 params: {id: id}
             });
+        },
+        getEditItemOrder: function(type){
+            return template[type].itemOrder;
         }
 
     }

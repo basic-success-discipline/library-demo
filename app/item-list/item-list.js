@@ -2,41 +2,57 @@
 
 angular.module('myApp.itemList', [])
 .controller('itemListCtrl', ['$scope', '$location', '$filter', 'dataModel',function($scope, $location, $filter, dataModel) {
+	var domstorage=window.localStorage || (window.globalStorage? globalStorage[location.hostname] : null);
+	$scope.filterOptions ={"types":{"cd":true,"dvd":true,"ebook":true}, "activeOnly":false};
 
-	$scope.filterOptions ={"types":{"cd":true,"dvd":true,"ebook":true}, "activeOnly":true};
+	if(domstorage && domstorage.filterOptions){
+		$scope.filterOptions = JSON.parse(domstorage.filterOptions);
+	}
 	$scope.sortOptions = ['title', 'id', 'discourseDate', 'type'];
 	$scope.selectedSortOption = $scope.sortOptions[0];
+	$scope.items = [];
 
 
 	$scope.showEditItemView = function(item){
+		$scope.saveFilterOptions();
 		dataModel.setEditItem(item);
 		$location.path('/edit-item');
 	}
 
+	$scope.saveFilterOptions = function(){
+		if(domstorage){
+			domstorage.filterOptions = JSON.stringify($scope.filterOptions);
+		}
+	}
+
 	$scope.updateActive = function(item, isChecked){
-		var promise = dataModel.updateItem(item.id, {active:isChecked});
+
+		var active;
+		if(isChecked){
+			active = "1";
+		}else{
+			active = "0";
+		} 
+		
+		var promise = dataModel.updateItem(item, {active:active});
 		promise.then(
 			function(payload) { 
-				getAllData();
+				item.active = payload.active;
+				
 			},
 			function(errorPayload) {
-				$log.error('failure setting active on item', errorPayload);
+				console.error('failure setting active on item', errorPayload);
 			});
 	}
 
-
-	var getAllData = function(){
-		var promise = dataModel.getAll();
-		promise.then(
-			function(payload) { 
-				$scope.items=payload.data;
-			},
-			function(errorPayload) {
-				$log.error('failure loading test data', errorPayload);
-			});
+	var getItems = function(){
+		var promise = dataModel.getItems();
+		promise.then(function(items) { 
+			$scope.items=items;
+		});
 	}
 
-	getAllData();
+	getItems();
 	
 	
 }])

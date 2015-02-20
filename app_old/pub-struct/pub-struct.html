@@ -1,0 +1,11 @@
+<div class="pub-struct">
+	<div class="top-bar">
+		<a ng-href="#/item-list" >Back to list</a>
+		<button ng-click="save()">Save</button>
+		<button ng-click="undo()">Undo</button>
+	</div>
+
+<!-- in this case, subcat is the same as category - this is for the sake of using add-category recursively -->
+<recursive-structure category="category" items="items" add-category="addCategory(subcat)" add-publication="addPublication(subcat, pub)" delete-category="deleteCategory(subcat, parentcat)" delete-publication="deletePublication(subcat, pub)" is-top="true"></recursive-structure>
+
+</div>
