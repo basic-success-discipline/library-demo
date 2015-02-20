@@ -14,7 +14,6 @@ var https = require('https');
 
 
 var testData = require('./testData/testData.json');
-var testDefaultItem =  require('./testData/testDefaultItem.json');
 var testPubStruct = require('./testData/testPublicationStructure.json');
 var testTemplate = require('./testData/templates.json');
 
@@ -41,9 +40,6 @@ app.get('/getpubStruct', function (req, res) {
 });
 app.get('/getTemplate', function (req, res) {
     res.send(testTemplate);
-});
-app.get('/getDefaultItem', function (req, res) {
-    res.send(testDefaultItem);
 });
 app.post('/updateItem', function (req, res) {
 
