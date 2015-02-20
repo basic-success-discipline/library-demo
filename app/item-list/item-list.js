@@ -11,6 +11,8 @@ angular.module('myApp.itemList', [])
 	$scope.sortOptions = ['title', 'id', 'discourseDate', 'type'];
 	$scope.selectedSortOption = $scope.sortOptions[0];
 	$scope.items = [];
+	dataModel.setDemoViewed("Item List View");
+	$scope.demoViews = dataModel.getDemoViews();
 
 
 	$scope.showEditItemView = function(item){

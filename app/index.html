@@ -16,18 +16,16 @@
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
- <!--  <ul class="menu">
-    <li><a href="#/all">All</a></li>
-    <li><a href="#/cds">CDs</a></li>
-    <li><a href="#/dvds">DVDs</a></li>
-  </ul> -->
-  <div class="wrapper" ng-view></div>
+
+  <div class="wrapper">
+    <h2 class="demo">This is a backend-less demo of Jonathan Cobb's CRUD admin interface</h2>
+  <p class="demo" >Some of the functionality, therefore, is missing. I try to indicate where this is the case.</p>
+    
+    <div ng-view></div>
+  </div>
 
 
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
+  
 
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>

@@ -2,11 +2,65 @@
 
 /* app css stylesheet */
 
+html, body{
+  background-color: #EEE;
+  height: 100%;
+}
 .wrapper{
-  margin: 40px auto 40px auto;
+  margin: 0px auto 0px auto;
   width: 768px;
+  background-color: white;
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+  min-height: 100%;
+
 }
 
+h2.demo{
+  text-align: center; 
+  margin-bottom: 5px; 
+  line-height: 0.8; 
+  margin-top: 0px; 
+  padding-top: 50px;
+  font-size: 20px;
+}
+
+p.demo{
+  text-align: center; 
+  margin-top: 5px;
+  margin-bottom: 50px;
+}
+
+
+div.demo{
+  position: fixed;
+  bottom: 0;
+  
+}
+div.demo.left{
+  left: 10px;
+  right: calc((100% - 768px)/2 + 788px);
+  text-align: right;
+}
+
+div.demo.right{
+  right: 10px;
+  left: calc((100% - 768px)/2 + 778px);
+  text-align: left;
+}
+
+div.demoViews{
+  top:0;
+  // width: 275px;
+}
+div.demoViews p span{
+  float: right;
+}
+
+div.demoViews h4{
+  text-align: center;
+}
 
 
 //ITEM LIST VIEW

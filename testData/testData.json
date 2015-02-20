@@ -9,27 +9,26 @@
         "runtime": "02:34:00",
         "discourseDate": "1994-10-14",
         "s3URL": "PulpFiction",
+        "filename": "PulpFiction.mp4",
         "tracks": [
             {
                 "trackID": 367,
                 "trackNumber": 1,
                 "trackName": "Chapter 1",
-                "trackTime": "00:10:23",
-                "filename": "PulpFiction.mp4"
+                "trackTime": "00:10:23"
             },
             {
                 "trackID": 368,
                 "trackNumber": 2,
                 "trackName": "Chapter 2",
-                "trackTime": "00:11:37",
-                "filename": "PulpFiction.mp4"
+                "trackTime": "00:11:37"
+                
             },
             {
                 "trackID": 369,
                 "trackNumber": 3,
                 "trackName": "Chapter 3",
-                "trackTime": "00:10:18",
-                "filename": "PulpFiction.mp4"
+                "trackTime": "00:10:18"
             }
             
         ],
@@ -45,41 +44,38 @@
         "runtime": "01:12:00",
         "discourseDate": "2004-10-20",
         "s3URL": "Test3URL",
+        "filename": "LoremPicture.mp4",
         "tracks": [
             {
                 "trackID": 370,
                 "trackNumber": 1,
                 "trackName": "The Definition of Lorem Ipsum",
-                "trackTime": "00:14:48",
-                "filename": "DNCS.mp4"
+                "trackTime": "00:14:48"
+                
             },
             {
                 "trackID": 371,
                 "trackNumber": 2,
                 "trackName": "Lorem Ipsum and the Sphere of Energy",
-                "trackTime": "00:13:56",
-                "filename": "DNCS.mp4"
+                "trackTime": "00:13:56"
             },
             {
                 "trackID": 372,
                 "trackNumber": 3,
                 "trackName": "Human Beings are Lorem Ipsum",
-                "trackTime": "00:11:41",
-                "filename": "DNCS.mp4"
+                "trackTime": "00:11:41"
             },
             {
                 "trackID": 373,
                 "trackNumber": 4,
                 "trackName": "The Source of Lorem Ipsum",
-                "trackTime": "00:12:07",
-                "filename": "DNCS.mp4"
+                "trackTime": "00:12:07"
             },
             {
                 "trackID": 374,
                 "trackNumber": 5,
                 "trackName": "There Is No Cause of Loren Ipsum",
-                "trackTime": "00:08:07",
-                "filename": "DNCS.mp4"
+                "trackTime": "00:08:07"
             }
         ],
         "active": "0"

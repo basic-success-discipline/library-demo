@@ -1,3 +1,15 @@
+<div class="demo left">
+	<p>Here is the top level view of all the items in the database. This view is mostly an exercise in filters.</p>
+</div>
+<div class="demo right">
+	<p>Click on an item to view its detail view. Or click "Add New" to make a new entry. Or click "Publication Structure" for custom content organization (I'm proudest of this view).</p>
+</div>
+<div class="demo right demoViews">
+<h4>Demo Checklist</h4>
+  <div ng-repeat="(key, value) in demoViews">
+  		<p>{{key}}: <span class="viewed" ng-show="value">&#10004</span></p>
+  </div>
+</div>
 <div class="item-list">
 
 	<div class="top-bar">
@@ -9,7 +21,7 @@
 	</div>
 
 	<div class="second-bar">
-		<span><input ng-model="search.title" placeholder="Search Title"></span>
+		<!-- <span><input ng-model="search.title" placeholder="Search Title"></span> -->
 		<span>Sort by: <select ng-model="selectedSortOption"><option ng-repeat="option in sortOptions" value="{{option}}">{{option}}</option></select></span>
 		<span><input type="checkbox" ng-model="filterOptions.activeOnly"> Active Only</span>
 		

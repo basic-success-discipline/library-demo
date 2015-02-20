@@ -1,3 +1,18 @@
+
+<div class="demo left">
+	<h3>Form Generation</h3>
+	<p>Form is generated dynamically based on whatever item is passed to it. Fields are assigned a "field directive based on data type and validation parameters. New entries are assigned a range of fields based on item type (try switching between types when creating a new item).</p>
+</div>
+<div class="demo right">
+	<h3>Editting</h3>
+	<p>Fields are edittable by clicking "edit" button. Validation rules prevent saving if errors. Tracks are re-orderable via drag & drop</p>
+</div>
+<div class="demo right demoViews">
+<h4>Demo Checklist</h4>
+  <div ng-repeat="(key, value) in demoViews">
+  		<p>{{key}}: <span class="viewed" ng-show="value">&#10004</span></p>
+  </div>
+</div>
 <div class="edit-item">
 
 	<form class="myForm" name="myForm" novalidate>

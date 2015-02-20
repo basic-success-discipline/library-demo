@@ -13,7 +13,11 @@ angular.module('myApp.sharedAssets', [])
     then(function(temp){
         template = temp.data;
         resolved=true;
-    })
+    });
+
+
+    var demoViews = {"Item List View" : false, "Edit Item View": false, "New Item View" : false, "Publication Structure":false};
+
 
 
 
@@ -64,6 +68,12 @@ angular.module('myApp.sharedAssets', [])
         },
         getEditItemOrder: function(type){
             return template[type].itemOrder;
+        },
+        getDemoViews: function(){
+            return demoViews;
+        },
+        setDemoViewed: function(view){
+            demoViews[view] = true;
         }
 
     }

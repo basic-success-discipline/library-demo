@@ -13,8 +13,13 @@ angular.module('myApp.editItem', [])
 		$scope.editMode = true;
 		var template = dataModel.getTemplate();
 		$scope.item.obj = template[$scope.itemType].newEntry;
+    dataModel.setDemoViewed("New Item View");
+  $scope.demoViews = dataModel.getDemoViews();
 
-	}
+	} else{
+    dataModel.setDemoViewed("Edit Item View");
+  $scope.demoViews = dataModel.getDemoViews();
+  }
 
 	$scope.itemType = $scope.item.obj["type"];
 	$scope.edits ={"obj":{}};
@@ -44,7 +49,7 @@ angular.module('myApp.editItem', [])
     }else{
       $scope.item.copy.active = "0";
     }
-    alert("Item saved! But not really because I have no real API");
+    alert("Item saved! But not really because I have no real backend");
     // var promise = dataModel.addNewItem($scope.item.copy);
 
     // promise.then(function(item){
@@ -91,7 +96,7 @@ angular.module('myApp.editItem', [])
       } 
     }
 
-    alert("Item saved! But not really because I have no real API");
+    alert("Item saved! But not really because I have no real backend");
     // var promise = dataModel.updateItem($scope.item.copy, $scope.edits.obj);
     // promise.then(function(item){
     //   dataModel.setEditItem(item);
@@ -121,7 +126,7 @@ $scope.unsavedEdits = function(){
 $scope.deleteItem = function(){
   var retVal = confirm("Deleting entry \n\nTHIS CANNOT BE UNDONE \n\n" + "Deactivating is the safer option.");
   if(retVal){
-    alert("Item deleted! But not really because I have no real API");
+    alert("Item deleted! But not really because I have no real backend");
      $location.path("/item-list");
   //  var promise = dataModel.deleteItem($scope.item.copy);
   //  promise.then(function(data){

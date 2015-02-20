@@ -1,3 +1,16 @@
+<div class="demo left">
+	<p>Here is where database entries can be organized into custom categories via drag and drop.</p>
+</div>
+<div class="demo right">
+	<p>Hopefully I've designed this well enough that is is self-explanatory :-)</p>
+</div>
+<div class="demo right demoViews">
+<h4>Demo Checklist</h4>
+  <div ng-repeat="(key, value) in demoViews">
+  		<p>{{key}}: <span class="viewed" ng-show="value">&#10004</span></p>
+  </div>
+</div>
+
 <div class="pub-struct">
 	<div class="top-bar">
 		<a ng-href="#/item-list" >Back to list</a>

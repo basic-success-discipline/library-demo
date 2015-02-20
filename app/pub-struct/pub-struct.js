@@ -2,6 +2,10 @@
 
 angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
 .controller('pubStructCtrl', ['$scope', 'dataModel', function($scope, dataModel){
+
+	dataModel.setDemoViewed("Publication Structure");
+	$scope.demoViews = dataModel.getDemoViews();
+
 	var getItems= function(){
 		var promise = dataModel.getItems();
 		promise.then(
@@ -40,7 +44,7 @@ angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
 	}
 
 	$scope.save = function(){
-		alert("Publication structure saved! But not really because I do not have a real API");
+		alert("Publication structure saved! But not really because I do not have a real backend");
 		// var promise = dataModel.updatePubStruct($scope.category);
 		// promise.then(
 		// 	function(payload){
