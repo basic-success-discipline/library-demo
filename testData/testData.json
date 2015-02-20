@@ -206,26 +206,6 @@
         "title": "Lorem Ipsum Book",
         "subtitle": "The best book",
         "author": "Joe",
-        "summary": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.",
-        "runtime": "00:23:23",
-        "discourseDate": "2009-09-01",
-        "s3URL": "LoremURLLLL",
-        "tracks": [
-            {
-                "trackID": 847,
-                "trackNumber": 1,
-                "trackName": "Beginning of Book",
-                "trackTime": "00:06:00",
-                "filename": "1"
-            },
-            {
-                "trackID": 848,
-                "trackNumber": 2,
-                "trackName": "Page 601 of book",
-                "trackTime": "00:17:23",
-                "filename": "601"
-            }
-        ],
         "active": "1"
     }
     

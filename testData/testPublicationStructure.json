@@ -1,33 +1,32 @@
 {"Categories" : [
     {
-      "title" : "Revelation Literature",
+      "title" : "Awesome Stuff",
       "subcategories" : [
         {
-          "title" : "The Five Principal Books of Avatar Adi Da’s Forever Comprehensive Seventh-Stage Address to all-and-All",
+          "title" : "Special subsection of awesome stuff",
           "subcategories" : [],
           "publications" : [
             1,
             2,
-            3,
-            4,
-            5
+            3
           ]
         }
       ],
-      "publications" : []
+      "publications" : [
+        4,
+          5
+          ]
     },
     {
-      "title" : "Genesis Literature",
+      "title" : "Other great stuff",
       "subcategories" : [
         {
-          "title" : "The Five Insignifiant Books of Avatar Adi Da’s Forever Comprehensive Seventh-Stage Address to all-and-All",
+          "title" : "Lorem Subcategory",
           "subcategories" : [],
           "publications" : [
-            94,
-            95,
-            96,
-            97,
-            98
+            3,
+            5,
+            2
           ]
         }
       ],
