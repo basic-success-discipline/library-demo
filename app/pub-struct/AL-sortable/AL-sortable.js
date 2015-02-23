@@ -152,6 +152,7 @@ angular.module('al.sortable', [])
 		link: function(scope, element, attrs, dragDropCtrl) {
 
 			var el = element[0];
+
 			el.addEventListener(
 				'dragover',
 				function(e) {
@@ -285,6 +286,16 @@ angular.module('al.sortable', [])
 
 			var el = element[0];
 			el.addEventListener(
+			    'dragover',
+			    function(e) {
+			        // allows us to drop
+			        if (e.preventDefault) e.preventDefault();
+			        this.classList.add('sorta-over');
+			        return false;
+			    },
+			    false
+			);
+			el.addEventListener(
 				'dragenter',
 				function(e) {
 					this.classList.add('sorta-over');
@@ -304,6 +315,7 @@ angular.module('al.sortable', [])
 			el.addEventListener(
 				'drop',
 				function(e) {
+					if (e.preventDefault) e.preventDefault();
 					dragDrop.setSortaDropVars(scope.index, scope.parentCategory);
 					this.classList.remove('sorta-over');
 					return false;

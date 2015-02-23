@@ -465,6 +465,7 @@ $scope.refreshEditItemView();
                 dragDropTrack.setDragItem(JSON.parse(attrs.track), attrs.index);
                 this.classList.add('drag');
                 dragDropTrack.setDropIndex(scope.item.copy['tracks'].length);
+                e.dataTransfer.setData('Text', JSON.stringify(JSON.parse(attrs.track)));
                 return false;
               },
               false
@@ -560,6 +561,7 @@ $scope.refreshEditItemView();
               'dragover',
               function(e) {
                   // e.stopPropagation();
+                  if (e.preventDefault) e.preventDefault();
                   this.classList.add('sorta-over');
                   return false;
                 },
@@ -591,7 +593,7 @@ $scope.refreshEditItemView();
               'drop',
               function(e) {
                     // Stops some browsers from redirecting.
-
+                    if (e.preventDefault) e.preventDefault();
                     this.classList.remove('sorta-over');
                     dragDropTrack.setDropIndex(attrs.index);
                     return false;

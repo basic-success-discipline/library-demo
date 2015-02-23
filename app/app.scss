@@ -11,6 +11,8 @@ html, body{
   width: 768px;
   background-color: white;
   box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   padding-left: 10px;
   padding-right: 10px;
   min-height: 100%;
@@ -223,7 +225,10 @@ div.demoViews h4{
   border-left: 1px solid  rgba(77, 152, 248, 0.5);
   border-bottom: 1px solid  rgba(77, 152, 248, 0.1);
   border-radius: 15px;
+  -webkit-border-radius: 15px;
   box-sizing:border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   background-color: white;
   position: relative;
 }
@@ -255,6 +260,8 @@ div.demoViews h4{
   cursor: move;
   position:relative;
    box-sizing:border-box;
+   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
    margin-top: 0;
    margin-bottom: 0;
 }
@@ -266,6 +273,8 @@ div.demoViews h4{
   cursor: move;
   position: relative;
    box-sizing:border-box;
+   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 
@@ -304,6 +313,8 @@ textarea.category-title{
     padding-bottom: 10px;
    padding-right: 20px;
    box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
    height: calc(1em + 20px);
 }
 textarea.category-title:focus{
@@ -348,7 +359,9 @@ textarea.category-title:focus{
 
 .rec-struct-wrapper .category-title-container h1{
  padding-right: 20px;
-   box-sizing: border-box; 
+   box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; 
    margin-top: 0px;
    padding-top: 12px;
    padding-bottom: 12px;
@@ -380,6 +393,8 @@ textarea.category-title:focus{
   & input{
     width: calc(100% - 180px);
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   }
   & a{
     width: 90px;
@@ -390,6 +405,8 @@ textarea.category-title:focus{
     text-align: right;
     padding-right: 5px;
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
     font-weight: 400;
     color: #27ae60;
     opacity: 1;
