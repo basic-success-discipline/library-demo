@@ -196,7 +196,7 @@ angular.module('al.sortable', [])
 				function(e) {
 			        // Stops some browsers from redirecting.
 			        if (e.stopPropagation) e.stopPropagation();
-
+			        if (e.preventDefault) e.preventDefault();
 			        this.classList.remove('over');
 
 			        // scope.category.gotDropped=true;
