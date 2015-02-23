@@ -3,7 +3,7 @@
 /* app css stylesheet */
 
 html, body{
-  background-color: #EEE;
+  background-color: #EEE !important;
   height: 100%;
 }
 .wrapper{
@@ -29,6 +29,12 @@ h2.demo{
 p.demo{
   text-align: center; 
   margin-top: 5px;
+  
+}
+p.demo.too-small{
+  color: red;
+  font: 14px;
+  visibility: hidden;
   margin-bottom: 50px;
 }
 
@@ -36,6 +42,7 @@ p.demo{
 div.demo{
   position: fixed;
   bottom: 0;
+  background-color: transparent;
   
 }
 div.demo.left{
@@ -401,6 +408,27 @@ textarea.category-title:focus{
 .pub-struct .top-bar button{
   float: right;
   margin-left: 10px;
+}
+
+$phone-portrait: 320px;
+$phone-landscape: 480px;
+$phone-wide-landscape: 568px;
+$phone-even-wider-landscape: 640px;
+$tablet-portrait: 768px;
+$tablet-landscape: 1024px;
+$desktop: 1224px;
+
+
+// TABLET - PORTRAIT
+@media only screen  
+and (max-width : 1110px) {
+
+  div.demo{
+    display: none;
+  }
+  p.demo.too-small{
+    visibility: visible;
+  }
 }
 
 

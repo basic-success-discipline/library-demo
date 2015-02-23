@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 /* app css stylesheet */
 html, body {
-  background-color: #EEE;
+  background-color: #EEE !important;
   height: 100%; }
 
 .wrapper {
@@ -23,12 +23,18 @@ h2.demo {
 
 p.demo {
   text-align: center;
-  margin-top: 5px;
+  margin-top: 5px; }
+
+p.demo.too-small {
+  color: red;
+  font: 14px;
+  visibility: hidden;
   margin-bottom: 50px; }
 
 div.demo {
   position: fixed;
-  bottom: 0; }
+  bottom: 0;
+  background-color: transparent; }
 
 div.demo.left {
   left: 10px;
@@ -302,3 +308,10 @@ textarea.category-title:focus {
 .pub-struct .top-bar button {
   float: right;
   margin-left: 10px; }
+
+@media only screen and (max-width: 1110px) {
+  div.demo {
+    display: none; }
+
+  p.demo.too-small {
+    visibility: visible; } }
