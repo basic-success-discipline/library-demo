@@ -1,4 +1,9 @@
 'use strict';
+//This module controls the "/edit-item" view which acts as:
+// a read-only details view of a given item (createMode=false, editMode = false),
+// a saveable edit view for an item (createMode= false, editMode = true), 
+// or an empty form view for creating new items (createMode = true, editMode = true).
+
 
 angular.module('myApp.editItem', [])
 .controller('editItemCtrl', ['$scope', '$location',  'dataModel', function($scope, $location, dataModel){
@@ -8,6 +13,7 @@ angular.module('myApp.editItem', [])
 	$scope.editMode = false;
 	$scope.itemType = "cd";
 
+  //if creating a new item
 	if ($scope.item.obj == null){
 		$scope.createMode = true;
 		$scope.editMode = true;
@@ -22,10 +28,11 @@ angular.module('myApp.editItem', [])
   }
 
 	$scope.itemType = $scope.item.obj["type"];
-	$scope.edits ={"obj":{}};
+	$scope.edits ={"obj":{}}; //this kind of variable format is used so that scope variables can be shared with child controllers (tracksCtrl)
 
 
 
+//should update which form fields are visible based a change in item type
 	$scope.updateFields = function(type){
 		if($scope.createMode){
 			$scope.itemType=type;
@@ -41,8 +48,9 @@ angular.module('myApp.editItem', [])
       }
 		}
 	};
+
+
 	$scope.saveNew = function(){
-		//send new Item to API
     var active = $scope.item.copy.active;
     if(active){
       $scope.item.copy.active = "1";
@@ -64,12 +72,12 @@ angular.module('myApp.editItem', [])
 
   }
 
-	//has test
+	
 	$scope.refreshEditItemView = function(){
 		$scope.item.copy =  angular.copy($scope.item.obj);
 	}
 
-	//has test
+	
 	$scope.toggleEditMode = function(bool){
 		$scope.editMode = bool;
 		if(!bool){
@@ -78,7 +86,6 @@ angular.module('myApp.editItem', [])
 		}
 	}
 
-	//has test
 	$scope.addEdit = function(key){
     		if($scope.item.copy[key]){
 
@@ -150,6 +157,7 @@ $scope.confirmLeaveEdit = function(){
 }
 
 
+//should return the correct order for fields in the form
 $scope.editItemFieldOrder = function(key){
   var fieldArray = dataModel.getEditItemOrder($scope.itemType);
   for(var i=0; i<fieldArray.length; i++){
@@ -164,6 +172,8 @@ $scope.keys = function(obj){
   return obj? Object.keys(obj) : [];
 }
 
+
+//this is needed since tracks has a key named "filename" as well
 $scope.ensureUnique = function(key){
   if(key=="filename"){
     return "itemFilename";
@@ -180,7 +190,7 @@ $scope.refreshEditItemView();
 
 
 
-
+//this controls the logic in the tracks directive
 .controller('tracksCtrl', ['$scope', 'dataModel', function($scope, dataModel){
 	
 
@@ -207,6 +217,7 @@ $scope.refreshEditItemView();
 		$scope.edits.obj['tracks'] = $scope.item.copy['tracks'];
 	}
 
+//this is needed since there is an item-level key named "filename" as well
   $scope.ensureUnique = function(key){
   if(key=="filename"){
     return "trackFilename";
@@ -219,6 +230,7 @@ $scope.refreshEditItemView();
 
 
 }])
+
 
 .controller('trackCtrl', ['$scope', function($scope){
 	$scope.bindItem= $scope.track;
@@ -446,7 +458,7 @@ $scope.refreshEditItemView();
 
 
 
-
+//the remaining code is for managing drag and drop reordering of tracks
 
 .directive('draggableTrack', function(dragDropTrack) {
   return {
@@ -550,6 +562,7 @@ $scope.refreshEditItemView();
       })
 
 
+//This directive allows for highlighting betweeen tracks so that you can see where you're dropping your draggable track
 
 .directive('sortaDroppableTrack', function(dragDropTrack) {
   return {

@@ -1,7 +1,12 @@
 'use strict';
 
 
+
 angular.module('myApp.sharedAssets', [])
+
+
+
+//this is where api calls take place
 .factory('dataModel', function ($http) {
     var editItem = null, template, resolved = false;
 
@@ -78,6 +83,10 @@ angular.module('myApp.sharedAssets', [])
 
     }
 })
+
+
+
+//helper for publication structure
 .factory('recursionHelper', ['$compile', function($compile){
     return {
         /**

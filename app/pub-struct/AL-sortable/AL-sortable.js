@@ -1,3 +1,6 @@
+//this module provides drag and drop functionality for the publication structure view
+
+
 angular.module('al.sortable', [])
 .controller('dragDropCtrl', ['$scope', function($scope){
 
@@ -11,6 +14,7 @@ angular.module('al.sortable', [])
 }])
 
 
+//This simulates a controller for all the drag and drop functionality
 .service('dragDrop', function(){
 	var drag = {pub:null,category:null,parent:null,type:null};
 	var drop = {category: null};
@@ -275,6 +279,10 @@ angular.module('al.sortable', [])
 		}
 	}
 })
+
+
+
+//This directive allows for highlighting betweeen categories/publications so that you can see where you're dropping your draggable
 
 .directive('sortaDroppable', function(dragDrop) {
 	return {

@@ -1,5 +1,8 @@
 'use strict';
 
+//this module is for viewing all items in the database
+
+
 angular.module('myApp.itemList', [])
 .controller('itemListCtrl', ['$scope', '$location', '$filter', 'dataModel',function($scope, $location, $filter, dataModel) {
 	var domstorage=window.localStorage || (window.globalStorage? globalStorage[location.hostname] : null);
@@ -27,6 +30,7 @@ angular.module('myApp.itemList', [])
 		}
 	}
 
+	//users can update the "active" field on an item from this view
 	$scope.updateActive = function(item, isChecked){
 
 		var active;

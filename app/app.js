@@ -19,6 +19,8 @@ app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/edit-item',{
   	templateUrl: 'edit-item/edit-item.html', 
   	controller: 'editItemCtrl', 
+
+    //should ensure that item templates are loaded in memory before loading this view
   	resolve: {
   		dataModelData: function(dataModel){
   			if(!dataModel.resolved){

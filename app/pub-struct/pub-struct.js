@@ -1,5 +1,8 @@
 'use strict';
 
+//this module manages drag and drop, addition, and deletion of categories and publications in the publication structure
+//see AL-sortable.js for drag and drop functionality
+
 angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
 .controller('pubStructCtrl', ['$scope', 'dataModel', function($scope, dataModel){
 
@@ -100,6 +103,9 @@ angular.module('myApp.pubStruct', ['monospaced.elastic', 'al.sortable'])
 	);
 
 })
+
+
+// this allows for categories within categories
 
 .directive('recursiveStructure', function(recursionHelper, dataModel) {
 	return {
